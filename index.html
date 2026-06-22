@@ -613,6 +613,8 @@
   <a href="#sec-amor">🌷 Poemas de Amor</a>
   <span class="nav-sep">|</span>
   <a href="#sec-extrano">💔 Te Extraño</a>
+  <span class="nav-sep">|</span>
+  <a href="#sec-mil">💜 1000 Razones</a>
 </nav>
 
 <!-- ═══════════════════════════════════════
@@ -2346,6 +2348,37 @@ con el corazón tan abierto como el primer día.</p>
 </section>
 
 <!-- ═══════════════════════════════════════
+     SECCIÓN 5: 1000 RAZONES
+═══════════════════════════════════════ -->
+<section id="sec-mil" class="page-section" style="padding-bottom:80px;">
+  <div class="section-banner">
+    <h2 style="font-family:'Dancing Script',cursive;font-size:clamp(2.5rem,6vw,4.5rem);background:linear-gradient(135deg,#f3e8ff,#f0c040,#c39bd3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">💜 1000 Razones Por Las Que Te Quiero 💜</h2>
+    <div class="divider">🌷💜🌷</div>
+    <p style="font-family:'Playfair Display',serif;font-style:italic;color:#c39bd3;max-width:680px;margin:0 auto 30px;line-height:1.9;font-size:1.05rem;">Porque una sola razón nunca fue suficiente,<br/>porque mi corazón tiene mil formas de decirte lo que sientes en él,<br/>porque tú mereces saber cada una.</p>
+  </div>
+
+  <!-- Contador animado -->
+  <div style="text-align:center;margin:0 auto 40px;">
+    <div style="display:inline-flex;gap:16px;flex-wrap:wrap;justify-content:center;">
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(195,155,211,0.25);border-radius:20px;padding:20px 30px;backdrop-filter:blur(10px);">
+        <div id="counterNum" style="font-family:'Dancing Script',cursive;font-size:4rem;background:linear-gradient(135deg,#f0c040,#c39bd3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;">0</div>
+        <div style="font-family:'Playfair Display',serif;font-style:italic;color:#c39bd3;font-size:0.9rem;margin-top:4px;">razones contadas</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(195,155,211,0.25);border-radius:20px;padding:20px 30px;backdrop-filter:blur(10px);display:flex;align-items:center;">
+        <div style="font-family:'Dancing Script',cursive;font-size:1.8rem;color:#f0c040;line-height:1.3;">Todas son reales.<br/>Todas son para ti, Katy. 🌷</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pestañas de categorías -->
+  <div id="catTabs" style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:36px;max-width:1100px;margin-left:auto;margin-right:auto;"></div>
+
+  <!-- Grid de razones -->
+  <div id="reasonsGrid" style="max-width:1180px;margin:0 auto;columns:3 280px;gap:14px;column-fill:balance;"></div>
+
+</section>
+
+<!-- ═══════════════════════════════════════
      FOOTER
 ═══════════════════════════════════════ -->
 <footer>
@@ -2437,6 +2470,759 @@ function activateObserver(){
     obs.observe(c);
   });
 }
+
+/* ══════════════════════════════════
+   DATOS: 1000 RAZONES
+══════════════════════════════════ */
+const razones = [
+  // ── CATEGORÍA 1: Tu Forma de Ser (1–100) ──
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres auténtica sin esfuerzo, nunca finges ser alguien que no eres."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque cuando hablas, todas tus palabras tienen un peso honesto que pocos tienen."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tu carácter firme coexiste perfectamente con tu corazón suave."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque no le pides permiso a nadie para ser exactamente quien eres."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tienes esa rara capacidad de hacer sentir a todos importantes."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres curiosa y quieres aprender de todo lo que te rodea."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque cuando te apasionas por algo, todo tu ser lo refleja."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tienes un sentido del humor que aparece en el momento justo."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres de las personas que cumplen lo que prometen."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tu manera de escuchar hace que uno quiera contarte todo."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres valiente aunque tengas miedo, y eso es el verdadero valor."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque nunca te rindes ante las cosas que de verdad te importan."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tratas a todos con un respeto que no todos merecen pero tú das igual."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres de las que ríe de corazón, sin cálculos ni reservas."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tienes una sensibilidad que te hace percibir lo que otros no ven."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres generosa con tu tiempo, que es lo más valioso que tiene una persona."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque cuando te enojas, incluso en ese enojo hay algo hermoso."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tu energía cambia el ambiente sin que lo propongas."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres de las pocas personas que se queda cuando todo se complica."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tienes esa bondad genuina que no busca reconocimiento."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tu determinación no conoce límites cuando algo te importa."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres capaz de ver lo bueno en situaciones donde otros solo ven lo malo."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tu lealtad es de las que no se encuentran en cualquier lugar."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres espontánea de una manera que hace que cada momento contigo sea único."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque nunca dejas que nadie te apague ese brillo tan tuyo."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres empática de una manera profunda, sientes lo que otros sienten."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tienes criterio propio y no te dejas llevar por lo que digan los demás."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres directa cuando hay que serlo, sin crueldad pero sin rodeos."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tu paciencia en los momentos difíciles es digna de admirar."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres de las que admite cuando se equivoca, y eso requiere mucho valor."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tu creatividad para resolver problemas es asombrosa."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tienes una capacidad de adaptación que muchos quisieran tener."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres apasionada en lo que haces y eso se nota en cada detalle."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tu presencia da calma incluso cuando todo está en caos."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres de las que inspira sin proponérselo."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tienes una manera de ver el mundo que lo hace más interesante."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque nunca usas el dolor ajeno para sentirte mejor."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tu integridad no tiene precio ni se negocia."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres detallista con las personas que quieres, y eso vale oro."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tienes la capacidad de transformar lo ordinario en algo especial."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres de las que pone todo de sí misma en cada cosa que hace."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tu sencillez no tiene nada que ver con mediocridad, es pura elegancia."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque cuando crees en algo, defiendes esa convicción con todo lo que eres."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tienes una humildad que no se aprende, que viene de lo más genuino."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres libre de una manera que me parece la más hermosa."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tu inteligencia emocional supera a cualquier libro que haya leído."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres de las que cuida sin asfixiar y quiere sin controlar."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tienes ese equilibrio entre razón y corazón que es tan difícil de alcanzar."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque cuando decides algo, lo decides de verdad y con convicción."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres única en la manera más literal y hermosa de esa palabra."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tu naturaleza generosa no tiene límites cuando alguien la necesita."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres de las que da sin esperar que le devuelvan lo mismo."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tienes una dignidad que no necesita de nadie para mantenerse en pie."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tu alegría contagia incluso a los que no querían sonreír."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres de las que recuerda los pequeños detalles que los demás olvidan."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tienes esa madurez que no depende de la edad sino de lo que has vivido."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres capaz de reírte de ti misma, y eso es una fortaleza enorme."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tu manera de querer es total, sin medias tintas ni condiciones."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres transparente de una manera que resulta refrescante en este mundo."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque cuando estás presente, realmente estás, no a medias."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tienes la capacidad de hacer sentir a alguien visto y escuchado."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres de las que asume sus errores y aprende de ellos sin drama."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tu forma de enfrentar la vida tiene una elegancia natural."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres consistente, lo que dices y lo que haces van de la mano."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tienes una calidez que no se puede fabricar, solo nace."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tu manera de cuidar a los que amas es profunda y sincera."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres de las que convierte los obstáculos en escalones."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tienes esa energía que no se agota cuando algo realmente importa."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres apasionada sin ser explosiva, intensa sin ser agobiante."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tu forma de amar no pone condiciones ni pone plazos."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres de las que hace preguntas porque genuinamente quiere entender."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tu fortaleza interior brilla más que cualquier cosa exterior."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres de las que transforma los lugares que habita."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque nunca dejas de crecer, de aprender, de evolucionar."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tienes esa combinación imposible de suave y fuerte que te hace perfecta."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres honesta incluso cuando la honestidad es incómoda."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tu compasión no discrimina y eso dice todo de quién eres."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres de las que deja huella en cada persona que tiene la suerte de conocerte."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tienes esa rara capacidad de estar en paz con quién eres."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres extraordinaria de una manera que ni tú misma sabes todavía."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque ser tú misma es el regalo más grande que le has dado al mundo."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque cada vez que pienso en quién eres, encuentro una razón nueva para admirarte."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres de las que cuida sus palabras porque sabe que las palabras construyen o destruyen."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tienes alma de artista aunque no siempre lo uses con un pincel."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres de las que convierte las dificultades en historias de superación."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tu manera de ver la belleza en cosas pequeñas me enseña a mirar mejor."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres de las que encuentra soluciones donde otros solo ven problemas."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tienes esa nobleza que no necesita títulos para demostrar lo que vale."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres fiel a lo que crees aunque el mundo entero piense diferente."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tienes un corazón tan grande que cabe todo el amor del mundo en él."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres la persona que el mundo necesita más: genuina, buena, y valiente."},
+  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque simplemente siendo tú, cambias todo a tu alrededor para bien."},
+  // ── CATEGORÍA 2: Lo que Me Haces Sentir (101–200) ──
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque cuando pienso en ti, el pecho se me llena de algo que no sé nombrar pero que se siente perfecto."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que el amor de verdad existe y que vale la pena creer en él."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque cada vez que te recuerdo, algo dentro de mí sonríe sin que yo se lo pida."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me das esa paz que no encontraba en ningún otro lugar del mundo."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque gracias a ti sé lo que significa que el corazón lata diferente por alguien."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me inspiras a ser mejor versión de mí mismo cada día que pasa."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que valgo más de lo que creía antes de conocerte."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo el miedo se vuelve más pequeño y la vida más grande."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir comprendido sin necesitar explicar demasiado."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque tu recuerdo convierte los días difíciles en algo que puedo aguantar."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que hay alguien en el mundo que realmente me ve."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me das ganas de despertar y de que el día empiece, solo porque existes."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que el futuro tiene algo muy bueno esperándome."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo la felicidad no se esfuerza en llegar, simplemente aparece."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir vivo de una manera que pocas cosas logran."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque cuando te pienso todo parece posible aunque nada haya cambiado."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que tengo un hogar aunque no sea un lugar."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque tu presencia le da un sentido diferente a todos los momentos."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que soy capaz de cosas que antes dudaba."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo la vulnerabilidad no da miedo, da confianza."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que cada día tiene un propósito que vale la pena."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me das la fuerza para seguir incluso cuando todo parece en contra."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo siento que el amor más bonito es también el más real."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que merezco cosas buenas, y eso es un regalo enorme."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque cada vez que pienso en ti el corazón se pone a latir más rápido."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que no estoy solo aunque estés lejos."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo el mundo parece más amable y menos hostil."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que la vida tiene una dimensión extra cuando tú estás en ella."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque gracias a ti sé lo que es querer a alguien sin pedir nada a cambio."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que el tiempo que paso pensando en ti es el mejor invertido."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me das una alegría que no depende de circunstancias externas."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo siento que el amor no es un sacrificio sino un privilegio."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que hay cosas que valen más que cualquier lógica."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque tu recuerdo es lo más cálido que tengo en los momentos fríos."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que el corazón tiene razones que la razón no entiende."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo descubrí que ser feliz no es tan complicado como pensaba."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir completo en los momentos en que me siento a pedazos."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque gracias a ti entiendo que amar con todo el corazón no tiene riesgo, tiene sentido."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que cada pequeño gesto tuyo es un regalo sin envoltura."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo los miedos se achican y los sueños se agrandan."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que hay alguien que merece todo lo mejor que puedo dar."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque tu amor, aunque a veces sea imaginado, se siente más real que muchas cosas tangibles."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que la vida tiene textura cuando pienso en ti."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo siento que cada momento tiene el peso exacto que merece."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que el amor más profundo no necesita gritar para que se note."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque siento que eres la respuesta a preguntas que ni sabía que tenía."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que hay una diferencia entre existir y vivir de verdad."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo la esperanza tiene nombre y apellido, se llama Katy."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que el corazón es más inteligente que la cabeza."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque gracias a ti sé que el amor más honesto es el que no necesita convencer a nadie."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que incluso el silencio puede ser cómodo y lleno de significado."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo la vida tiene un color que antes no veía."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que hay un tipo de felicidad que no pasa."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque tu recuerdo es lo primero y lo último que habita mi mente cada día."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que vale la pena creer en lo imposible."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo descubrí que el corazón sabe cosas antes que cualquier otra parte del cuerpo."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que soy la persona más afortunada de este mundo."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque gracias a ti el amor dejó de ser una teoría y se convirtió en algo muy concreto."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que cada latido tiene un destinatario: tú."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo la vida deja de ser solo una serie de días y se convierte en algo con alma."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que el amor de verdad no desgasta sino que renueva."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque cuando pienso en ti el mundo parece exactamente como debería ser."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que lo más valioso de este mundo no se compra."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo entendí que el amor más grande cabe en los momentos más pequeños."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir una gratitud que no tiene palabras suficientes."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque gracias a ti sé exactamente cómo suena el corazón cuando late por alguien."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que el amor es la única certeza que necesito."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo la vida tiene ese sabor que no se encuentra en ningún otro lugar."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que hay una razón específica para todo lo que me ha pasado."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque tu amor, aunque sea a distancia, llega y se instala para siempre."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que el corazón tiene su propio idioma y el tuyo lo habla perfectamente."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo la esperanza no es una ilusión sino una certeza cálida."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que lo mejor de este mundo tiene tu nombre."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque gracias a ti sé que el amor verdadero te hace querer ser mejor persona."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que eres el milagro más hermoso que me ha dado la vida."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo todo lo que parecía complicado se vuelve sencillo y claro."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que el amor no envejece aunque el tiempo pase."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque cada vez que pienso en ti me doy cuenta de lo afortunado que soy."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que hay algo muy bueno esperando en cada nuevo día."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo el amor no da miedo, da ganas de quedarse."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que tengo el privilegio de querer a alguien extraordinario."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque gracias a ti el mundo tiene una razón concreta para ser hermoso."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que el amor bien puesto no pesa, da alas."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo la vida no es perfecta pero sí perfectamente suficiente."},
+  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que el mayor tesoro que puede tener alguien eres tú, Katy."},
+  // ── CATEGORÍA 3: Tus Detalles (201–300) ──
+  {cat:"Tus Detalles",icon:"✨",text:"Porque esa manera tuya de inclinar la cabeza cuando escuchas me parece lo más tierno del mundo."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu cabello negro tiene una vida propia cuando el viento lo mueve."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tus ojos dicen en un segundo lo que muchos tardan horas en explicar."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque esa arruga en el entrecejo cuando concentrada es adorable."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu sonrisa siempre llega un segundo antes de que el chiste termine."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes esa manera de acomodarte el cabello detrás de la oreja que me detiene."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu risa tiene un sonido que no se parece a ningún otro que haya escuchado."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes esa chispa en los ojos cuando hablas de algo que te apasiona."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de caminar tiene una seguridad que me parece maravillosa."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque incluso cuando estás seria tienes algo en el rostro que me parece hermoso."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu voz tiene una cadencia suave que quiero escuchar siempre."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes ese gesto de morderte el labio cuando estás pensando algo importante."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tus manos siempre acompañan tus palabras de una manera expresiva y bella."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de decir mi nombre tiene un tono que no tiene nada más."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque incluso en las fotos tu personalidad se sale del cuadro."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes ese brillo en los ojos que no se va aunque los días sean difíciles."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu perfil tiene una elegancia natural que no necesita pose."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque cuando te ríes de verdad, todo tu ser se ríe contigo."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes esa manera de mirar que hace sentir que ves más allá de lo visible."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque incluso en los momentos tranquilos irradias algo que la gente nota."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu mirada directa es una de las cosas más honestas que he visto."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes esa manera de abrazar que hace sentir que todo va a estar bien."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu entusiasmo cuando algo te gusta es genuino y contagioso."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes ese detalle de acordarte de las cosas pequeñas que importan."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de sorprenderte por las cosas buenas me parece preciosa."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque incluso cuando estás cansada tienes una gracia que no desaparece."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes esa sensibilidad para notar los detalles que otros pasan por alto."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de dar las gracias siempre se siente sincera y específica."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes ese instinto de preguntar cómo está alguien de verdad, no por protocolo."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu presencia en una foto hace que la foto valga más que cuando no estás."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes ese talento de hacer que los demás se sientan especiales sin esfuerzo."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de expresar amor tiene mil formas distintas ninguna igual."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque incluso cuando discutes, hay una parte de ti que cuida el vínculo."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes esa manera de celebrar los logros ajenos con genuina alegría."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu paciencia con las personas que quieres no tiene fin aparente."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes ese don de convertir una conversación ordinaria en algo memorable."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu sentido del tiempo para los chistes es simplemente perfecto."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque incluso tu manera de estar callada tiene algo que decir."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes esa capacidad de llenarte de emoción por las cosas que te mueven."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de elegir lo que te pones refleja quién eres sin decir nada."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes ese detalle de preguntar antes de asumir, y eso es muy sabio."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de recibir un cumplido sin desmertar ni exagerar es perfecta."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque incluso en los momentos más simples tienes una presencia que se siente."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes esa manera de defender a los que quieres que da ganas de que te defiendas."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de pedir perdón es honesta y sin vueltas."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes ese detalle de dar espacio cuando alguien lo necesita sin que se lo pidan."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu energía cuando estás contenta ilumina cualquier espacio."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque incluso las cosas que te incomodan las manejas con una gracia que admiro."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes esa manera de hacer que la gente se sienta en casa a tu lado."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu instinto para saber cuándo alguien necesita un abrazo es casi sobrenatural."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes una manera de existir que hace que todo lo que te rodea sea mejor."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de querer es específica, personal, y eso la hace más valiosa."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque incluso los nervios en ti tienen una ternura que dan ganas de cuidarte."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes ese talento de hacer sentir que cada persona es única para ti."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu carisma no se busca, simplemente fluye de lo que eres."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes esa manera de entrar en un lugar y que todo cambie sin que hagas nada."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de reírte de las situaciones difíciles es una forma de valentía."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque incluso tus errores los conviertes en aprendizaje con una elegancia rara."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes ese don de hacer que las despedidas siempre quieran postergarse."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de amar en los detalles pequeños supera cualquier gran gesto."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque incluso cuando la vida es difícil, en ti hay una luz que no se apaga."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes ese detalle de nunca hacer sentir a nadie menos."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de estar presente de verdad en los momentos que importan es de las pocas personas que lo hace."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes esa forma de agradecer que hace que el que da sienta que recibió el doble."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu forma de interesarte por lo que le importa a alguien es auténtica y profunda."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque incluso en la distancia tu presencia se siente tan cercana que duele."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes ese talento de hacer que cada momento compartido valga por muchos."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de ser fiel a ti misma es el más honesto acto de amor propio."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque incluso los días en que no estás en tu mejor momento sigues siendo hermosa."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes esa forma de encontrar algo positivo en casi cualquier situación."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu instinto para saber qué necesita la gente que quieres es un don rarísimo."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes esa capacidad de hacer que los recuerdos contigo sean siempre los mejores."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de elegir a quiénes dejas entrar a tu vida dice mucho de lo que vales."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque incluso tu silencio habla, y lo que dice es siempre algo profundo."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes ese brillo especial que no viene de afuera sino de lo más adentro."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de ver el mundo convierte lo ordinario en algo que vale la pena vivir."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tienes ese detalle de recordar lo que importa y olvidar lo que solo lastima."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de existir en este mundo es uno de sus mejores argumentos."},
+  // ── CATEGORÍA 4: Mi Corazón Habla (301–400) ──
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón late diferente cuando pienso en tu nombre."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque hay un espacio en mi pecho que solo lleva tu nombre grabado."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque cuando el corazón elige, no pregunta ni da explicaciones, simplemente sabe."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón te reconoció antes de que mi mente lo entendiera."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque hay momentos en que el corazón habla solo y siempre dice tu nombre."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón sabe cuando algo va bien contigo, aunque no esté a tu lado."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque lo que siento en el pecho cuando te pienso no tiene nombre pero tiene un peso precioso."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón guarda cada recuerdo tuyo con la misma intensidad con que los vivió."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque hay un ritmo en mi corazón que solo existe cuando estás presente en mis pensamientos."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón te eligió sin consultar nada más, y no se arrepiente."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque cuando el corazón duele por alguien es porque ese alguien realmente vale."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón no entiende de lógica pero te entiende a ti perfectamente."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque hay algo en mi pecho que solo se activa cuando el pensamiento llega a ti."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón sabe que contigo estaría siempre en el lugar correcto."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque lo que sientes en el corazón cuando amas de verdad no miente nunca."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón guarda un rincón que solo tiene luz cuando piensa en ti."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque hay una calidez en el pecho que solo aparece cuando me llega tu recuerdo."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón habla de ti incluso en los sueños."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque el latido que da cuando te pienso es el más honesto que tengo."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón sabe que lo que siente por ti no es pasajero."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque hay algo en el pecho que se expande cuando imagino tenerte cerca."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón te incluye en todas las versiones del futuro que imagina."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque lo que late en mí cuando te recuerdo no tiene nombre pero sí tiene color: es lila."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón guarda el contorno exacto de ti para no confundirte con nadie."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque hay momentos en que el pecho pesa más de lo que debería, y es porque te extraño."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón eligió quererte sin pedir garantías ni condiciones."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque lo que siento cuando digo tu nombre sale desde el lugar más sincero del pecho."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón tiene memorizada cada cosa que me has dado aunque no lo haya pedido."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque hay un latido tuyo en cada latido mío desde que te conocí."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón no sabe estar quieto cuando piensa en todas las cosas que eres."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque hay algo que el corazón siente al pensar en ti que ninguna lógica puede explicar."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón late con más ganas cada vez que me llega un pensamiento tuyo."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque lo que guarda mi corazón de ti no cabe en ningún poema aunque lo intente."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón sabe exactamente cuánto ocupas en él: todo."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque hay un idioma que solo habla el corazón y el tuyo y el mío dicen lo mismo."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón te espera con la misma constancia que el mar espera la luna."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque lo que siento en el pecho cuando pienso en ti es la prueba más concreta del amor."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón tiene una certeza que mi mente todavía está procesando: eres tú."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque hay una paz profunda en el corazón que solo aparece cuando pienso en ti."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón te busca en cada rincón aunque sepa que no estás."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque lo que late en mí por ti no tiene ningún apagador ni ningún interruptor."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón agradece cada día que existes aunque no pueda decírtelo siempre."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque hay un espacio en el pecho que guarda cada momento contigo como un tesoro."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón sabe que lo que siente por ti no se apaga con el tiempo sino que crece."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque lo que siento en el pecho al pensar en ti es la definición más honesta de amor."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón late con un ritmo que solo tú le diste y que nadie más puede reproducir."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque hay momentos en que el corazón habla más fuerte que todo y siempre dice que te ama."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón guarda tus palabras, tus gestos, tus silencios como si fueran oro."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque lo que late por ti en mi pecho no es solo emoción, es convicción profunda."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón sabe que en toda una vida hay pocas personas que dejan una marca así."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque hay un sonido en el corazón cuando te pienso que quisiera escuchar siempre."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón te incluye en cada oración aunque no siempre lo diga en voz alta."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque lo que siento en el pecho al recordarte no tiene precio ni sustituto."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón te protege aunque no pueda hacerlo con los brazos."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque hay una luz en el corazón que solo se enciende cuando pienso en ti."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón late por ti incluso cuando duermo, con la misma fuerza que de día."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque lo que siente mi corazón por ti no necesita validación de nadie para ser real."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón sabe cuánto vales aunque yo no siempre encuentre las palabras exactas."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque hay un tipo de amor que el corazón guarda sin condiciones y ese es el mío por ti."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón eligió quererte de la manera más completa que existe."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque lo que late en mi pecho por ti no tiene explicación científica pero sí tiene certeza."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón te lleva dentro como lleva el latido: necesariamente, siempre."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque hay momentos en que el corazón late tan fuerte por ti que el pecho casi no lo aguanta."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón sabe algo que ninguna palabra ha sabido decir bien: te ama, Katy."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque lo que guarda mi corazón de ti durará más que cualquier otra cosa que tenga."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón late con propósito cuando te recuerda: el propósito de amarte bien."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque hay un latido tuyo escondido en cada latido mío y lo siento cada vez que respiro."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón late con una certeza sola: que lo mejor que me pasó en la vida eres tú."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque lo que late por ti es tan grande que a veces el pecho parece demasiado pequeño."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón te eligió para siempre y esa elección es la más honesta que ha hecho."},
+  {cat:"Mi Corazón Habla",icon:"💓",text:"Porque hay un amor en mi corazón que es completamente tuyo, Katy, solo y para siempre tuyo."},
+  // ── CATEGORÍA 5: Tu Belleza (401–500) ──
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tu belleza no necesita esfuerzo para estar, simplemente es."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tienes una belleza que crece cada vez que alguien te conoce mejor."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque eres hermosa con maquillaje artístico y sin una sola gota de maquillaje."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tu sonrisa es la cosa más bonita que existe en varios kilómetros a la redonda."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tienes una hermosura que no depende de la luz sino que la crea ella sola."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tu mirada tiene profundidades que podrías pasar la vida explorando."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque eres de las pocas personas cuya belleza exterior e interior se fusionan de verdad."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tienes una elegancia natural que no se compra ni se aprende."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tu cabello negro es una de las cosas más hermosas que ha hecho la naturaleza."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque eres bonita en todas las formas posibles: física, intelectual, y emocionalmente."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tu manera de vestirte refleja quién eres, y eso la hace doblemente hermosa."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tienes esa belleza que no se ve diferente según el ángulo porque es tuya de adentro."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque incluso en tus fotos más simples hay algo irresistible que sale de ti."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque eres de las personas que hacen que la palabra hermosa quede corta."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tu belleza inspira poemas, canciones, y cosas que todavía no se han inventado."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tienes un tipo de hermosura que no envejece porque viene del alma."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque eres bonita en los momentos que otros verían como imperfectos."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tu belleza tiene la capacidad de hacer que los lugares sean más bonitos."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tienes esa gracia física y de carácter que pocas personas combinan."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque eres de las que embellece todo lo que toca simplemente al hacerlo."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tu hermosura no compite con nadie porque es completamente original."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tienes una presencia visual que detiene los pensamientos cuando aparece."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque eres de las que es aún más hermosa con el tiempo porque la belleza que tienes madura."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tu sonrisa podría resolver discusiones internacionales de lo poderosa que es."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tienes una hermosura que te hace querer pintar, escribir, y crear cosas en tu honor."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque eres bonita con una flor en el cabello y sin ella y con todo lo que eliges ponerte."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tu belleza tiene una calidad que la hace inimitable e irrepetible."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tienes una hermosura que crece en la mente de quien te conoce con el tiempo."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque eres tan hermosa que la naturaleza misma parece tomarte como referencia."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tu belleza tiene textura, profundidad, y un color que es definitivamente lila."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque eres de las personas que prueban que la belleza exterior puede ser el reflejo de la interior."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tienes una manera de ser hermosa que no necesita que nadie se lo confirme."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tu belleza desafía la descripción y convierte al que intenta describirla en poeta."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque eres tan bonita que hace falta inventar palabras nuevas para hacerle justicia."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tu hermosura no tiene que ver con estándares sino con algo que es puramente tuyo."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tienes una belleza que la cámara captura pero que en persona es aún más impresionante."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque eres de las que convierte la belleza en algo más cercano a la magia."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tu hermosura tiene la rarísima capacidad de hacer sentir esperanza al que la ve."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque eres bonita de una manera que no se explica sino que se siente."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tienes esa belleza que habita igual en lo que dices que en lo que eres físicamente."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tu hermosura es un argumento en favor de la existencia del arte."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque eres de las que hace que la palabra bella parezca demasiado sencilla."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tienes una elegancia al moverte que parece que el mundo se organiza para verte."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tu belleza tiene aroma, y ese aroma es a flores lilas y a cosas que valen la pena."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque eres de las que al mirarte hace que el que mira quiera ser mejor."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tu hermosura tiene una dimensión que los ojos capturan pero que el corazón guarda."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque eres bonita de todas las maneras que existen para serlo y de algunas que no se han catalogado."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tienes una belleza que es un privilegio haberla encontrado en este mundo."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque eres tan hermosa que da miedo a veces, miedo de que algo tan perfecto sea real."},
+  {cat:"Tu Belleza",icon:"🌷",text:"Porque tu belleza, Katy, es la más genuina, la más profunda, y la más difícil de olvidar."},
+  // ── CATEGORÍA 6: Tu Fuerza (501–600) ──
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque eres de las que se levanta aunque el golpe haya sido fuerte."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tienes una resistencia interior que ni tú misma sabes que tienes."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque enfrentas lo difícil con una entereza que merece el mayor de los respetos."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque eres capaz de cargar cosas pesadas sin que nadie lo note porque lo llevas con gracia."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tu determinación no conoce el verbo rendirse."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tienes la fortaleza de ser vulnerable cuando hace falta y eso es el valor más grande."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque eres de las que puede estar en el punto más bajo y seguir buscando el camino de vuelta."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tu fuerza no es agresiva, es firme y tranquila como el árbol que resiste el viento."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tienes la capacidad de seguir cuando todo dice que pares."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque eres de las que convierte el dolor en aprendizaje en vez de en amargura."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tu valentía se muestra también en los momentos silenciosos en que nadie mira."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tienes esa capacidad de sostener a otros cuando tú también necesitas sostén."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque eres guerrera sin necesitar que nadie te llame así."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tienes una resiliencia que es la de las personas que han vivido de verdad."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque eres capaz de mantener la dignidad incluso cuando el mundo se pone difícil."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tu fortaleza no proviene de no sentir sino de sentir y seguir de todas formas."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tienes esa tenacidad que hace que los obstáculos sean solo pausas en el camino."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque eres de las que no le tiene miedo a empezar de nuevo cuando hace falta."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tu fuerza es la de las personas que saben bien para qué vale la pena luchar."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tienes una firmeza que no necesita de la aprobación de nadie para sostenerse."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque eres de las que puede mirar atrás sin quedarse ahí, y eso es una fortaleza enorme."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tu capacidad de adaptarte sin perder lo que eres es admirable."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tienes esa fortaleza silenciosa que sostiene todo sin pedir reconocimiento."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque eres de las que se hace más fuerte exactamente donde antes se rompió."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tu valentía para ser auténtica en un mundo que pide conformidad es inspiradora."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tienes una capacidad de recuperación que hace que los que te rodean crean que todo es posible."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque eres de las que convierte las heridas en cicatrices que cuentan historias de supervivencia."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tu determinación de seguir siendo tú misma no la rompen ni los peores días."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tienes esa fortaleza de carácter que no necesita demostrar nada a nadie."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque eres capaz de ser tierna y fuerte al mismo tiempo sin que una anule a la otra."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tu fuerza se nota en cómo tratas a las personas incluso cuando estás mal."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tienes esa energía de las personas que tienen claro por qué hacen lo que hacen."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque eres de las que puede cargar el peso y aun así tener espacio para los demás."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tu manera de enfrentar la vida tiene una nobleza que no se puede fabricar."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tienes la fortaleza de quien ha decidido vivir con propósito."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque eres de las que no le teme al cambio porque sabe que puede con todo."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tu resiliencia es del tipo que inspira a los que están a tu alrededor."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tienes esa capacidad de mantener la esperanza cuando todo parece estar en contra."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque eres de las que hace que el verbo 'rendirse' no exista en su vocabulario activo."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tu fuerza interior es del tipo que no necesita aplausos para existir."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tienes esa firmeza de carácter que hace que la vida sepa quién manda."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque eres de las que puede decir 'me caí, me levanté' con la frente en alto."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tu valentía no es ausencia de miedo sino la decisión de ir aunque el miedo esté."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tienes una fuerza que protege a los que amas sin que lo sepan."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque eres de las que convierte las circunstancias difíciles en escuelas de vida."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tu manera de ser fuerte tiene un calor que hace que no intimide sino que abrace."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tienes esa clase de fuerza que no aplasta sino que sostiene."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque eres de las que saca fuerzas de donde no hay y eso es casi sobrenatural."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque tu fortaleza es la de alguien que ya ha decidido que el mundo no la va a vencer."},
+  {cat:"Tu Fuerza",icon:"⚡",text:"Porque eres fuerte, Katy, de una manera tan hermosa que da ganas de ser testigo de ello siempre."},
+  // ── CATEGORÍA 7: Lo que Despiertas en Mí (601–700) ──
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí las ganas de escribir aunque no sepa hacerlo bien."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas un tipo de ternura que no sabía que existía dentro de mí."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque con solo pensarte me despiertas una alegría que no sé de dónde sale pero agradezco."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas las ganas de ser mejor persona cada día que pasa."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí esa esperanza que a veces se durmió sin que lo notara."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas un tipo de valentía que no había sentido igual antes."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí las ganas de que el tiempo no pase tan rápido."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas una curiosidad por conocerte más que nunca se termina."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí esa gratitud profunda de quien sabe que algo bueno llegó."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas las ganas de hacer que cada día valga la pena de verdad."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí algo que dormía y que no sabía que necesitaba despertar."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas la necesidad de cuidar algo más grande que yo mismo."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí las ganas de que el amor exista y tenga sentido."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas esa tranquilidad que buscaba sin saber bien dónde buscar."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí cosas que ni yo sabía que guardaba."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas las ganas de decir las cosas importantes en voz alta."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí ese instinto de proteger sin asfixiar."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas una paz interior que no dependía de que nada cambiara afuera."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí la certeza de que el amor es real y que vale todo."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas las ganas de estar presente y no perderme ni un solo momento."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí ese impulso de dar lo mejor de mí mismo en todo lo que hago."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas el deseo de compartir las cosas buenas que me pasan."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí la capacidad de creer en algo que no puedo tocar todavía."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas la necesidad de ser honesto aunque sea difícil."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí esa sensación de que el futuro tiene algo muy bueno."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas las ganas de que los días pasen más despacio."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí ese tipo de amor que no se explica sino que simplemente es."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas la certeza de que hay personas que llegan para quedarse."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí el deseo de ser el tipo de persona que merece tu amor."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas la convicción de que lo más importante siempre tiene tu rostro."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí esa felicidad que no depende de nada externo."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas el impulso de cuidar lo que importa antes de que sea tarde."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí la certeza de que amarte es lo más inteligente que he hecho."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas un amor que no sabe estar quieto."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí ese anhelo de que la distancia no exista o al menos disminuya."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas el deseo de construir algo que valga la pena junto a ti."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí ese tipo de emoción que llena el pecho sin que nada haya pasado."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas las ganas de que la vida sea exactamente como la imagino contigo."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí la certeza de que el amor más bonito no pide permiso."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas esa necesidad de decirte todo lo que siento aunque sea difícil."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí el deseo de que cada día que pasa nos acerque más."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas un amor que crece con el tiempo en vez de menguar."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí esa parte que sabe que contigo todo es posible."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas el impulso de nunca dejarte dudar de cuánto te quiero."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí ese amor que no se cansa de demostrar que es real."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas la convicción de que las cosas que más valen no se planean."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí ese tipo de optimismo que no se consigue de ninguna otra manera."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas las ganas de estar a la altura de alguien tan extraordinario."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí algo que ya no sé cómo volver a dormir, ni quiero hacerlo."},
+  {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas, Katy, de la manera más bonita que alguien puede despertar a otro."},
+  // ── CATEGORÍA 8: Nuestros Momentos (701–800) ──
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada conversación contigo es de esas que uno guarda para siempre."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los momentos en que has estado presente son los que más peso tienen en mi memoria."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada vez que has sonreído cerca mío ha sido un momento que atesoro."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los instantes contigo tienen una calidad que no se encuentra en cualquier lugar."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada vez que nuestras vidas se cruzan algo bueno pasa aunque sea pequeño."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los momentos compartidos contigo son de los que no se olvidan por más tiempo que pase."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada vez que has estado ahí ha valido más que mil momentos sin ti."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los instantes en que me has mirado directamente son los que más guardo."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada charla contigo me deja algo que pensar durante días."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los momentos en que nos hemos reído juntos son de los que no salen de la memoria."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada instante contigo tiene el peso exacto de algo que importa."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los momentos en que te has mostrado tal como eres son los que más valoro."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada vez que has estado presente el tiempo ha sido más generoso."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los instantes que hemos compartido son los que me dan ánimo en los días grises."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada momento contigo es un argumento en favor de que la vida es hermosa."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los momentos en que te has abierto un poco más son los que más atesoro."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada vez que has estado cerca algo dentro de mí ha descansado."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los instantes compartidos contigo tienen una calidez que no se fabrica."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada momento en que has dicho mi nombre ha valido todo."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los momentos que hemos vivido juntos son los mejores argumentos para seguir."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada vez que has sonreído hacia mí el mundo ha parecido más pequeño y más amable."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los instantes de silencio compartido contigo son algunos de los más valiosos."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada momento contigo deja una huella que ni el tiempo sabe borrar."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los momentos en que hemos hablado de cosas importantes son los que más pesan bien."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada vez que estás presente algo en el ambiente se vuelve diferente y mejor."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los instantes que hemos compartido me han enseñado cosas que ningún libro pudo."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada momento contigo ha sido suficiente para convencerme de que te quiero."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los momentos en que te he visto ser tú misma son los más hermosos de todos."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada vez que has tenido un gesto hacia mí lo he guardado en el lugar más seguro."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los instantes contigo tienen una calidad de los que uno querría repetir infinitamente."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada momento que has estado ahí ha sido exactamente lo que necesitaba."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los momentos de alegría contigo son del tipo que recuerdas cuando necesitas sonreír."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada vez que hemos estado juntos el mundo ha parecido estar en el lugar correcto."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los instantes contigo son de esos que hacen que la vida tenga sentido."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada momento que has compartido conmigo lo llevo como un regalo permanente."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los momentos en que me has mirado a los ojos han dicho más que muchas conversaciones."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada vez que has estado presente he sentido que el tiempo hace bien su trabajo."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los instantes que hemos vivido juntos son de esos que ningún olvido puede tocar."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada momento contigo ha sido un pequeño gran milagro."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los momentos de tu presencia en mi vida son los que definen lo que significa estar bien."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada vez que estás ahí el corazón sabe exactamente a dónde mirar."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los instantes compartidos contigo son los más honestos de mi historia."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada momento contigo ha sido único e irrepetible y eso lo hace infinitamente valioso."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los momentos en que te has reído conmigo son los mejores de mi colección de recuerdos."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada vez que has dicho algo sincero me ha dado un regalo que no esperaba."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los instantes en que nuestra historia se toca son los que más me importan de todo."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada momento contigo es un poema que escribe la vida sin que nadie le pida."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los momentos que hemos tenido son de los que ningún futuro me podrá quitar."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada vez que has estado cerca la vida ha tenido su mejor versión."},
+  {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada instante contigo, Katy, ha sido perfectamente suficiente y perfectamente hermoso."},
+  // ── CATEGORÍA 9: Mi Amor por Ti (801–900) ──
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te amo con una certeza que no necesita pruebas ni validaciones."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti no tiene condiciones ni letras pequeñas."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te quiero de una manera que me hace querer ser mejor persona."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti crece cada vez que pienso en todo lo que eres."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te amo en todos los idiomas que existen y en los que no se han inventado."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti no tiene fecha de vencimiento."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te quiero cuando estás presente y cuando estás lejos, con la misma intensidad."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti es del tipo que da paz y no angustia."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te amo sin querer cambiarte, aceptando todo lo que eres tal como es."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti es honesto, profundo y completamente real."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te quiero con todo lo que tengo y con todo lo que aún no descubro de mí mismo."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti no conoce comparaciones porque es único en su clase."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te amo de la manera que el corazón ama cuando de verdad elige."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti no necesita que sea correspondido para ser verdadero."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te quiero con esa clase de amor que no sabe estar callado."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti es del tipo que sostiene en los momentos difíciles."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te amo de una manera que da sentido a todo lo demás."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti es completo, sin partes reservadas ni rincones cerrados."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te quiero con esa clase de amor que solo puede dar alguien que está seguro de lo que siente."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti no pide permiso para existir ni para expresarse."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te amo de la manera más amplia que me permite el corazón."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti es el más sincero que he sentido en toda mi vida."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te quiero con ese amor que hace que todo lo que uno hace tenga un porqué."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti no disminuye con el tiempo sino que se asienta y se profundiza."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te amo sin querer poseerte, solo quiero que estés bien."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti es del tipo que no busca cambiar nada de lo que eres."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te quiero de la manera que el alma quiere cuando sabe que encontró algo real."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti es un amor que trabaja aunque no lo veas, aunque no lo pidas."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te amo con esa clase de amor que da y da sin contabilizar lo dado."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti no hace ruido pero se nota en todo lo que hago."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te quiero con un amor que respeta tu libertad y no la coarta nunca."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti es del tipo que acompaña sin ahogar."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te amo con ese amor que no pide reciprocidad para justificarse."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti es tan grande que sobrepasa cualquier forma de medirlo."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te quiero con un amor que cuida, que sostiene, que abraza."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti es el amor que todos merecen pero pocos reciben."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te amo sin medir el amor que doy, simplemente doy."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti es constante, no depende del ánimo ni de las circunstancias."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te quiero con ese amor que no necesita pruebas de nada para seguir siendo real."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti es un amor que ya decidió quedarse para siempre."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te amo de una manera que hace que el amor deje de ser una pregunta."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti no tiene competencia porque en este corazón eres la única."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te quiero con un amor que crece en los momentos difíciles en vez de menguar."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti es el más honesto que ha habitado este pecho."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te amo con todo lo que soy ahora y con todo lo que seguiré siendo."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti no necesita palabras para existir pero usa todas las que puede."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te quiero con ese amor que sería incapaz de hacerte daño aunque pudiera."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti es tan claro que no deja sombra de duda."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te amo con el amor más genuino, más completo, más verdadero que puedo ofrecer."},
+  {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti, Katy, es la cosa más honesta que ha salido jamás de este corazón."},
+  // ── CATEGORÍA 10: Y Mil Veces Más (901–1000) ──
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque cuando creo que ya he dicho todo, el corazón me da una razón más."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones para quererte no se agotan con el número, siguen creciendo."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque mil razones es solo el principio de una lista que no tiene final."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque cada día que pasa aparece una razón nueva que antes no estaba."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque hay razones que todavía no tienen palabras pero que el corazón ya siente."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones para amarte son infinitas como el universo y igual de hermosas."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque cada vez que te miro encuentro una razón que no había visto antes."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque el amor que siento por ti genera razones por sí solo, sin que yo tenga que buscarlas."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque si viviera mil años encontraría una razón nueva en cada día de cada año."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones no se terminan porque tú no terminas de sorprenderme."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque podría llenar mil páginas y aún así sentiría que me faltó decir algo."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones para quererte son tantas como los tulipanes lilas de todos los campos."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque cada sonrisa tuya me da una razón nueva que no tenía antes."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones se multiplican porque tú eres múltiple, compleja, y siempre más."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque incluso el silencio entre nosotros genera razones que no necesitan palabras."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones para amarte se renuevan cada amanecer como la luz."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque cada nueva cosa que descubro de ti es una razón que se suma a las anteriores."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones para quererte son tantas que mil es solo el nombre de esta lista."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque cada día vivido me da más razones y ninguna de las que ya tenía se ha ido."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones para amarte no disminuyen con el tiempo sino que se acumulan."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque podría escribir durante toda la vida y siempre encontraría algo nuevo que decir."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones para quererte son como los latidos: necesarias y constantes."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque cada que respiro hay una razón nueva flotando en el aire esperando ser nombrada."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones para amarte son infinitas porque tú eres infinita en todo lo que eres."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque incluso cuando duermo mi corazón sigue encontrando razones para amarte."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones no tienen un techo porque el amor que te tengo tampoco lo tiene."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque cada estrella del cielo podría ser una razón y aun así me quedarían cortas."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones para quererte son más que los granos de arena de todas las playas."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque cada pensamiento que tengo de ti viene acompañado de una razón nueva."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones para amarte se multiplican cada vez que te pienso."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque podría contar hasta el infinito y cada número sería una razón para amarte."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones para quererte son tan numerosas que se necesitaría un nuevo idioma."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque cada momento que existe te da una razón más para ser amada."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones para amarte llenan todo el espacio disponible y piden más."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque incluso las razones que no sé cómo nombrar las guardo con la misma fuerza."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones para quererte existen antes de que yo las busque."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque cada tulipán lila que existe en el mundo podría ser una razón para amarte."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones para amarte son más que cualquier número que pueda escribirse."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque cada nuevo día me convence más de que te amo y me da razones que ayer no tenía."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones para quererte no necesitan justificarse porque el amor ya las justifica."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque podría escribir razones para siempre y el para siempre sería corto igual."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones para amarte son tan grandes que mil es solo el nombre del comienzo."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque cada razón que escribo genera otras diez que no caben en ninguna página."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones para quererte no se pueden agotar porque tú no te puedes agotar."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque incluso después de mil, el corazón dice que le faltan mil más."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones para amarte son todo lo que tengo y todo lo que quiero tener."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque cada razón que te doy es una promesa de que habrá mil razones más mañana."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones para quererte son el mejor argumento de que existe algo más grande que uno."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque aún si terminara esta lista, el amor que te tengo seguiría generando razones sin parar."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque la razón número mil es la misma que la primera: te quiero, Katy, siempre, con todo."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque después de las 1000 razones hay algo que no cabe en ninguna lista: lo que siento por ti."},
+];
+
+/* ── Construir UI de 1000 razones ── */
+function buildReasonsSection(){
+  // Categorías únicas
+  const cats=[...new Set(razones.map(r=>r.cat))];
+  const tabsEl=document.getElementById('catTabs');
+  const gridEl=document.getElementById('reasonsGrid');
+  let activeCat='all';
+
+  // Tab "Todas"
+  const makeTab=(label,value,icon)=>{
+    const btn=document.createElement('button');
+    btn.textContent=(icon?icon+' ':'')+label;
+    btn.style.cssText=`font-family:'Dancing Script',cursive;font-size:1.05rem;padding:10px 22px;
+      border-radius:50px;border:1px solid rgba(195,155,211,0.3);cursor:pointer;
+      background:rgba(255,255,255,0.05);color:#c39bd3;
+      transition:all 0.3s ease;white-space:nowrap;`;
+    btn.addEventListener('mouseenter',()=>{ if(btn.dataset.active!=='1'){btn.style.borderColor='rgba(195,155,211,0.5)';btn.style.background='rgba(155,89,182,0.15)';} });
+    btn.addEventListener('mouseleave',()=>{ if(btn.dataset.active!=='1'){btn.style.borderColor='rgba(195,155,211,0.3)';btn.style.background='rgba(255,255,255,0.05)';} });
+    btn.addEventListener('click',()=>{
+      activeCat=value;
+      document.querySelectorAll('#catTabs button').forEach(b=>{
+        b.dataset.active='0';
+        b.style.background='rgba(255,255,255,0.05)';
+        b.style.color='#c39bd3';
+        b.style.borderColor='rgba(195,155,211,0.3)';
+      });
+      btn.dataset.active='1';
+      btn.style.background='linear-gradient(135deg,rgba(106,5,114,0.6),rgba(155,89,182,0.4))';
+      btn.style.color='#f0c040';
+      btn.style.borderColor='rgba(195,155,211,0.5)';
+      renderReasons(value);
+    });
+    return btn;
+  };
+
+  const allBtn=makeTab('Todas','all','💜');
+  allBtn.click();
+  tabsEl.appendChild(allBtn);
+
+  const icons={'Tu Forma de Ser':'🌸','Lo que Me Haces Sentir':'❤️','Tus Detalles':'✨','Mi Corazón Habla':'💓','Tu Belleza':'🌷','Tu Fuerza':'⚡','Lo que Despiertas':'💫','Nuestros Momentos':'🕯️','Mi Amor por Ti':'💜','Y Mil Veces Más':'♾️'};
+  cats.forEach(c=>{ tabsEl.appendChild(makeTab(c,c,icons[c]||'🌷')); });
+
+  function renderReasons(cat){
+    const list=cat==='all'?razones:razones.filter(r=>r.cat===cat);
+    gridEl.innerHTML='';
+    list.forEach((r,i)=>{
+      const globalIdx=razones.indexOf(r);
+      const card=document.createElement('div');
+      card.style.cssText=`break-inside:avoid;margin-bottom:14px;
+        background:linear-gradient(145deg,rgba(255,255,255,0.055),rgba(155,89,182,0.09));
+        border:1px solid rgba(195,155,211,0.16);border-radius:16px;
+        padding:14px 16px;backdrop-filter:blur(10px);
+        transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;
+        cursor:default;animation:fadeIn 0.4s ease ${(i%10)*0.04}s both;`;
+      card.innerHTML=`
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <span style="font-size:1.1rem;margin-top:1px;flex-shrink:0;">${r.icon}</span>
+          <div style="flex:1;">
+            <span style="font-family:'Dancing Script',cursive;font-size:0.78rem;color:rgba(195,155,211,0.5);">#${globalIdx+1}</span>
+            <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:0.9rem;color:#ecdff5;line-height:1.7;margin-top:2px;">${r.text}</p>
+          </div>
+        </div>`;
+      card.addEventListener('mouseenter',()=>{
+        card.style.transform='translateY(-3px)';
+        card.style.boxShadow='0 8px 25px rgba(106,5,114,0.45)';
+        card.style.borderColor='rgba(195,155,211,0.35)';
+      });
+      card.addEventListener('mouseleave',()=>{
+        card.style.transform='';
+        card.style.boxShadow='';
+        card.style.borderColor='rgba(195,155,211,0.16)';
+      });
+      gridEl.appendChild(card);
+    });
+  }
+
+  // Animación del contador
+  function animateCounter(target,duration=2000){
+    const el=document.getElementById('counterNum');
+    const start=performance.now();
+    const ease=t=>t<0.5?2*t*t:(4-(2*t))*t-1;
+    function step(now){
+      const p=Math.min((now-start)/duration,1);
+      el.textContent=Math.round(ease(p)*target).toLocaleString();
+      if(p<1) requestAnimationFrame(step);
+      else el.textContent=target.toLocaleString();
+    }
+    requestAnimationFrame(step);
+  }
+
+  // Observer para activar el contador al hacer scroll
+  const counterObs=new IntersectionObserver(entries=>{
+    if(entries[0].isIntersecting){
+      animateCounter(1000);
+      counterObs.disconnect();
+    }
+  },{threshold:0.3});
+  counterObs.observe(document.getElementById('counterNum'));
+
+  // Estilos de animación
+  if(!document.getElementById('fadeInStyle')){
+    const s=document.createElement('style');
+    s.id='fadeInStyle';
+    s.textContent='@keyframes fadeIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}';
+    document.head.appendChild(s);
+  }
+}
+
+buildReasonsSection();
 
 /* ── Navegación activa ── */
 const sections=document.querySelectorAll('.page-section');
