@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para Katy – 48 Poemas de Amor 💜🌷</title>
+  <meta name="description" content="Una página llena de amor, poemas y tulipanes lilas dedicada a Katy, la mujer más hermosa del mundo."/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --lila-oscuro: #6a0572;
+      --lila-medio: #9b59b6;
+      --lila-claro: #c39bd3;
+      --lila-palido: #e8d5f5;
+      --lila-suave: #f3e8ff;
+      --rosa-lila: #d7a3e0;
+      --blanco: #ffffff;
+      --dorado: #f0c040;
+      --text-dark: #2d0a3f;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: linear-gradient(135deg, #1a0028 0%, #3d0063 25%, #6a0572 50%, #3d0063 75%, #1a0028 100%);
+      background-attachment: fixed;
+      font-family: 'Lato', sans-serif;
+      color: var(--blanco);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Partículas de tulipanes flotantes */
+    .tulip-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .tulip-particle {
+      position: absolute;
+      font-size: 1.5rem;
+      animation: floatTulip linear infinite;
+      opacity: 0.15;
+    }
+
+    @keyframes floatTulip {
+      0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.15; }
+      90% { opacity: 0.15; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 80px 20px 60px;
+      background: radial-gradient(ellipse at center, rgba(155,89,182,0.4) 0%, transparent 70%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239b59b6' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      z-index: -1;
+    }
+
+    .crown-emoji { font-size: 3rem; animation: bounce 2s ease-in-out infinite; display: block; }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-15px)} }
+
+    .hero h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(3rem, 8vw, 6rem);
+      background: linear-gradient(135deg, #e8d5f5, #f0c040, #c39bd3, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: none;
+      margin: 10px 0 5px;
+      animation: shimmer 3s ease-in-out infinite;
+      background-size: 300% 300%;
+    }
+
+    @keyframes shimmer {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
+    .hero-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      color: var(--lila-claro);
+      letter-spacing: 2px;
+      margin-bottom: 30px;
+    }
+
+    .tulip-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px auto;
+      font-size: 1.8rem;
+    }
+
+    .tulip-divider::before,
+    .tulip-divider::after {
+      content: '';
+      flex: 1;
+      max-width: 200px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--lila-claro), transparent);
+    }
+
+    /* FOTOS */
+    .photos-section {
+      position: relative;
+      z-index: 1;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .photos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .photo-card {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(106,5,114,0.6), 0 0 0 2px rgba(195,155,211,0.3);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .photo-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 60px rgba(155,89,182,0.8), 0 0 0 3px var(--lila-claro);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .photo-card:hover img { transform: scale(1.05); }
+
+    .photo-piropo {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(0deg, rgba(42,0,70,0.95) 0%, rgba(106,5,114,0.7) 60%, transparent 100%);
+      padding: 30px 15px 15px;
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+    }
+
+    .photo-card:hover .photo-piropo { transform: translateY(0); }
+
+    .photo-piropo p {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.1rem;
+      color: var(--dorado);
+      text-shadow: 0 0 10px rgba(240,192,64,0.5);
+      line-height: 1.4;
+    }
+
+    .piropo-static {
+      padding: 12px 15px;
+      background: linear-gradient(135deg, rgba(155,89,182,0.3), rgba(106,5,114,0.5));
+      border-top: 1px solid rgba(195,155,211,0.3);
+    }
+
+    .piropo-static p {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1rem;
+      color: var(--dorado);
+      line-height: 1.4;
+    }
+
+    /* SECCIÓN DE POEMAS */
+    .poems-section {
+      position: relative;
+      z-index: 1;
+      padding: 50px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: var(--lila-palido);
+      margin-bottom: 10px;
+      text-shadow: 0 0 30px rgba(195,155,211,0.5);
+    }
+
+    .section-desc {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--lila-claro);
+      margin-bottom: 50px;
+      font-size: 1.1rem;
+    }
+
+    .poems-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .poem-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(155,89,182,0.12) 100%);
+      border: 1px solid rgba(195,155,211,0.2);
+      border-radius: 20px;
+      padding: 25px;
+      backdrop-filter: blur(10px);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .poem-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(195,155,211,0.08) 0%, transparent 60%);
+      transform: scale(0);
+      transition: transform 0.6s ease;
+    }
+
+    .poem-card:hover::before { transform: scale(1); }
+
+    .poem-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(195,155,211,0.5);
+      box-shadow: 0 15px 40px rgba(106,5,114,0.5);
+    }
+
+    .poem-number {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.5rem;
+      color: rgba(195,155,211,0.3);
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      line-height: 1;
+    }
+
+    .poem-tulip {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .poem-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--dorado);
+      margin-bottom: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .poem-text {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.92rem;
+      line-height: 1.9;
+      color: #e8d5f5;
+      white-space: pre-line;
+    }
+
+    .poem-piropo {
+      margin-top: 15px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(195,155,211,0.2);
+      font-family: 'Dancing Script', cursive;
+      font-size: 1rem;
+      color: var(--rosa-lila);
+      font-weight: 600;
+    }
+
+    /* Poemas "te extraño" */
+    .miss-section { margin-top: 70px; }
+
+    .miss-title {
+      text-align: center;
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      background: linear-gradient(135deg, #c39bd3, #f0c040, #e8d5f5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+
+    .miss-card {
+      background: linear-gradient(135deg, rgba(106,5,114,0.25) 0%, rgba(42,0,70,0.4) 100%);
+      border: 1px solid rgba(195,155,211,0.3);
+      border-left: 4px solid var(--dorado);
+    }
+
+    .miss-card .poem-card h3 { color: #f8e0a0; }
+    .miss-card .poem-text { color: #f3e8ff; }
+    .miss-card .poem-tulip::after { content: ' 💫'; }
+
+    /* FOOTER */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(0deg, rgba(26,0,40,0.9) 0%, transparent 100%);
+    }
+
+    footer .heart-beat {
+      font-size: 3rem;
+      animation: heartBeat 1.5s ease-in-out infinite;
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    @keyframes heartBeat {
+      0%,100%{transform:scale(1)}
+      14%{transform:scale(1.3)}
+      28%{transform:scale(1)}
+      42%{transform:scale(1.3)}
+      70%{transform:scale(1)}
+    }
+
+    footer p {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.5rem;
+      color: var(--lila-claro);
+    }
+
+    footer .firma {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2rem;
+      color: var(--dorado);
+      margin-top: 10px;
+    }
+
+    /* Tulipán SVG decorativo */
+    .tulip-corner {
+      position: fixed;
+      opacity: 0.12;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Scroll suave */
+    html { scroll-behavior: smooth; }
+
+    /* Botón volver arriba */
+    .back-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: linear-gradient(135deg, var(--lila-oscuro), var(--lila-medio));
+      border: none;
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      cursor: pointer;
+      z-index: 100;
+      box-shadow: 0 5px 20px rgba(106,5,114,0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .back-top:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(155,89,182,0.7); }
+
+    @media (max-width: 600px) {
+      .poems-grid { grid-template-columns: 1fr; }
+      .photos-grid { grid-template-columns: 1fr 1fr; }
+      .photo-card img { height: 220px; }
+      .photo-piropo { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Partículas flotantes -->
+<div class="tulip-bg" id="tulipBg"></div>
+
+<!-- HERO -->
+<header class="hero">
+  <span class="crown-emoji">👑</span>
+  <h1>Para Katy</h1>
+  <p class="hero-subtitle">48 Poemas de Amor • Con Todo el Corazón 🌷</p>
+  <div class="tulip-divider">🌷💜🌷</div>
+  <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--lila-palido);font-size:1.05rem;max-width:600px;margin:0 auto;line-height:1.8;">
+    Porque cada pétalo de tulipán me recuerda a ti,<br/>
+    cada poema lleva tu nombre escrito en el alma.
+  </p>
+</header>
+
+<!-- FOTOS -->
+<section class="photos-section">
+  <div class="tulip-divider" style="margin-bottom:30px;">🌷 Eres tú 🌷</div>
+  <div class="photos-grid">
+
+    <div class="photo-card">
+      <img src="foto1.jpg" alt="Katy – Foto 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div style="display:none;height:320px;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(106,5,114,0.4),rgba(42,0,70,0.6));font-size:5rem;">🌷</div>
+      <div class="piropo-static">
+        <p>💋 "Tus labios pintados de amor son la obra maestra más bella que jamás existió, Katy."</p>
+      </div>
+    </div>
+
+    <div class="photo-card">
+      <img src="foto2.jpg" alt="Katy – Foto 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div style="display:none;height:320px;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(106,5,114,0.4),rgba(42,0,70,0.6));font-size:5rem;">🌸</div>
+      <div class="piropo-static">
+        <p>🌸 "Esa flor en tu cabello es la única que puede competir con tu belleza… y pierde."</p>
+      </div>
+    </div>
+
+    <div class="photo-card">
+      <img src="foto3.jpg" alt="Katy – Foto 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div style="display:none;height:320px;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(106,5,114,0.4),rgba(42,0,70,0.6));font-size:5rem;">💜</div>
+      <div class="piropo-static">
+        <p>✨ "Tus ojos brillan más que cualquier maquillaje, porque llevan dentro todo el universo."</p>
+      </div>
+    </div>
+
+    <div class="photo-card">
+      <img src="foto4.jpg" alt="Katy – Foto 4" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div style="display:none;height:320px;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(106,5,114,0.4),rgba(42,0,70,0.6));font-size:5rem;">💫</div>
+      <div class="piropo-static">
+        <p>💙 "Esa sonrisa tuya, Katy, tiene el poder de detener el tiempo y encender el alma."</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- POEMAS DE AMOR (1–33) -->
+<section class="poems-section">
+  <h2 class="section-title">🌷 Poemas de Amor 🌷</h2>
+  <p class="section-desc">Treinta y tres razones por las que te amo, escritas con el corazón</p>
+
+  <div class="poems-grid" id="lovePoems">
+
+    <!-- Poema 1 -->
+    <article class="poem-card">
+      <span class="poem-number">01</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Primer Tulipán</h3>
+      <p class="poem-text">En el jardín de mi vida
+llegaste tú, lila y luz,
+como el primer tulipán
+que florece hacia el sur.
+Tus ojos son la mañana,
+tu voz, la brisa gentil,
+y en cada latido mío
+solo vive tu perfil.</p>
+      <p class="poem-piropo">💜 "Eres el tulipán más raro y hermoso del jardín de mi vida, Katy."</p>
+    </article>
+
+    <!-- Poema 2 -->
+    <article class="poem-card">
+      <span class="poem-number">02</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Cielo de Lila</h3>
+      <p class="poem-text">Cuando miro el cielo lila
+al caer de la tarde fría,
+pienso en ti, en tu mirada,
+en la magia que me envía.
+Eres púrpura y violeta,
+eres todo lo que soy,
+eres mi razón completa
+por vivir el hoy.</p>
+      <p class="poem-piropo">✨ "Si el cielo tuviera dueña, tú serías su reina, Katy hermosa."</p>
+    </article>
+
+    <!-- Poema 3 -->
+    <article class="poem-card">
+      <span class="poem-number">03</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Tu Nombre</h3>
+      <p class="poem-text">Katy, cuatro letras
+que guardan el universo,
+cuatro notas de música
+dentro de este verso.
+K de kingdoms que conquistas,
+A de amor que me das,
+T de ternura infinita,
+Y de "y siempre estarás".</p>
+      <p class="poem-piropo">💫 "Solo pronunciar tu nombre ya me hace el hombre más feliz del mundo."</p>
+    </article>
+
+    <!-- Poema 4 -->
+    <article class="poem-card">
+      <span class="poem-number">04</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Manos de Seda</h3>
+      <p class="poem-text">Tus manos son dos poemas
+que no necesitan papel,
+cuando las tomo entre las mías
+siento el mundo ser más fiel.
+Suaves como pétalos lilas,
+cálidas como el amanecer,
+con tus manos entre las mías
+el mundo vuelve a nacer.</p>
+      <p class="poem-piropo">🌸 "Tus manos son la cosa más delicada y perfecta que he tenido el honor de tocar."</p>
+    </article>
+
+    <!-- Poema 5 -->
+    <article class="poem-card">
+      <span class="poem-number">05</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Sonrisa de Oro</h3>
+      <p class="poem-text">Hay tesoros en el mundo
+que no caben en un cofre,
+tu sonrisa es el más grande,
+vale más que cualquier cobre.
+Cuando ríes, Katy linda,
+se ilumina el universo,
+y yo quedo sin palabras
+aunque busco cada verso.</p>
+      <p class="poem-piropo">💛 "Tu sonrisa debería ser declarada patrimonio de la humanidad, mi amor."</p>
+    </article>
+
+    <!-- Poema 6 -->
+    <article class="poem-card">
+      <span class="poem-number">06</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Campos de Tulipanes</h3>
+      <p class="poem-text">Imagina campos lilas
+tan inmensos como el mar,
+cada flor tiene tu cara,
+cada pétalo tu paz.
+Por esos campos te llevo
+en mi mente cada día,
+Katy entre los tulipanes
+eres mi mejor alegría.</p>
+      <p class="poem-piropo">🌷 "Si cada tulipán fuera un beso, aún así me quedarían cortos para ti."</p>
+    </article>
+
+    <!-- Poema 7 -->
+    <article class="poem-card">
+      <span class="poem-number">07</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Tus Ojos</h3>
+      <p class="poem-text">En tus ojos vivo y muero,
+en tus ojos me perdí,
+son dos mundos que prefiero
+por encima del añil.
+Oscuros como la noche
+pero llenos de luceros,
+tus ojos son mi derroche
+de suspiros verdaderos.</p>
+      <p class="poem-piropo">🌙 "Tus ojos tienen la profundidad del océano y la calidez del sol, Katy."</p>
+    </article>
+
+    <!-- Poema 8 -->
+    <article class="poem-card">
+      <span class="poem-number">08</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>La Canción que Eres</h3>
+      <p class="poem-text">Tú eres la melodía
+que siempre necesité,
+la nota que faltaba
+en mi música de pie.
+Cada vez que te recuerdo
+suena dentro una canción,
+Katy, eres el acuerdo
+perfecto de mi corazón.</p>
+      <p class="poem-piropo">🎵 "Eres música para mis oídos, poesía para mi alma y calma para mi corazón."</p>
+    </article>
+
+    <!-- Poema 9 -->
+    <article class="poem-card">
+      <span class="poem-number">09</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Perfume Lila</h3>
+      <p class="poem-text">Hay un perfume que te sigue,
+suave, dulce, celestial,
+como campos de lavanda
+mezclados con tulipán.
+Cuando estás cerca de mí
+el aire huele diferente,
+huele a ti, huele a amor,
+huele a algo que es urgente.</p>
+      <p class="poem-piropo">🌸 "Tu presencia perfuma el ambiente más que mil flores juntas, Katy."</p>
+    </article>
+
+    <!-- Poema 10 -->
+    <article class="poem-card">
+      <span class="poem-number">10</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Décimo Latido</h3>
+      <p class="poem-text">Hay un latido en mi pecho
+que solo late por ti,
+el décimo cada segundo
+es un susurro: "aquí".
+Te busca entre los silencios,
+te encuentra en cada sueño,
+y sabe que sin tu amor
+mi corazón es pequeño.</p>
+      <p class="poem-piropo">❤️ "Cada latido de mi corazón lleva tu nombre grabado, hermosa Katy."</p>
+    </article>
+
+    <!-- Poema 11 -->
+    <article class="poem-card">
+      <span class="poem-number">11</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Lluvia de Pétalos</h3>
+      <p class="poem-text">Si pudiera hacer llover
+pétalos de tulipán,
+los dejaría caer suaves
+sobre tu cabello yan.
+Cada pétalo sería
+un "te amo" susurrado,
+llovería todo el día
+y nunca me daría enfadado.</p>
+      <p class="poem-piropo">🌷 "Mereces que llueva flores cada mañana cuando despiertas, Katy bella."</p>
+    </article>
+
+    <!-- Poema 12 -->
+    <article class="poem-card">
+      <span class="poem-number">12</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Tu Cabello Negro</h3>
+      <p class="poem-text">Tu cabello negro y largo
+es la noche hecha poema,
+cada hebra es un relato,
+cada rizo un teorema.
+Cuando lo sueltas al viento
+parece danza de sirena,
+y yo me quedo sin aliento
+mirando esa cosa buena.</p>
+      <p class="poem-piropo">🖤 "Tu cabello negro es tan hermoso que la noche misma te lo envidiaría."</p>
+    </article>
+
+    <!-- Poema 13 -->
+    <article class="poem-card">
+      <span class="poem-number">13</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>El Color que Eliges</h3>
+      <p class="poem-text">Cada color que te pones
+se vuelve el más bello del mundo,
+lo que llevas tú encima, Katy,
+siempre es algo profundo.
+Eres lienzo y eres arte,
+eres luz y eres color,
+con tan solo estar presente
+haces del mundo una flor.</p>
+      <p class="poem-piropo">🎨 "Todo lo que tocas se vuelve arte, todo lo que vistes se vuelve moda, Katy."</p>
+    </article>
+
+    <!-- Poema 14 -->
+    <article class="poem-card">
+      <span class="poem-number">14</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Mariposa Lila</h3>
+      <p class="poem-text">Eres mariposa lila
+que no cabe en ningún frasco,
+libre, bella, caprichosa,
+nunca un simple barco.
+Vuelas donde quieres tú,
+y yo te sigo el camino,
+porque estar donde estás tú
+es mi único destino.</p>
+      <p class="poem-piropo">🦋 "Eres libre y hermosa como una mariposa, y por eso te admiro tanto, Katy."</p>
+    </article>
+
+    <!-- Poema 15 -->
+    <article class="poem-card">
+      <span class="poem-number">15</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Medianoche Contigo</h3>
+      <p class="poem-text">A medianoche te pienso
+cuando el mundo ya durmió,
+y tú sigues despierta
+dentro de este corazón.
+La luna me pregunta
+por qué no cierro los ojos,
+y yo le digo: "Katy
+me quita todos mis enojos".</p>
+      <p class="poem-piropo">🌙 "Eres mi pensamiento de medianoche, el mejor de todos, Katy."</p>
+    </article>
+
+    <!-- Poema 16 -->
+    <article class="poem-card">
+      <span class="poem-number">16</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Jardín del Alma</h3>
+      <p class="poem-text">En el jardín de mi alma
+planté tulipanes por ti,
+crecieron con tu recuerdo,
+florecieron para mí.
+Ahora mi alma es un campo
+de lilas que huelen a amor,
+y en el centro del jardín
+eres tú, la mejor flor.</p>
+      <p class="poem-piropo">🌷 "Eres la flor más rara y especial del jardín de mi corazón, Katy."</p>
+    </article>
+
+    <!-- Poema 17 -->
+    <article class="poem-card">
+      <span class="poem-number">17</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Eres Mi Calma</h3>
+      <p class="poem-text">Cuando el mundo se desata
+y el caos toca a mi puerta,
+pienso en ti y todo acata
+una paz que me despierta.
+Eres mi puerto seguro,
+mi ancla y mi velero,
+en ti encuentro el futuro
+que siempre quise y espero.</p>
+      <p class="poem-piropo">⚓ "Eres mi refugio y mi aventura al mismo tiempo, Katy preciosa."</p>
+    </article>
+
+    <!-- Poema 18 -->
+    <article class="poem-card">
+      <span class="poem-number">18</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Dulce Como Tú</h3>
+      <p class="poem-text">No existe dulce en el mundo
+que se compare a tu risa,
+no hay miel tan profunda
+como tu voz, brisa.
+Cada palabra que dices
+sabe a algo que nutre,
+y quien te escucha quiere
+que nunca se interrumpe.</p>
+      <p class="poem-piropo">🍯 "Tu voz es la más dulce melodía que mis oídos han escuchado, Katy."</p>
+    </article>
+
+    <!-- Poema 19 -->
+    <article class="poem-card">
+      <span class="poem-number">19</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Promesa de Lila</h3>
+      <p class="poem-text">Te prometo como el tulipán
+volver cada primavera,
+te prometo ser tu mar
+sin importar la marea.
+Te prometo cielo abierto
+cuando todo esté nublado,
+y amor honesto y cierto
+cuando estés cansada o asustado.</p>
+      <p class="poem-piropo">💍 "Te lo prometo con el corazón en la mano: siempre estaré para ti, Katy."</p>
+    </article>
+
+    <!-- Poema 20 -->
+    <article class="poem-card">
+      <span class="poem-number">20</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Veinte Razones</h3>
+      <p class="poem-text">Podría darte veinte razones
+por las que te amo hoy,
+pero el papel no alcanzaría
+ni el tiempo que aquí estoy.
+La razón número uno: eres tú.
+La última también: eres tú.
+Y en el medio de todas
+siempre estás solo tú.</p>
+      <p class="poem-piropo">💜 "No me alcanzarían las palabras para decirte cuánto te amo, Katy."</p>
+    </article>
+
+    <!-- Poema 21 -->
+    <article class="poem-card">
+      <span class="poem-number">21</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Luna y Tulipán</h3>
+      <p class="poem-text">La luna baja a verte
+cuando se asoma al horizonte,
+los tulipanes se alzan
+para verte desde el monte.
+Todo lo bello del mundo
+hace fila para admirarte,
+y yo, el más afortunado,
+puedo llamarme: el que te quiere de verdad.</p>
+      <p class="poem-piropo">🌕 "La luna misma te envidia cuando te ve sonreír, Katy luminosa."</p>
+    </article>
+
+    <!-- Poema 22 -->
+    <article class="poem-card">
+      <span class="poem-number">22</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Tú Eres Primavera</h3>
+      <p class="poem-text">Antes de conocerte
+el invierno era muy largo,
+el mundo sin colores,
+el corazón amargo.
+Llegaste tú, Katy,
+como la primera flor,
+y desde ese día el mundo
+huele solo a amor.</p>
+      <p class="poem-piropo">🌸 "Contigo llegó la primavera a mi vida y nunca más se fue, Katy."</p>
+    </article>
+
+    <!-- Poema 23 -->
+    <article class="poem-card">
+      <span class="poem-number">23</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Constelación Katy</h3>
+      <p class="poem-text">Si yo fuera astrónomo
+nombraría una constelación
+con las estrellas más brillantes:
+"Katy, mi corazón".
+Brillas más que Orión,
+más que el cinturón de Géminis,
+eres mi constelación
+y mi universo magnífico.</p>
+      <p class="poem-piropo">⭐ "Brillas más que cualquier estrella del universo, Katy mi amor."</p>
+    </article>
+
+    <!-- Poema 24 -->
+    <article class="poem-card">
+      <span class="poem-number">24</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>El Beso Pendiente</h3>
+      <p class="poem-text">Hay un beso que te debo
+guardado entre mis labios,
+el más dulce de los besos,
+el más libre de agravios.
+Espera por ti, Katy,
+impaciente como el viento,
+y cuando llegue a tu boca
+será el mejor momento.</p>
+      <p class="poem-piropo">💋 "Tus labios son el lugar más bonito en el que quisiera estar, Katy."</p>
+    </article>
+
+    <!-- Poema 25 -->
+    <article class="poem-card">
+      <span class="poem-number">25</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Mitad y Todo</h3>
+      <p class="poem-text">Dicen que el amor es mitades,
+que dos incompletos se encuentran,
+pero contigo, Katy bella,
+no hay mitades que se aumentan.
+Eres completa y perfecta,
+eres todo y no la mitad,
+y yo me siento completo
+con tu amor y tu bondad.</p>
+      <p class="poem-piropo">💞 "Eres entera, perfecta y más que suficiente, hermosa Katy."</p>
+    </article>
+
+    <!-- Poema 26 -->
+    <article class="poem-card">
+      <span class="poem-number">26</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Tu Risa, Mi Hogar</h3>
+      <p class="poem-text">Tu risa es la dirección
+donde siempre quiero vivir,
+ese sonido tan tuyo
+que me enseña a sonreír.
+No necesito más paredes,
+ni techo ni jardín,
+donde ríes tú, Katy,
+ahí está mi origen y mi fin.</p>
+      <p class="poem-piropo">😊 "Tu risa es el sonido más hermoso del universo entero, Katy."</p>
+    </article>
+
+    <!-- Poema 27 -->
+    <article class="poem-card">
+      <span class="poem-number">27</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Tiempo Contigo</h3>
+      <p class="poem-text">Un minuto contigo
+vale más que un año solo,
+un segundo de tu mirada
+me da fuerza y me da vuelo.
+Si el tiempo se acelerara
+solo pediría frenar
+cuando estoy cerca de ti,
+para no dejar de estar.</p>
+      <p class="poem-piropo">⏰ "Cada segundo contigo es el más valioso de mi vida, Katy."</p>
+    </article>
+
+    <!-- Poema 28 -->
+    <article class="poem-card">
+      <span class="poem-number">28</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Guerrera Bella</h3>
+      <p class="poem-text">Eres guerrera y delicada,
+fuerte como una raíz,
+tu fuerza me ha enamorado
+tanto como tu nariz.
+Katy, no hay mujer más valiente
+que tú en este mundo cruel,
+y yo quiero caminar
+a tu lado, fiel y fiel.</p>
+      <p class="poem-piropo">⚔️ "Eres la mujer más fuerte y hermosa que he conocido en mi vida, Katy."</p>
+    </article>
+
+    <!-- Poema 29 -->
+    <article class="poem-card">
+      <span class="poem-number">29</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Sueño Despierto</h3>
+      <p class="poem-text">Cuando abro los ojos
+y pienso en que existes,
+me pregunto si es un sueño
+tan bello que persistes.
+Pero eres real, Katy,
+más real que el sol del día,
+y ese es el milagro más grande
+que le ha pasado a la vida mía.</p>
+      <p class="poem-piropo">💭 "El mejor sueño de mi vida fue el día que te conocí, Katy preciosa."</p>
+    </article>
+
+    <!-- Poema 30 -->
+    <article class="poem-card">
+      <span class="poem-number">30</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Treinta Flores</h3>
+      <p class="poem-text">Te traería treinta tulipanes
+si pudiera cada día,
+uno por cada razón
+que le das luz a la vida mía.
+Pero como son infinitas,
+también serían infinitos,
+y terminarías cubierta
+de pétalos pequeñitos.</p>
+      <p class="poem-piropo">🌷 "Mereces flores cada día, cada hora, cada momento, Katy linda."</p>
+    </article>
+
+    <!-- Poema 31 -->
+    <article class="poem-card">
+      <span class="poem-number">31</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Mi Mejor Poema</h3>
+      <p class="poem-text">Todos los poemas que escribo
+tienen tu nombre en el centro,
+tú eres la inspiración
+que me sale de adentro.
+Sin ti no habría versos,
+sin ti el papel está en blanco,
+tú me das las palabras, Katy,
+y yo te las devuelvo con rango.</p>
+      <p class="poem-piropo">📝 "Eres mi musa, mi inspiración y el poema más bello que existe, Katy."</p>
+    </article>
+
+    <!-- Poema 32 -->
+    <article class="poem-card">
+      <span class="poem-number">32</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Amor Sin Condición</h3>
+      <p class="poem-text">No te amo porque eres perfecta,
+te amo porque eres tú,
+con tus mañanas y tus noches,
+con tu verde y tu azul.
+Te amo completa, Katy,
+con todo lo que traes,
+y ese amor sin condiciones
+nunca se va ni se cae.</p>
+      <p class="poem-piropo">💝 "Te amo tal y como eres, sin cambiar ni un solo detalle, Katy."</p>
+    </article>
+
+    <!-- Poema 33 -->
+    <article class="poem-card">
+      <span class="poem-number">33</span>
+      <span class="poem-tulip">🌷</span>
+      <h3>Para Siempre</h3>
+      <p class="poem-text">Hay palabras que duran poco,
+hay flores que se marchitan,
+hay amores que se van
+cuando los días se limitan.
+Pero el mío por ti, Katy,
+no conoce el calendario,
+crece más con cada día
+y vive en el extraordinario.</p>
+      <p class="poem-piropo">♾️ "Mi amor por ti no tiene fecha de expiración, dura para siempre, Katy."</p>
+    </article>
+
+  </div>
+
+  <!-- POEMAS "TE EXTRAÑO" (34–48) -->
+  <div class="miss-section">
+    <div class="tulip-divider" style="margin-bottom:30px;">💔 Te Extraño 💔</div>
+    <h2 class="miss-title">🌷 Te Extraño Tanto, Katy 🌷</h2>
+    <p class="section-desc">Quince poemas que nacen de tu ausencia y del amor que no cesa</p>
+
+    <div class="poems-grid">
+
+      <!-- Poema 34 -->
+      <article class="poem-card miss-card">
+        <span class="poem-number">34</span>
+        <span class="poem-tulip">🌷</span>
+        <h3>Tu Silla Vacía</h3>
+        <p class="poem-text">Hay una silla en mi cuarto
+que guarda tu forma aún,
+el aire que dejaste
+no se ha ido, está aquí tún.
+Te extraño, Katy bella,
+como el mar extraña la orilla,
+como extraña la estrella
+su lugar en la constelación tranquila.</p>
+        <p class="poem-piropo">🪑 "Cada rincón donde estuviste guarda tu huella y yo la atesoro, Katy."</p>
+      </article>
+
+      <!-- Poema 35 -->
+      <article class="poem-card miss-card">
+        <span class="poem-number">35</span>
+        <span class="poem-tulip">🌷</span>
+        <h3>Vacío Lila</h3>
+        <p class="poem-text">Desde que no estás conmigo
+el color lila perdió brillo,
+los tulipanes se inclinan
+como si sintieran el quillo.
+Te extraño tanto, Katy,
+que el jardín ya no florece,
+necesito que regreses
+para que el mundo amanezca.</p>
+        <p class="poem-piropo">💜 "Sin ti hasta los colores pierden su brillo, así de importante eres, Katy."</p>
+      </article>
+
+      <!-- Poema 36 -->
+      <article class="poem-card miss-card">
+        <span class="poem-number">36</span>
+        <span class="poem-tulip">🌷</span>
+        <h3>El Teléfono Silencioso</h3>
+        <p class="poem-text">Miro el teléfono mil veces
+esperando ver tu nombre,
+cada notificación
+me despierta desde el sueño.
+Te extraño en el silencio,
+te extraño en el ruido también,
+te extraño en cada hora, Katy,
+te extraño siempre y también.</p>
+        <p class="poem-piropo">📱 "Espero tu mensaje como el sol espera la mañana, Katy preciosa."</p>
+      </article>
+
+      <!-- Poema 37 -->
+      <article class="poem-card miss-card">
+        <span class="poem-number">37</span>
+        <span class="poem-tulip">🌷</span>
+        <h3>Noche Sin Ti</h3>
+        <p class="poem-text">Las noches sin ti son largas
+como inviernos sin final,
+la cama se siente enorme
+y el silencio es pertinaz.
+Te extraño tanto, Katy,
+que no caben las palabras,
+solo caben tus recuerdos
+y estas lágrimas que guarda mi alma.</p>
+        <p class="poem-piropo">🌙 "Las noches sin tu voz son las más largas del universo, Katy mía."</p>
+      </article>
+
+      <!-- Poema 38 -->
+      <article class="poem-card miss-card">
+        <span class="poem-number">38</span>
+        <span class="poem-tulip">🌷</span>
+        <h3>Tu Olor Que Queda</h3>
+        <p class="poem-text">A veces creo que te siento,
+tu perfume en el ambiente,
+y me vuelvo lentamente
+buscándote entre la gente.
+Te extraño mucho, Katy,
+hasta el aire me recuerda
+que estás lejos y que extraño
+hasta tu risa y tus cuerdas.</p>
+        <p class="poem-piropo">🌸 "Tu perfume se quedó en el aire y en mi corazón, Katy adorada."</p>
+      </article>
+
+      <!-- Poema 39 -->
+      <article class="poem-card miss-card">
+        <span class="poem-number">39</span>
+        <span class="poem-tulip">🌷</span>
+        <h3>Distancia Que Duele</h3>
+        <p class="poem-text">La distancia que nos separa
+no la mido en kilómetros,
+la mido en "sin tus abrazos",
+en "sin tus ojos como fósforos".
+Te extraño en cada paso,
+en cada respiración,
+Katy, la distancia es el caso
+más cruel de separación.</p>
+        <p class="poem-piropo">📍 "Cualquier distancia contigo es demasiada, Katy de mi corazón."</p>
+      </article>
+
+      <!-- Poema 40 -->
+      <article class="poem-card miss-card">
+        <span class="poem-number">40</span>
+        <span class="poem-tulip">🌷</span>
+        <h3>Extrañar Tu Risa</h3>
+        <p class="poem-text">Extraño mucho tu risa,
+ese sonido tan tuyo,
+que llena todos los cuartos
+y apaga cualquier yugo.
+Cuando no estás, Katy linda,
+los cuartos quedan callados,
+y yo busco entre el silencio
+esos ecos añorados.</p>
+        <p class="poem-piropo">😄 "Tu risa es lo que más extraño en el mundo entero, Katy bella."</p>
+      </article>
+
+      <!-- Poema 41 -->
+      <article class="poem-card miss-card">
+        <span class="poem-number">41</span>
+        <span class="poem-tulip">🌷</span>
+        <h3>Los Tulipanes Te Buscan</h3>
+        <p class="poem-text">Los tulipanes lilas
+se inclinan hacia el viento
+buscándote entre las nubes
+con su amoroso intento.
+Hasta las flores saben
+que algo falta aquí,
+te extraño tanto, Katy,
+como ellas extrañan a ti.</p>
+        <p class="poem-piropo">🌷 "Hasta las flores lloran tu ausencia, así de especial eres, Katy."</p>
+      </article>
+
+      <!-- Poema 42 -->
+      <article class="poem-card miss-card">
+        <span class="poem-number">42</span>
+        <span class="poem-tulip">🌷</span>
+        <h3>Cada Canción</h3>
+        <p class="poem-text">Cada canción que suena
+me recuerda algo tuyo,
+una letra, un compás,
+un momento entre los dos, tuyo.
+Te extraño tanto, Katy,
+que la música duele,
+porque cada nota dice:
+"dónde estará, que no aparece".</p>
+        <p class="poem-piropo">🎶 "Todas las canciones ahora hablan de ti y de cuánto te extraño, Katy."</p>
+      </article>
+
+      <!-- Poema 43 -->
+      <article class="poem-card miss-card">
+        <span class="poem-number">43</span>
+        <span class="poem-tulip">🌷</span>
+        <h3>El Abrazo Que Falta</h3>
+        <p class="poem-text">Mis brazos recuerdan
+la forma exacta de ti,
+el calor de tu cuerpo
+tan cerca de mí aquí.
+Te extraño tanto, Katy,
+que mis brazos se vacían,
+y solo se llenan cuando
+tú a ellos te recostabas y reías.</p>
+        <p class="poem-piropo">🤗 "Mis brazos tienen un hueco con tu forma exacta, Katy mía."</p>
+      </article>
+
+      <!-- Poema 44 -->
+      <article class="poem-card miss-card">
+        <span class="poem-number">44</span>
+        <span class="poem-tulip">🌷</span>
+        <h3>Mirando Al Cielo</h3>
+        <p class="poem-text">Miro el cielo y te busco
+entre las nubes que pasan,
+me imagino que estás cerca
+aunque los kilómetros separan.
+Katy, te extraño a lo loco,
+te extraño de verdad,
+y mirar el mismo cielo
+es la única eternidad.</p>
+        <p class="poem-piropo">☁️ "Miro el cielo sabiendo que tú también lo miras, Katy adorada."</p>
+      </article>
+
+      <!-- Poema 45 -->
+      <article class="poem-card miss-card">
+        <span class="poem-number">45</span>
+        <span class="poem-tulip">🌷</span>
+        <h3>El Tiempo Se Detiene</h3>
+        <p class="poem-text">El tiempo sin ti no avanza,
+se arrastra como caracol,
+cada hora pesa el doble,
+cada día sin tu sol.
+Te extraño muchísimo, Katy,
+te extraño sin medida,
+vuelve pronto a este espacio
+que sin ti no es vida.</p>
+        <p class="poem-piropo">⌛ "El tiempo sin ti es el más lento y cruel del universo, Katy."</p>
+      </article>
+
+      <!-- Poema 46 -->
+      <article class="poem-card miss-card">
+        <span class="poem-number">46</span>
+        <span class="poem-tulip">🌷</span>
+        <h3>Te Extraño En Todo</h3>
+        <p class="poem-text">Te extraño en el desayuno,
+en la tarde y en la noche,
+te extraño cuando llueve
+y cuando el sol es derroche.
+Te extraño en lo pequeño,
+en lo grande y lo infinito,
+Katy, te extraño tanto
+que se me acaba el grito.</p>
+        <p class="poem-piropo">🌅 "Te extraño en cada momento del día, sin excepción, Katy preciosa."</p>
+      </article>
+
+      <!-- Poema 47 -->
+      <article class="poem-card miss-card">
+        <span class="poem-number">47</span>
+        <span class="poem-tulip">🌷</span>
+        <h3>Carta Sin Destinatario</h3>
+        <p class="poem-text">Escribo cartas sin mandarlas
+porque no sé cómo empezar,
+cada letra es un suspiro,
+cada punto: "cuándo vas a estar".
+Te extraño con cada tinta,
+con cada papel en blanco,
+Katy, esta carta te espera
+desde el más profundo flanco.</p>
+        <p class="poem-piropo">💌 "Cada palabra que escribo va dirigida a ti aunque no lo sepa, Katy."</p>
+      </article>
+
+      <!-- Poema 48 -->
+      <article class="poem-card miss-card">
+        <span class="poem-number">48</span>
+        <span class="poem-tulip">🌷</span>
+        <h3>El Último y El Primero</h3>
+        <p class="poem-text">Este es el último poema
+pero el primero en el alma,
+porque aunque acaben los versos
+el amor no encuentra calma.
+Te extraño hoy, Katy,
+te extrañaré mañana,
+pero este amor tan grande
+nunca pierde su gana.
+Vuelve, que los tulipanes
+y yo te esperamos ya,
+con el corazón abierto
+y el amor que nunca se va.</p>
+        <p class="poem-piropo">💜 "Eres el primero y el último pensamiento de mi vida entera, Katy de mi corazón."</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="heart-beat">💜</span>
+  <p>Estos 48 poemas son solo una pequeña parte<br/>de todo el amor que siento por ti</p>
+  <div class="tulip-divider" style="margin:20px auto;max-width:400px;">🌷💜🌷</div>
+  <p class="firma">Con todo mi amor, para Katy 🌷</p>
+  <p style="margin-top:20px;color:var(--lila-claro);font-size:0.9rem;font-family:'Lato',sans-serif;opacity:0.7;">
+    Hecho con ❤️ y tulipanes lilas • 2026
+  </p>
+</footer>
+
+<button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Volver arriba">🌷</button>
+
+<script>
+  // Crear partículas de tulipanes
+  const tulipBg = document.getElementById('tulipBg');
+  const emojis = ['🌷','🌸','💜','✨','🌺','💫','🦋','🌷'];
+
+  for (let i = 0; i < 30; i++) {
+    const el = document.createElement('div');
+    el.classList.add('tulip-particle');
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.animationDuration = (8 + Math.random() * 15) + 's';
+    el.style.animationDelay = (Math.random() * 10) + 's';
+    el.style.fontSize = (1 + Math.random() * 1.5) + 'rem';
+    tulipBg.appendChild(el);
+  }
+
+  // Intersection Observer para animaciones al scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.poem-card, .photo-card').forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease, box-shadow 0.4s ease, border-color 0.4s ease';
+    observer.observe(card);
+  });
+</script>
+
+</body>
+</html>
