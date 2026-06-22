@@ -1,634 +1,640 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Para Katy – 48 Poemas de Amor 💜🌷</title>
-  <meta name="description" content="Una página llena de amor, poemas y tulipanes lilas dedicada a Katy."/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
-  <style>
-  /* ═══════════════════════════════════════
-     VARIABLES & RESET
-  ═══════════════════════════════════════ */
-  :root{
-    --lila-1:#0d0018;
-    --lila-2:#2a0048;
-    --lila-3:#4a0060;
-    --lila-4:#6a0572;
-    --lila-5:#9b59b6;
-    --lila-6:#c39bd3;
-    --lila-7:#e8d5f5;
-    --dorado:#f0c040;
-    --rosa:#d7a3e0;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    background:linear-gradient(160deg,var(--lila-1) 0%,var(--lila-2) 30%,var(--lila-3) 60%,var(--lila-2) 100%);
-    background-attachment:fixed;
-    font-family:'Lato',sans-serif;
-    color:#fff;
-    overflow-x:hidden;
-  }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>Para Katy – Un Jardín de Amor 💜🌷</title>
+<meta name="description" content="Un jardín digital de amor, poemas y tulipanes lilas dedicado a Katy."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Dancing+Script:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ─── TOKENS ─── */
+:root{
+  --bg0:#080015;--bg1:#12002a;--bg2:#1e0040;
+  --purple:#6a0572;--mid:#9b59b6;--lilac:#c39bd3;--pale:#e8d5f5;
+  --gold:#f0c040;--rose:#f0a0c0;--white:#fff;
+  --glass:rgba(255,255,255,0.06);--glass-b:rgba(255,255,255,0.12);
+  --radius:20px;--radius-lg:32px;
+  --font-title:'Dancing Script',cursive;
+  --font-serif:'Playfair Display',serif;
+  --font-head:'Cormorant Garamond',serif;
+  --font-ui:'Inter',sans-serif;
+  --nav-h:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{
+  background:var(--bg0);
+  font-family:var(--font-ui);
+  color:var(--white);
+  overflow-x:hidden;
+  min-height:100vh;
+}
+img{max-width:100%;display:block;}
+a{text-decoration:none;color:inherit;}
 
-  /* ═══════════════════════════════════════
-     PORTAL DE TULIPANES (PANTALLA DE ENTRADA)
-  ═══════════════════════════════════════ */
-  #portal{
-    position:fixed;
-    inset:0;
-    z-index:9999;
-    background:radial-gradient(ellipse at center, #1a0035 0%, #000010 100%);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-    transition:opacity 1.2s ease, transform 1.2s ease;
-  }
-  #portal.exit{
-    opacity:0;
-    transform:scale(1.15);
-    pointer-events:none;
-  }
+/* ─── ANIMATED BACKGROUND ─── */
+.bg-canvas{
+  position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 0%,rgba(106,5,114,.45) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 100%,rgba(42,0,80,.6) 0%,transparent 55%),
+    radial-gradient(ellipse 100% 80% at 50% 50%,rgba(18,0,42,.9) 0%,transparent 100%),
+    linear-gradient(160deg,#080015 0%,#12002a 40%,#1a0035 70%,#080015 100%);
+  pointer-events:none;
+}
+.bg-canvas::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c39bd3' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  animation:bgDrift 25s linear infinite;
+}
+@keyframes bgDrift{from{transform:translateY(0)}to{transform:translateY(-60px)}}
 
-  /* Arco de tulipanes */
-  .portal-arch{
-    position:relative;
-    width:340px;
-    height:400px;
-    margin-bottom:30px;
-  }
-  .portal-circle{
-    position:absolute;
-    top:50%;left:50%;
-    transform:translate(-50%,-50%);
-    width:260px;height:260px;
-    border-radius:50%;
-    border:2px solid rgba(195,155,211,0.3);
-    box-shadow:
-      0 0 40px rgba(155,89,182,0.6),
-      0 0 80px rgba(155,89,182,0.3),
-      inset 0 0 60px rgba(106,5,114,0.4);
-    animation:portalPulse 2s ease-in-out infinite;
-  }
-  @keyframes portalPulse{
-    0%,100%{box-shadow:0 0 40px rgba(155,89,182,0.6),0 0 80px rgba(155,89,182,0.3),inset 0 0 60px rgba(106,5,114,0.4);}
-    50%{box-shadow:0 0 70px rgba(195,155,211,0.9),0 0 120px rgba(155,89,182,0.5),inset 0 0 90px rgba(155,89,182,0.5);}
-  }
-  .portal-inner{
-    position:absolute;
-    top:50%;left:50%;
-    transform:translate(-50%,-50%);
-    width:200px;height:200px;
-    border-radius:50%;
-    background:radial-gradient(ellipse, rgba(106,5,114,0.8) 0%, rgba(42,0,70,0.95) 60%, #000020 100%);
-    display:flex;align-items:center;justify-content:center;
-    flex-direction:column;
-    animation:innerGlow 2s ease-in-out infinite;
-  }
-  @keyframes innerGlow{
-    0%,100%{filter:brightness(1);}
-    50%{filter:brightness(1.3);}
-  }
+/* floating petals */
+.petals{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden;}
+.petal{
+  position:absolute;bottom:-60px;
+  font-size:clamp(1rem,2.5vw,1.6rem);
+  animation:petalRise linear infinite;
+  opacity:0;
+  will-change:transform,opacity;
+}
+@keyframes petalRise{
+  0%{transform:translateY(0) rotate(0deg) scale(.7);opacity:0;}
+  5%{opacity:.25;}
+  90%{opacity:.2;}
+  100%{transform:translateY(-110vh) rotate(720deg) scale(1.1);opacity:0;}
+}
 
-  /* Tulipanes orbitando el portal */
-  .portal-tulip{
-    position:absolute;
-    font-size:2rem;
-    transform-origin:130px 130px;
-    animation:orbit linear infinite;
-  }
-  @keyframes orbit{
-    from{transform:rotate(var(--start)) translateX(130px) rotate(calc(-1 * var(--start)));}
-    to{transform:rotate(calc(var(--start) + 360deg)) translateX(130px) rotate(calc(-1 * (var(--start) + 360deg)));}
-  }
+/* ─── PORTAL ─── */
+#portal{
+  position:fixed;inset:0;z-index:9999;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  overflow:hidden;
+  background:radial-gradient(ellipse at 50% 40%,#1a0035 0%,#060010 100%);
+  transition:opacity .9s cubic-bezier(.4,0,.2,1),transform .9s cubic-bezier(.4,0,.2,1);
+}
+#portal.exit{opacity:0;transform:scale(1.08);pointer-events:none;}
 
-  /* Tulipanes decorativos arriba del arco */
-  .arch-tulip{
-    position:absolute;
-    font-size:2.5rem;
-    animation:sway 3s ease-in-out infinite;
-  }
-  @keyframes sway{
-    0%,100%{transform:rotate(-8deg) scale(1);}
-    50%{transform:rotate(8deg) scale(1.1);}
-  }
+.portal-scene{position:relative;width:min(340px,90vw);height:min(340px,90vw);margin-bottom:28px;}
 
-  .portal-title{
-    font-family:'Dancing Script',cursive;
-    font-size:clamp(2.5rem,7vw,4.5rem);
-    background:linear-gradient(135deg,#f3e8ff,var(--dorado),#c39bd3);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    background-clip:text;
-    background-size:200%;
-    animation:shimmer 3s ease infinite;
-    text-align:center;
-    margin-bottom:8px;
-  }
-  @keyframes shimmer{0%,100%{background-position:0%}50%{background-position:100%}}
+/* outer glow ring */
+.p-ring{
+  position:absolute;inset:0;border-radius:50%;
+  border:1.5px solid rgba(195,155,211,.25);
+  box-shadow:0 0 50px rgba(155,89,182,.6),0 0 100px rgba(155,89,182,.25),inset 0 0 70px rgba(106,5,114,.4);
+  animation:ringPulse 2.4s ease-in-out infinite;
+}
+@keyframes ringPulse{
+  0%,100%{box-shadow:0 0 50px rgba(155,89,182,.6),0 0 100px rgba(155,89,182,.25),inset 0 0 70px rgba(106,5,114,.4);}
+  50%{box-shadow:0 0 80px rgba(195,155,211,.9),0 0 160px rgba(155,89,182,.45),inset 0 0 100px rgba(155,89,182,.5);}
+}
 
-  .portal-sub{
-    font-family:'Playfair Display',serif;
-    font-style:italic;
-    color:var(--lila-6);
-    font-size:1.1rem;
-    text-align:center;
-    letter-spacing:2px;
-    margin-bottom:35px;
-  }
-  .portal-btn{
-    font-family:'Dancing Script',cursive;
-    font-size:1.3rem;
-    color:#fff;
-    background:linear-gradient(135deg,var(--lila-4),var(--lila-5));
-    border:2px solid rgba(195,155,211,0.4);
-    padding:14px 40px;
-    border-radius:50px;
-    cursor:pointer;
-    transition:all 0.35s ease;
-    box-shadow:0 6px 25px rgba(106,5,114,0.6);
-    letter-spacing:1px;
-  }
-  .portal-btn:hover{
-    transform:translateY(-4px) scale(1.05);
-    box-shadow:0 12px 40px rgba(155,89,182,0.8);
-    border-color:var(--lila-6);
-  }
+/* center disc */
+.p-disc{
+  position:absolute;inset:15%;border-radius:50%;
+  background:radial-gradient(ellipse at 40% 35%,rgba(155,89,182,.5) 0%,rgba(30,0,64,.97) 60%,rgba(8,0,21,1) 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  border:1px solid rgba(195,155,211,.2);
+  box-shadow:inset 0 0 60px rgba(106,5,114,.5);
+}
+.p-disc-emoji{font-size:clamp(2.5rem,8vw,4rem);animation:discPulse 2.4s ease-in-out infinite;}
+.p-disc-label{font-family:var(--font-title);font-size:clamp(.9rem,2.5vw,1.1rem);color:rgba(195,155,211,.7);}
+@keyframes discPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.06);}}
 
-  /* Partículas del portal */
-  .portal-particle{
-    position:absolute;
-    border-radius:50%;
-    animation:spark linear infinite;
-    pointer-events:none;
-  }
-  @keyframes spark{
-    0%{transform:translateY(0) scale(1);opacity:0.8;}
-    100%{transform:translateY(-100vh) scale(0);opacity:0;}
-  }
+/* orbiting tulips */
+.p-tulip{
+  position:absolute;
+  top:50%;left:50%;
+  font-size:clamp(1.2rem,4vw,2rem);
+  transform-origin:0 0;
+  animation:orbit linear infinite;
+}
+@keyframes orbit{
+  from{transform:rotate(var(--s)) translateX(calc(min(150px,42vw))) rotate(calc(-1*var(--s)));}
+  to{transform:rotate(calc(var(--s) + 360deg)) translateX(calc(min(150px,42vw))) rotate(calc(-1*(var(--s) + 360deg)));}
+}
 
-  /* ═══════════════════════════════════════
-     NAVEGACIÓN ENTRE SECCIONES
-  ═══════════════════════════════════════ */
-  .site-nav{
-    position:fixed;
-    top:0;left:0;right:0;
-    z-index:100;
-    background:rgba(13,0,24,0.85);
-    backdrop-filter:blur(16px);
-    border-bottom:1px solid rgba(195,155,211,0.15);
-    padding:0 20px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    height:56px;
-    flex-wrap:wrap;
-  }
-  .site-nav a{
-    font-family:'Dancing Script',cursive;
-    font-size:1.05rem;
-    color:var(--lila-6);
-    text-decoration:none;
-    padding:6px 16px;
-    border-radius:30px;
-    border:1px solid transparent;
-    transition:all 0.3s ease;
-    white-space:nowrap;
-  }
-  .site-nav a:hover, .site-nav a.active{
-    color:#fff;
-    background:rgba(155,89,182,0.25);
-    border-color:rgba(195,155,211,0.3);
-  }
-  .nav-sep{color:rgba(195,155,211,0.3);font-size:0.8rem;}
+.portal-title{
+  font-family:var(--font-title);
+  font-size:clamp(2.8rem,8vw,5rem);
+  background:linear-gradient(135deg,var(--pale),var(--gold),var(--lilac));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  text-align:center;margin-bottom:8px;
+  animation:titleGlow 3s ease-in-out infinite alternate;
+}
+@keyframes titleGlow{from{filter:drop-shadow(0 0 12px rgba(195,155,211,.5));}to{filter:drop-shadow(0 0 28px rgba(195,155,211,.9));}}
 
-  /* ═══════════════════════════════════════
-     PARTÍCULAS GLOBALES FLOTANTES
-  ═══════════════════════════════════════ */
-  #globalBg{
-    position:fixed;inset:0;
-    pointer-events:none;z-index:0;
-    overflow:hidden;
-  }
-  .gp{
-    position:absolute;
-    animation:floatUp linear infinite;
-    opacity:0;
-  }
-  @keyframes floatUp{
-    0%{transform:translateY(110vh) rotate(0deg);opacity:0;}
-    8%{opacity:0.15;}
-    92%{opacity:0.15;}
-    100%{transform:translateY(-10vh) rotate(360deg);opacity:0;}
-  }
+.portal-sub{
+  font-family:var(--font-serif);font-style:italic;
+  color:var(--lilac);font-size:clamp(.9rem,2.5vw,1.1rem);
+  text-align:center;margin-bottom:32px;letter-spacing:.05em;
+}
 
-  /* ═══════════════════════════════════════
-     SECCIONES GENERALES
-  ═══════════════════════════════════════ */
-  .page-section{
-    position:relative;
-    z-index:1;
-    min-height:100vh;
-    padding:80px 20px 60px;
-  }
+.portal-btn{
+  font-family:var(--font-title);font-size:clamp(1.2rem,3vw,1.5rem);
+  color:#fff;background:linear-gradient(135deg,rgba(106,5,114,.8),rgba(155,89,182,.7));
+  border:1.5px solid rgba(195,155,211,.4);
+  padding:14px 42px;border-radius:50px;cursor:pointer;
+  box-shadow:0 0 30px rgba(155,89,182,.4),0 4px 20px rgba(0,0,0,.4);
+  transition:all .3s ease;letter-spacing:.05em;
+  animation:btnGlow 2s ease-in-out infinite alternate;
+}
+.portal-btn:hover{
+  transform:scale(1.05) translateY(-2px);
+  box-shadow:0 0 50px rgba(195,155,211,.6),0 8px 30px rgba(0,0,0,.5);
+  background:linear-gradient(135deg,rgba(155,89,182,.9),rgba(195,155,211,.6));
+}
+@keyframes btnGlow{from{box-shadow:0 0 30px rgba(155,89,182,.4),0 4px 20px rgba(0,0,0,.4);}to{box-shadow:0 0 50px rgba(195,155,211,.55),0 4px 20px rgba(0,0,0,.4);}}
 
-  /* Separadores de sección */
-  .section-banner{
-    text-align:center;
-    padding:50px 20px 20px;
-  }
-  .section-banner h2{
-    font-family:'Dancing Script',cursive;
-    font-size:clamp(2.5rem,6vw,4.5rem);
-    margin-bottom:10px;
-  }
-  .section-banner p{
-    font-family:'Playfair Display',serif;
-    font-style:italic;
-    color:var(--lila-6);
-    font-size:1.1rem;
-    max-width:600px;
-    margin:0 auto;
-    line-height:1.8;
-    opacity:0.85;
-  }
+/* music note on portal */
+.portal-music{font-size:clamp(.75rem,2vw,.9rem);color:rgba(195,155,211,.5);margin-top:16px;text-align:center;font-family:var(--font-ui);}
 
-  .divider{
-    display:flex;align-items:center;justify-content:center;
-    gap:12px;margin:20px auto;font-size:1.5rem;
-  }
-  .divider::before,.divider::after{
-    content:'';flex:1;max-width:200px;height:1px;
-    background:linear-gradient(90deg,transparent,rgba(195,155,211,0.5),transparent);
-  }
+/* ─── NAV ─── */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  height:var(--nav-h);
+  display:none;align-items:center;justify-content:space-between;
+  padding:0 clamp(12px,3vw,32px);
+  background:rgba(8,0,21,.75);
+  backdrop-filter:blur(20px) saturate(180%);
+  border-bottom:1px solid rgba(195,155,211,.12);
+}
+#nav.visible{display:flex;}
+.nav-logo{font-family:var(--font-title);font-size:1.4rem;color:var(--lilac);white-space:nowrap;}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;align-items:center;gap:4px;flex-wrap:nowrap;}
+.nav-links a{
+  font-family:var(--font-ui);font-size:.78rem;font-weight:500;
+  padding:7px 13px;border-radius:30px;
+  color:rgba(195,155,211,.8);
+  border:1px solid transparent;
+  transition:all .25s ease;white-space:nowrap;letter-spacing:.03em;
+}
+.nav-links a:hover,.nav-links a.act{
+  color:#fff;background:rgba(155,89,182,.25);
+  border-color:rgba(195,155,211,.25);
+}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--lilac);border-radius:2px;transition:.3s;}
 
-  /* ═══════════════════════════════════════
-     SECCIÓN 1: HERO
-  ═══════════════════════════════════════ */
-  #sec-hero{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    background:
-      radial-gradient(ellipse 90% 70% at 50% 40%, rgba(106,5,114,0.3) 0%, transparent 70%),
-      linear-gradient(160deg,var(--lila-1) 0%,var(--lila-2) 50%,var(--lila-1) 100%);
-    padding-top:80px;
-  }
-  .hero-crown{font-size:4rem;animation:crownBounce 2.5s ease-in-out infinite;margin-bottom:5px;}
-  @keyframes crownBounce{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-20px) rotate(5deg)}}
+/* mobile menu */
+.nav-mobile{
+  display:none;position:fixed;top:var(--nav-h);left:0;right:0;z-index:998;
+  background:rgba(8,0,21,.97);backdrop-filter:blur(20px);
+  padding:20px 24px;border-bottom:1px solid rgba(195,155,211,.1);
+  flex-direction:column;gap:6px;
+}
+.nav-mobile.open{display:flex;}
+.nav-mobile a{
+  font-family:var(--font-ui);font-size:1rem;color:var(--lilac);
+  padding:12px 16px;border-radius:12px;
+  border:1px solid rgba(195,155,211,.1);
+  transition:.2s;
+}
+.nav-mobile a:hover{background:rgba(155,89,182,.2);color:#fff;}
 
-  .hero-title{
-    font-family:'Dancing Script',cursive;
-    font-size:clamp(4rem,10vw,8rem);
-    background:linear-gradient(120deg,#f3e8ff 0%,var(--dorado) 25%,#e8a0d5 55%,var(--lila-6) 100%);
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-    background-size:300%;
-    animation:heroShim 5s ease-in-out infinite;
-    line-height:1;margin-bottom:15px;
-  }
-  @keyframes heroShim{0%,100%{background-position:0%}50%{background-position:100%}}
+/* ─── MUSIC PLAYER ─── */
+#player{
+  position:fixed;bottom:20px;left:20px;z-index:900;
+  display:none;
+  background:rgba(8,0,21,.85);backdrop-filter:blur(20px);
+  border:1px solid rgba(195,155,211,.2);border-radius:50px;
+  padding:10px 18px;
+  display:flex;align-items:center;gap:12px;
+  box-shadow:0 4px 30px rgba(106,5,114,.4);
+  max-width:min(280px,calc(100vw - 40px));
+  opacity:0;transition:opacity .4s;
+}
+#player.visible{opacity:1;}
+.player-btn{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,var(--purple),var(--mid));
+  border:none;color:#fff;font-size:1rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:.2s;box-shadow:0 0 12px rgba(155,89,182,.4);
+}
+.player-btn:hover{transform:scale(1.1);box-shadow:0 0 20px rgba(195,155,211,.5);}
+.player-info{overflow:hidden;}
+.player-title{font-family:var(--font-title);font-size:.85rem;color:var(--lilac);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.player-waves{display:flex;align-items:flex-end;gap:2px;height:16px;margin-top:3px;}
+.player-waves span{
+  width:3px;background:var(--mid);border-radius:2px;
+  animation:wave .6s ease-in-out infinite alternate;
+}
+.player-waves span:nth-child(2){animation-delay:.1s;}
+.player-waves span:nth-child(3){animation-delay:.2s;}
+.player-waves span:nth-child(4){animation-delay:.15s;}
+.player-waves span:nth-child(5){animation-delay:.05s;}
+@keyframes wave{from{height:4px}to{height:14px}}
+.player-waves.paused span{animation-play-state:paused;height:4px;}
 
-  .hero-sub{
-    font-family:'Playfair Display',serif;font-style:italic;
-    font-size:clamp(1rem,2.5vw,1.4rem);
-    color:var(--lila-6);letter-spacing:3px;margin-bottom:30px;
-  }
-  .hero-quote{
-    font-family:'Playfair Display',serif;font-style:italic;
-    color:var(--lila-7);font-size:clamp(0.95rem,2vw,1.1rem);
-    max-width:700px;line-height:2;margin:0 auto 40px;opacity:0.9;
-  }
+/* ─── SCROLL TOP BTN ─── */
+#scrollTop{
+  position:fixed;bottom:20px;right:20px;z-index:900;
+  width:44px;height:44px;border-radius:50%;
+  background:linear-gradient(135deg,var(--purple),var(--mid));
+  border:1px solid rgba(195,155,211,.3);
+  color:#fff;font-size:1.1rem;cursor:pointer;
+  box-shadow:0 4px 20px rgba(106,5,114,.5);
+  display:none;align-items:center;justify-content:center;
+  transition:.3s;opacity:0;
+}
+#scrollTop.vis{display:flex;opacity:1;}
+#scrollTop:hover{transform:translateY(-3px) scale(1.1);}
 
-  /* Tarjetas de resumen en hero */
-  .hero-cards{
-    display:flex;gap:20px;justify-content:center;flex-wrap:wrap;
-    margin-top:20px;
-  }
-  .hero-card{
-    background:rgba(255,255,255,0.05);
-    border:1px solid rgba(195,155,211,0.2);
-    border-radius:18px;padding:20px 28px;
-    text-align:center;backdrop-filter:blur(10px);
-    transition:all 0.3s ease;cursor:pointer;
-    text-decoration:none;color:#fff;
-  }
-  .hero-card:hover{
-    transform:translateY(-6px);
-    background:rgba(155,89,182,0.15);
-    border-color:rgba(195,155,211,0.4);
-    box-shadow:0 12px 35px rgba(106,5,114,0.5);
-  }
-  .hero-card-icon{font-size:2.5rem;display:block;margin-bottom:8px;}
-  .hero-card-title{
-    font-family:'Dancing Script',cursive;
-    font-size:1.3rem;color:var(--dorado);margin-bottom:4px;
-  }
-  .hero-card-sub{font-size:0.85rem;color:var(--lila-6);opacity:0.8;}
+/* ─── SECTIONS ─── */
+.section{
+  position:relative;z-index:2;
+  padding:clamp(60px,8vh,100px) clamp(16px,4vw,60px);
+  min-height:100vh;
+}
+.section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(106,5,114,.15) 0%,transparent 65%);
+  pointer-events:none;
+}
 
-  /* Scroll indicator */
-  .scroll-hint{
-    margin-top:50px;
-    font-family:'Lato',sans-serif;
-    font-size:0.85rem;color:rgba(195,155,211,0.5);
-    display:flex;flex-direction:column;align-items:center;gap:8px;
-  }
-  .scroll-arrow{
-    width:24px;height:24px;
-    border-right:2px solid rgba(195,155,211,0.4);
-    border-bottom:2px solid rgba(195,155,211,0.4);
-    transform:rotate(45deg);
-    animation:scrollBounce 1.5s ease-in-out infinite;
-  }
-  @keyframes scrollBounce{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(6px)}}
+/* section header */
+.sec-head{text-align:center;margin-bottom:clamp(32px,5vw,64px);}
+.sec-head h2{
+  font-family:var(--font-title);
+  font-size:clamp(2.2rem,6vw,4rem);
+  background:linear-gradient(135deg,var(--pale),var(--gold),var(--lilac));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:12px;line-height:1.15;
+}
+.sec-head p{
+  font-family:var(--font-serif);font-style:italic;
+  color:var(--lilac);font-size:clamp(.95rem,2vw,1.1rem);
+  max-width:600px;margin:0 auto;line-height:1.85;opacity:.9;
+}
+.divider{
+  display:flex;align-items:center;justify-content:center;
+  gap:12px;margin:16px auto 24px;font-size:1.3rem;
+}
+.divider::before,.divider::after{
+  content:'';flex:1;max-width:180px;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(195,155,211,.4),transparent);
+}
 
-  /* ═══════════════════════════════════════
-     SECCIÓN 2: GALERÍA DE FOTOS
-  ═══════════════════════════════════════ */
-  #sec-fotos{
-    background:
-      linear-gradient(180deg,var(--lila-1) 0%,rgba(74,0,96,0.3) 30%,rgba(106,5,114,0.2) 70%,var(--lila-1) 100%);
-  }
-  #sec-fotos .section-banner h2{
-    background:linear-gradient(135deg,#f3e8ff,var(--dorado),#c39bd3);
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  }
+/* ─── HERO ─── */
+#hero{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;gap:clamp(16px,3vw,28px);
+  min-height:100vh;padding-top:var(--nav-h);
+}
+.hero-title{
+  font-family:var(--font-title);
+  font-size:clamp(3.5rem,10vw,7rem);
+  background:linear-gradient(135deg,#fff 0%,var(--pale) 30%,var(--gold) 60%,var(--lilac) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1.1;animation:heroGlow 4s ease-in-out infinite alternate;
+}
+@keyframes heroGlow{from{filter:drop-shadow(0 0 15px rgba(240,192,64,.3));}to{filter:drop-shadow(0 0 35px rgba(195,155,211,.5));}}
 
-  .photos-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:24px;max-width:1060px;margin:40px auto 0;
-  }
-  .photo-card{
-    position:relative;border-radius:24px;overflow:hidden;
-    box-shadow:0 10px 40px rgba(106,5,114,0.55),0 0 0 1px rgba(195,155,211,0.2);
-    transition:transform 0.4s ease,box-shadow 0.4s ease;
-    background:rgba(255,255,255,0.03);cursor:pointer;
-  }
-  .photo-card:hover{
-    transform:translateY(-14px) scale(1.03);
-    box-shadow:0 25px 65px rgba(155,89,182,0.75),0 0 0 2px var(--lila-6);
-  }
-  .photo-card img{
-    width:100%;height:360px;object-fit:cover;object-position:top center;
-    display:block;transition:transform 0.6s ease;
-  }
-  .photo-card:hover img{transform:scale(1.07);}
+.hero-crown{font-size:clamp(2rem,5vw,3.5rem);animation:float 3s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-5deg);}50%{transform:translateY(-12px) rotate(5deg);}}
 
-  .photo-overlay{
-    position:absolute;inset:0;
-    background:linear-gradient(0deg,rgba(26,0,40,0.95) 0%,rgba(106,5,114,0.4) 50%,transparent 100%);
-    opacity:0;transition:opacity 0.4s ease;
-    display:flex;align-items:flex-end;
-    padding:22px;
-  }
-  .photo-card:hover .photo-overlay{opacity:1;}
-  .photo-overlay-text{
-    font-family:'Dancing Script',cursive;
-    font-size:1.1rem;color:var(--dorado);line-height:1.5;
-  }
+.hero-sub{
+  font-family:var(--font-serif);font-style:italic;
+  color:var(--lilac);font-size:clamp(1rem,2.5vw,1.3rem);
+  letter-spacing:.08em;
+}
+.hero-quote{
+  font-family:var(--font-head);font-style:italic;font-weight:300;
+  color:rgba(232,213,245,.8);font-size:clamp(1rem,2.3vw,1.25rem);
+  max-width:560px;line-height:2;
+}
+.hero-cards{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(140px,100%),1fr));
+  gap:clamp(10px,2vw,18px);width:100%;max-width:520px;
+}
+.h-card{
+  background:var(--glass);backdrop-filter:blur(16px);
+  border:1px solid rgba(195,155,211,.18);border-radius:var(--radius);
+  padding:clamp(16px,3vw,24px) 12px;text-align:center;
+  transition:.35s cubic-bezier(.2,.8,.2,1);
+  cursor:pointer;
+}
+.h-card:hover{
+  background:rgba(155,89,182,.2);transform:translateY(-6px);
+  box-shadow:0 16px 40px rgba(106,5,114,.45);border-color:rgba(195,155,211,.35);
+}
+.h-card-icon{font-size:clamp(1.8rem,4vw,2.5rem);display:block;margin-bottom:8px;}
+.h-card-title{font-family:var(--font-head);font-weight:600;font-size:clamp(.95rem,2vw,1.1rem);color:var(--pale);margin-bottom:3px;}
+.h-card-sub{font-size:.78rem;color:var(--lilac);opacity:.8;}
 
-  .piropo-bar{
-    padding:14px 18px;
-    background:linear-gradient(135deg,rgba(106,5,114,0.7),rgba(42,0,70,0.9));
-    border-top:1px solid rgba(195,155,211,0.2);
-  }
-  .piropo-bar p{
-    font-family:'Dancing Script',cursive;
-    font-size:1.05rem;color:var(--dorado);
-    text-align:center;line-height:1.45;
-  }
+.scroll-cue{
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:rgba(195,155,211,.5);font-size:.78rem;font-family:var(--font-ui);
+  animation:fadeOsc 2s ease-in-out infinite;margin-top:8px;
+}
+.scroll-cue::after{
+  content:'';width:1px;height:40px;
+  background:linear-gradient(to bottom,rgba(195,155,211,.4),transparent);
+}
+@keyframes fadeOsc{0%,100%{opacity:.4;}50%{opacity:1;}}
 
-  /* Photo number badge */
-  .photo-badge{
-    position:absolute;top:14px;left:14px;
-    background:rgba(106,5,114,0.8);
-    border:1px solid rgba(195,155,211,0.3);
-    border-radius:50px;
-    font-family:'Dancing Script',cursive;
-    font-size:0.95rem;color:var(--lila-7);
-    padding:4px 12px;backdrop-filter:blur(8px);
-  }
+/* ─── PHOTOS ─── */
+.photos-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));
+  gap:clamp(14px,2.5vw,24px);
+  max-width:1200px;margin:0 auto;
+}
+.photo-card{
+  position:relative;border-radius:var(--radius-lg);overflow:hidden;
+  background:var(--glass);
+  border:1px solid rgba(195,155,211,.15);
+  box-shadow:0 8px 32px rgba(0,0,0,.4);
+  transition:.4s cubic-bezier(.2,.8,.2,1);
+  cursor:pointer;
+}
+.photo-card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 24px 60px rgba(106,5,114,.5);border-color:rgba(195,155,211,.35);}
+.photo-card img{
+  width:100%;aspect-ratio:3/4;object-fit:cover;
+  transition:.4s;display:block;
+}
+.photo-card:hover img{transform:scale(1.04);}
 
-  /* ═══════════════════════════════════════
-     SECCIÓN 3: POEMAS DE AMOR
-  ═══════════════════════════════════════ */
-  #sec-amor{
-    background:
-      linear-gradient(180deg,var(--lila-1) 0%,rgba(42,0,72,0.4) 50%,var(--lila-1) 100%);
-  }
-  #sec-amor .section-banner h2{
-    color:var(--lila-7);
-    text-shadow:0 0 40px rgba(195,155,211,0.4);
-  }
+.photo-badge{
+  position:absolute;top:14px;left:14px;z-index:2;
+  background:rgba(8,0,21,.75);backdrop-filter:blur(12px);
+  border:1px solid rgba(195,155,211,.25);
+  color:var(--lilac);font-size:.78rem;font-family:var(--font-ui);font-weight:500;
+  padding:5px 12px;border-radius:20px;letter-spacing:.04em;
+}
+.photo-overlay{
+  position:absolute;inset:0;z-index:3;
+  background:linear-gradient(to top,rgba(8,0,21,.95) 0%,rgba(42,0,80,.5) 50%,transparent 100%);
+  display:flex;align-items:flex-end;padding:20px;
+  opacity:0;transition:.4s;
+}
+.photo-card:hover .photo-overlay{opacity:1;}
+.photo-overlay p{
+  font-family:var(--font-serif);font-style:italic;
+  font-size:clamp(.85rem,1.8vw,1rem);color:#fff;line-height:1.7;
+}
+.photo-piropo{
+  padding:clamp(12px,2vw,18px);
+  background:linear-gradient(135deg,rgba(30,0,64,.6),rgba(8,0,21,.8));
+  border-top:1px solid rgba(195,155,211,.1);
+}
+.photo-piropo p{
+  font-family:var(--font-head);font-style:italic;
+  color:var(--pale);font-size:clamp(.82rem,1.7vw,.95rem);line-height:1.75;text-align:center;
+}
 
-  /* ═══════════════════════════════════════
-     SECCIÓN 4: TE EXTRAÑO
-  ═══════════════════════════════════════ */
-  #sec-extrano{
-    background:
-      linear-gradient(180deg,var(--lila-1) 0%,rgba(60,0,40,0.5) 40%,rgba(70,0,50,0.3) 70%,var(--lila-1) 100%);
-    border-top:1px solid rgba(195,155,211,0.1);
-  }
-  #sec-extrano .section-banner h2{
-    background:linear-gradient(135deg,#c39bd3,var(--dorado),#f3e8ff);
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  }
+/* ─── POEMS ─── */
+.poems-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr));
+  gap:clamp(16px,2.5vw,28px);
+  max-width:1300px;margin:0 auto;
+}
+.poem-card{
+  position:relative;
+  background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(155,89,182,.07));
+  border:1px solid rgba(195,155,211,.14);border-radius:var(--radius);
+  padding:clamp(20px,3vw,32px);
+  transition:.35s cubic-bezier(.2,.8,.2,1);
+  overflow:hidden;
+}
+.poem-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--mid),transparent);
+  opacity:.4;
+}
+.poem-card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(195,155,211,.3);
+  box-shadow:0 20px 50px rgba(106,5,114,.4);
+  background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(155,89,182,.12));
+}
+.poem-num{
+  position:absolute;top:16px;right:20px;
+  font-family:var(--font-head);font-size:2.5rem;font-weight:300;
+  color:rgba(195,155,211,.12);line-height:1;pointer-events:none;
+}
+.poem-icon{font-size:1.4rem;display:block;margin-bottom:10px;}
+.poem-card h3{
+  font-family:var(--font-head);font-weight:600;
+  font-size:clamp(1.1rem,2.5vw,1.35rem);
+  color:var(--gold);margin-bottom:14px;
+}
+.poem-text{
+  font-family:var(--font-serif);font-style:italic;
+  color:rgba(232,213,245,.88);
+  font-size:clamp(.88rem,1.8vw,.98rem);line-height:2;
+  white-space:pre-line;margin-bottom:16px;
+}
+.poem-piropo{
+  font-family:var(--font-head);font-style:italic;
+  font-size:clamp(.8rem,1.6vw,.9rem);color:var(--lilac);
+  border-top:1px solid rgba(195,155,211,.1);padding-top:12px;
+  line-height:1.7;
+}
 
-  /* ═══════════════════════════════════════
-     TARJETAS DE POEMAS
-  ═══════════════════════════════════════ */
-  .poems-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(330px,1fr));
-    gap:26px;max-width:1180px;margin:0 auto;
-    padding:0 10px;
-  }
-  .poem-card{
-    background:linear-gradient(145deg,rgba(255,255,255,0.06) 0%,rgba(155,89,182,0.1) 100%);
-    border:1px solid rgba(195,155,211,0.17);
-    border-radius:22px;
-    padding:28px 26px 22px;
-    backdrop-filter:blur(14px);
-    transition:transform 0.4s ease,box-shadow 0.4s ease,border-color 0.4s ease;
-    position:relative;overflow:hidden;
-  }
-  .poem-card::before{
-    content:'';position:absolute;
-    top:-60%;left:-60%;width:220%;height:220%;
-    background:radial-gradient(circle,rgba(195,155,211,0.06) 0%,transparent 55%);
-    transform:scale(0);transition:transform 0.7s ease;
-  }
-  .poem-card:hover::before{transform:scale(1);}
-  .poem-card:hover{
-    transform:translateY(-8px);
-    border-color:rgba(195,155,211,0.4);
-    box-shadow:0 20px 50px rgba(106,5,114,0.55);
-  }
+/* ─── TE EXTRAÑO ─── */
+.extrano-section{
+  background:
+    radial-gradient(ellipse 100% 50% at 50% 100%,rgba(20,0,40,.8) 0%,transparent 65%),
+    linear-gradient(to bottom,transparent,rgba(15,0,30,.4),transparent);
+}
+.extrano-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));
+  gap:clamp(16px,2.5vw,24px);
+  max-width:1200px;margin:0 auto;
+}
+.extrano-card{
+  position:relative;
+  background:linear-gradient(145deg,rgba(20,0,40,.7),rgba(8,0,21,.8));
+  border:1px solid rgba(195,155,211,.12);
+  border-left:3px solid var(--gold);
+  border-radius:var(--radius);
+  padding:clamp(18px,3vw,28px);
+  transition:.35s cubic-bezier(.2,.8,.2,1);overflow:hidden;
+}
+.extrano-card:hover{
+  transform:translateY(-5px);border-color:rgba(195,155,211,.25);
+  box-shadow:0 20px 50px rgba(20,0,40,.7);
+}
+.extrano-card h3{
+  font-family:var(--font-head);font-weight:600;
+  font-size:clamp(1.1rem,2.5vw,1.3rem);
+  color:var(--rose);margin-bottom:12px;
+}
+.extrano-card .poem-text{color:rgba(240,213,245,.82);}
+.extrano-card .poem-piropo{color:rgba(240,160,192,.8);}
 
-  /* Variante "te extraño" */
-  .miss-card{
-    background:linear-gradient(145deg,rgba(106,5,114,0.2) 0%,rgba(42,0,70,0.35) 100%);
-    border-color:rgba(195,155,211,0.25);
-    border-left:4px solid var(--dorado);
-  }
-  .miss-card h3{color:#f8e0a0 !important;}
-  .miss-card .poem-text{color:#f3e8ff !important;}
+/* ─── 1000 RAZONES ─── */
+.mil-section{
+  background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(42,0,80,.5) 0%,transparent 60%);
+}
+.counter-box{
+  display:flex;flex-wrap:wrap;gap:clamp(10px,2vw,20px);justify-content:center;
+  margin-bottom:clamp(24px,4vw,48px);
+}
+.counter-card{
+  background:var(--glass);backdrop-filter:blur(16px);
+  border:1px solid rgba(195,155,211,.18);border-radius:var(--radius);
+  padding:clamp(16px,3vw,28px) clamp(20px,4vw,40px);
+  text-align:center;
+}
+#counterNum{
+  font-family:var(--font-title);font-size:clamp(3rem,8vw,5rem);
+  background:linear-gradient(135deg,var(--gold),var(--lilac));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1;
+}
+.counter-label{font-family:var(--font-serif);font-style:italic;color:var(--lilac);font-size:.85rem;margin-top:4px;}
+.counter-msg{
+  font-family:var(--font-title);font-size:clamp(1.2rem,3vw,1.6rem);
+  color:var(--gold);line-height:1.5;max-width:260px;
+}
 
-  .poem-num{
-    font-family:'Dancing Script',cursive;
-    font-size:3rem;color:rgba(195,155,211,0.18);
-    position:absolute;top:8px;right:16px;
-    line-height:1;user-select:none;
-  }
-  .poem-icon{font-size:1.6rem;margin-bottom:10px;display:block;}
-  .poem-card h3{
-    font-family:'Playfair Display',serif;
-    font-size:1.15rem;color:var(--dorado);
-    margin-bottom:14px;font-weight:700;line-height:1.3;
-  }
-  .poem-text{
-    font-family:'Playfair Display',serif;
-    font-style:italic;font-size:0.93rem;
-    line-height:2;color:#ecdff5;white-space:pre-line;
-  }
-  .poem-piropo{
-    margin-top:18px;padding-top:14px;
-    border-top:1px solid rgba(195,155,211,0.18);
-    font-family:'Dancing Script',cursive;
-    font-size:1.05rem;color:var(--rosa);font-weight:600;line-height:1.4;
-  }
+/* category tabs */
+#catTabs{
+  display:flex;flex-wrap:wrap;gap:clamp(7px,1.5vw,12px);
+  justify-content:center;margin-bottom:clamp(24px,4vw,40px);
+  max-width:1200px;margin-left:auto;margin-right:auto;padding:0 8px;
+}
+#catTabs button{
+  font-family:var(--font-title);font-size:clamp(.85rem,2vw,1rem);
+  padding:9px 20px;border-radius:50px;cursor:pointer;
+  background:rgba(255,255,255,.05);color:var(--lilac);
+  border:1px solid rgba(195,155,211,.2);
+  transition:.25s;white-space:nowrap;
+}
+#catTabs button:hover{background:rgba(155,89,182,.2);border-color:rgba(195,155,211,.35);color:#fff;}
+#catTabs button.on{
+  background:linear-gradient(135deg,rgba(106,5,114,.7),rgba(155,89,182,.5));
+  color:var(--gold);border-color:rgba(195,155,211,.4);
+}
 
-  /* ═══════════════════════════════════════
-     FOOTER
-  ═══════════════════════════════════════ */
-  footer{
-    position:relative;z-index:1;
-    text-align:center;padding:70px 20px 50px;
-    background:linear-gradient(0deg,rgba(0,0,10,0.98) 0%,transparent 100%);
-  }
-  .heart-anim{
-    font-size:3.5rem;display:block;margin-bottom:20px;
-    animation:hb 1.5s ease-in-out infinite;
-  }
-  @keyframes hb{
-    0%,100%{transform:scale(1)}
-    14%{transform:scale(1.35)}28%{transform:scale(1)}
-    42%{transform:scale(1.35)}70%{transform:scale(1)}
-  }
-  footer p{
-    font-family:'Dancing Script',cursive;
-    font-size:1.5rem;color:var(--lila-6);line-height:1.8;
-  }
-  .firma{
-    font-family:'Dancing Script',cursive;
-    font-size:2.3rem;color:var(--dorado);margin-top:14px;
-    text-shadow:0 0 30px rgba(240,192,64,0.4);
-  }
+#reasonsGrid{
+  max-width:1250px;margin:0 auto;
+  columns:3 280px;gap:14px;column-fill:balance;
+}
+.r-card{
+  break-inside:avoid;margin-bottom:14px;
+  background:linear-gradient(145deg,rgba(255,255,255,.05),rgba(155,89,182,.07));
+  border:1px solid rgba(195,155,211,.12);border-radius:16px;
+  padding:13px 16px;
+  transition:.3s cubic-bezier(.2,.8,.2,1);cursor:default;
+}
+.r-card:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(106,5,114,.4);border-color:rgba(195,155,211,.28);}
+.r-card-inner{display:flex;align-items:flex-start;gap:10px;}
+.r-icon{font-size:1rem;flex-shrink:0;margin-top:3px;}
+.r-num{font-family:var(--font-ui);font-size:.72rem;color:rgba(195,155,211,.4);display:block;margin-bottom:2px;}
+.r-text{font-family:var(--font-serif);font-style:italic;font-size:clamp(.85rem,1.7vw,.93rem);color:rgba(232,213,245,.88);line-height:1.75;}
 
-  /* ═══════════════════════════════════════
-     BACK-TO-TOP
-  ═══════════════════════════════════════ */
-  .back-top{
-    position:fixed;bottom:28px;right:28px;
-    background:linear-gradient(135deg,var(--lila-4),var(--lila-5));
-    border:none;color:#fff;width:52px;height:52px;
-    border-radius:50%;font-size:1.4rem;cursor:pointer;
-    z-index:100;box-shadow:0 6px 22px rgba(106,5,114,0.6);
-    transition:transform 0.3s,box-shadow 0.3s;
-  }
-  .back-top:hover{transform:translateY(-4px);box-shadow:0 12px 35px rgba(155,89,182,0.75);}
+/* ─── FOOTER ─── */
+footer{
+  position:relative;z-index:2;text-align:center;
+  padding:clamp(40px,6vw,80px) clamp(16px,4vw,60px);
+  background:linear-gradient(to top,rgba(8,0,21,1),transparent);
+}
+.footer-heart{font-size:clamp(2rem,5vw,3rem);animation:float 3s ease-in-out infinite;display:block;margin-bottom:16px;}
+.footer-title{font-family:var(--font-title);font-size:clamp(1.6rem,4vw,2.5rem);color:var(--lilac);margin-bottom:12px;}
+.footer-quote{font-family:var(--font-head);font-style:italic;color:rgba(195,155,211,.7);font-size:clamp(.9rem,2vw,1.05rem);max-width:480px;margin:0 auto;line-height:1.85;}
 
-  /* ═══════════════════════════════════════
-     RESPONSIVE
-  ═══════════════════════════════════════ */
-  @media(max-width:700px){
-    .poems-grid{grid-template-columns:1fr;}
-    .photos-grid{grid-template-columns:1fr 1fr;}
-    .photo-card img{height:250px;}
-    .site-nav{height:auto;padding:8px 10px;}
-    .site-nav a{font-size:0.88rem;padding:5px 10px;}
-    .page-section{padding:70px 12px 40px;}
-  }
-  </style>
+/* ─── ENTRANCE ANIMATIONS ─── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.in{opacity:1;transform:none;}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:700px){
+  .nav-links{display:none;}
+  .nav-burger{display:flex;}
+  #reasonsGrid{columns:1;}
+  .photos-grid{grid-template-columns:1fr 1fr;}
+  .poems-grid,.extrano-grid{grid-template-columns:1fr;}
+}
+@media(max-width:420px){
+  .photos-grid{grid-template-columns:1fr;}
+}
+@media(min-width:701px) and (max-width:1024px){
+  #reasonsGrid{columns:2 260px;}
+  .photos-grid{grid-template-columns:repeat(2,1fr);}
+}
+</style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════
-     PORTAL DE TULIPANES
-═══════════════════════════════════════ -->
+<!-- ══ BACKGROUND ══ -->
+<div class="bg-canvas"></div>
+<div class="petals" id="petals"></div>
+
+<!-- ══ HIDDEN YOUTUBE PLAYER ══ -->
+<div id="ytWrap" style="position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;"></div>
+
+<!-- ══ PORTAL ══ -->
 <div id="portal">
-
-  <!-- Partículas del portal -->
-  <div id="portalParticles"></div>
-
-  <!-- Arco de tulipanes animado -->
-  <div class="portal-arch">
-    <div class="portal-circle"></div>
-
-    <!-- Tulipán arriba centro -->
-    <div class="arch-tulip" style="top:-10px;left:50%;transform:translateX(-50%);">🌷</div>
-    <!-- Tulipanes lados arriba -->
-    <div class="arch-tulip" style="top:20px;left:20px;font-size:2rem;animation-delay:0.3s;">🌸</div>
-    <div class="arch-tulip" style="top:20px;right:20px;font-size:2rem;animation-delay:0.6s;">🌸</div>
-    <!-- Tulipanes medios -->
-    <div class="arch-tulip" style="top:50%;left:0;transform:translateY(-50%);font-size:1.8rem;animation-delay:0.9s;">🌷</div>
-    <div class="arch-tulip" style="top:50%;right:0;transform:translateY(-50%);font-size:1.8rem;animation-delay:1.2s;">🌷</div>
-    <!-- Tulipanes abajo -->
-    <div class="arch-tulip" style="bottom:30px;left:30px;font-size:1.8rem;animation-delay:0.5s;">💜</div>
-    <div class="arch-tulip" style="bottom:30px;right:30px;font-size:1.8rem;animation-delay:0.8s;">💜</div>
-
-    <!-- Tulipanes orbitando -->
-    <div class="portal-tulip" style="--start:0deg;animation-duration:6s;">🌷</div>
-    <div class="portal-tulip" style="--start:72deg;animation-duration:6s;font-size:1.5rem;">🌸</div>
-    <div class="portal-tulip" style="--start:144deg;animation-duration:6s;">💜</div>
-    <div class="portal-tulip" style="--start:216deg;animation-duration:6s;font-size:1.5rem;">✨</div>
-    <div class="portal-tulip" style="--start:288deg;animation-duration:6s;">🌷</div>
-
-    <!-- Centro del portal -->
-    <div class="portal-inner">
-      <span style="font-size:3rem;animation:innerGlow 2s infinite;">💜</span>
-      <span style="font-family:'Dancing Script',cursive;font-size:1rem;color:rgba(195,155,211,0.7);margin-top:5px;">Para ti</span>
+  <div class="portal-scene">
+    <div class="p-ring"></div>
+    <!-- orbiting tulips -->
+    <div class="p-tulip" style="--s:0deg;animation-duration:7s;">🌷</div>
+    <div class="p-tulip" style="--s:72deg;animation-duration:7s;font-size:1.4rem;">🌸</div>
+    <div class="p-tulip" style="--s:144deg;animation-duration:7s;">💜</div>
+    <div class="p-tulip" style="--s:216deg;animation-duration:7s;font-size:1.2rem;">✨</div>
+    <div class="p-tulip" style="--s:288deg;animation-duration:7s;">🌷</div>
+    <div class="p-disc">
+      <span class="p-disc-emoji">💜</span>
+      <span class="p-disc-label">Para ti</span>
     </div>
   </div>
-
   <h1 class="portal-title">Para Katy</h1>
-  <p class="portal-sub">🌷 Un mundo de amor te espera 🌷</p>
+  <p class="portal-sub">🌷 Un jardín de amor te espera 🌷</p>
   <button class="portal-btn" id="enterBtn">✨ Entrar al Jardín ✨</button>
-
+  <p class="portal-music">🎵 Música de amor te espera adentro</p>
 </div>
 
-<!-- ═══════════════════════════════════════
-     NAVEGACIÓN
-═══════════════════════════════════════ -->
-<nav class="site-nav" id="siteNav" style="display:none;">
-  <a href="#sec-hero" class="active">🏠 Inicio</a>
-  <span class="nav-sep">|</span>
-  <a href="#sec-fotos">📸 Fotos</a>
-  <span class="nav-sep">|</span>
-  <a href="#sec-amor">🌷 Poemas de Amor</a>
-  <span class="nav-sep">|</span>
-  <a href="#sec-extrano">💔 Te Extraño</a>
-  <span class="nav-sep">|</span>
-  <a href="#sec-mil">💜 1000 Razones</a>
+<!-- ══ NAV ══ -->
+<nav id="nav">
+  <div class="nav-logo">Para <span>Katy</span> 🌷</div>
+  <div class="nav-links">
+    <a href="#hero" class="act">🏠 Inicio</a>
+    <a href="#fotos">📸 Fotos</a>
+    <a href="#amor">🌷 Poemas</a>
+    <a href="#extrano">💔 Te Extraño</a>
+    <a href="#mil">💜 1000 Razones</a>
+  </div>
+  <div class="nav-burger" id="burger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="#hero" onclick="closeMenu()">🏠 Inicio</a>
+  <a href="#fotos" onclick="closeMenu()">📸 Fotos</a>
+  <a href="#amor" onclick="closeMenu()">🌷 Poemas de Amor</a>
+  <a href="#extrano" onclick="closeMenu()">💔 Te Extraño</a>
+  <a href="#mil" onclick="closeMenu()">💜 1000 Razones</a>
+</div>
 
-<!-- ═══════════════════════════════════════
-     FONDO GLOBAL
-═══════════════════════════════════════ -->
-<div id="globalBg"></div>
+<!-- ══ MUSIC PLAYER ══ -->
+<div id="player">
+  <button class="player-btn" id="playBtn" onclick="togglePlay()">▶</button>
+  <div class="player-info">
+    <div class="player-title">🎵 Nuestra canción</div>
+    <div class="player-waves" id="waves">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+</div>
 
-<!-- ═══════════════════════════════════════
-     SECCIÓN 1: HERO / INICIO
-═══════════════════════════════════════ -->
-<section id="sec-hero" class="page-section">
+<!-- ══ SCROLL TOP ══ -->
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">🌷</button>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section class="section" id="hero">
   <span class="hero-crown">👑</span>
   <h1 class="hero-title">Para Katy</h1>
-  <p class="hero-sub">48 Poemas de Amor • Con Todo el Corazón</p>
+  <p class="hero-sub">48 Poemas de Amor · Con Todo el Corazón</p>
   <div class="divider">🌷💜🌷</div>
   <p class="hero-quote">
     Porque hay amores que no caben en las palabras,<br/>
@@ -636,83 +642,82 @@
     en cada silencio que lleva tu nombre escrito<br/>
     con la tinta más sincera que existe: el alma.
   </p>
-
   <div class="hero-cards">
-    <a href="#sec-fotos" class="hero-card">
-      <span class="hero-card-icon">📸</span>
-      <div class="hero-card-title">Galería</div>
-      <div class="hero-card-sub">4 fotos tuyas</div>
+    <a href="#fotos" class="h-card">
+      <span class="h-card-icon">📸</span>
+      <div class="h-card-title">Galería</div>
+      <div class="h-card-sub">4 fotos tuyas</div>
     </a>
-    <a href="#sec-amor" class="hero-card">
-      <span class="hero-card-icon">🌷</span>
-      <div class="hero-card-title">Poemas de Amor</div>
-      <div class="hero-card-sub">33 poemas del corazón</div>
+    <a href="#amor" class="h-card">
+      <span class="h-card-icon">🌷</span>
+      <div class="h-card-title">Poemas de Amor</div>
+      <div class="h-card-sub">33 del corazón</div>
     </a>
-    <a href="#sec-extrano" class="hero-card">
-      <span class="hero-card-icon">💔</span>
-      <div class="hero-card-title">Te Extraño</div>
-      <div class="hero-card-sub">15 poemas de añoranza</div>
+    <a href="#extrano" class="h-card">
+      <span class="h-card-icon">💔</span>
+      <div class="h-card-title">Te Extraño</div>
+      <div class="h-card-sub">15 de añoranza</div>
+    </a>
+    <a href="#mil" class="h-card">
+      <span class="h-card-icon">💜</span>
+      <div class="h-card-title">1000 Razones</div>
+      <div class="h-card-sub">Infinito amor</div>
     </a>
   </div>
-
-  <div class="scroll-hint">
-    <span>Desliza para explorar</span>
-    <div class="scroll-arrow"></div>
-  </div>
+  <div class="scroll-cue">Desliza para explorar</div>
 </section>
 
-<!-- ═══════════════════════════════════════
-     SECCIÓN 2: GALERÍA DE FOTOS
-═══════════════════════════════════════ -->
-<section id="sec-fotos" class="page-section">
-  <div class="section-banner">
+<!-- ══════════════════════════════════════
+     FOTOS
+══════════════════════════════════════ -->
+<section class="section" id="fotos">
+  <div class="sec-head reveal">
     <h2>📸 Ella es Katy</h2>
     <div class="divider">🌷✨🌷</div>
     <p>Cuatro momentos congelados en el tiempo,<br/>cuatro veces que el mundo se detuvo para admirarte</p>
   </div>
-
   <div class="photos-grid">
 
-    <div class="photo-card">
+    <div class="photo-card reveal">
       <span class="photo-badge">🌷 Foto 1</span>
       <img src="foto1.jpg" alt="Katy – Maquillaje artístico"/>
       <div class="photo-overlay">
-        <p class="photo-overlay-text">🎨 "El arte más bello que jamás he visto tiene tus facciones, Katy."</p>
+        <p>🎨 "El arte más bello que jamás he visto tiene tus facciones, Katy."</p>
       </div>
-      <div class="piropo-bar">
+      <div class="photo-piropo">
         <p>🎨 "Esos ojos y ese arte en tu cara son la cosa más hermosa que han visto mis ojos en toda la vida, Katy."</p>
       </div>
     </div>
 
-    <div class="photo-card">
+    <div class="photo-card reveal">
       <span class="photo-badge">💋 Foto 2</span>
       <img src="foto2.jpg" alt="Katy – Con besos pintados"/>
       <div class="photo-overlay">
-        <p class="photo-overlay-text">💋 "Eres tan adorada que hasta los besos quieren quedarse en tu piel, Katy."</p>
+        <p>💋 "Eres tan adorada que hasta los besos quieren quedarse en tu piel, Katy."</p>
       </div>
-      <div class="piropo-bar">
+      <div class="photo-piropo">
         <p>💋 "Cada beso en tu cara es un recordatorio de que eres la mujer más adorada del universo, Katy."</p>
       </div>
     </div>
 
-    <div class="photo-card">
+    <div class="photo-card reveal">
       <span class="photo-badge">💙 Foto 3</span>
       <img src="foto3.jpg" alt="Katy – Sonrisa azul"/>
       <div class="photo-overlay">
-        <p class="photo-overlay-text">💙 "Tu sonrisa ilumina hasta los rincones más oscuros del mundo, Katy."</p>
+        <p>💙 "Tu sonrisa ilumina hasta los rincones más oscuros del mundo, Katy."</p>
       </div>
-      <div class="piropo-bar">
+      <div class="photo-piropo">
         <p>💙 "Esa sonrisa con el maquillaje azul puede iluminar los rincones más oscuros de cualquier alma, Katy."</p>
       </div>
     </div>
 
-    <div class="photo-card">
+    <div class="photo-card reveal">
       <span class="photo-badge">🌸 Foto 4</span>
       <img src="foto4.jpg" alt="Katy – Con flor en el cabello"/>
       <div class="photo-overlay">
-        <p class="photo-overlay-text">🌸 "Las flores te buscan porque quieren estar cerca de lo más bello, Katy."</p>
+        <p>🌸 "Las flores te buscan porque quieren estar cerca de lo más bello, Katy."</p>
       </div>
-      <div class="piropo-bar">
+      <div class="photo-piropo">
         <p>🌸 "Esa flor en tu cabello se puso ahí porque quería estar cerca de la cosa más bella del mundo: tú, Katy."</p>
       </div>
     </div>
@@ -720,20 +725,18 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════
-     SECCIÓN 3: POEMAS DE AMOR (1–33)
-═══════════════════════════════════════ -->
-<section id="sec-amor" class="page-section">
-  <div class="section-banner">
+<!-- ══════════════════════════════════════
+     POEMAS DE AMOR
+══════════════════════════════════════ -->
+<section class="section" id="amor">
+  <div class="sec-head reveal">
     <h2>🌷 Poemas de Amor 🌷</h2>
     <div class="divider">💜🌷💜</div>
     <p>Treinta y tres poemas escritos desde lo más profundo del corazón,<br/>cada uno una razón diferente para amarte, Katy</p>
   </div>
-
   <div class="poems-grid">
 
-    <!-- 01 -->
-    <article class="poem-card">
+    <article class="poem-card reveal">
       <span class="poem-num">01</span><span class="poem-icon">🌷</span>
       <h3>El Día Que Llegaste</h3>
       <p class="poem-text">El día que llegaste a mi vida, Katy,
@@ -762,8 +765,7 @@ profundo, despacio, sabiendo que existes.</p>
       <p class="poem-piropo">💜 "El día que llegaste fue el mejor día de todos los que he vivido, Katy hermosa."</p>
     </article>
 
-    <!-- 02 -->
-    <article class="poem-card">
+    <article class="poem-card reveal">
       <span class="poem-num">02</span><span class="poem-icon">🌷</span>
       <h3>Cielo de Lila</h3>
       <p class="poem-text">Cuando el atardecer se pone lila
@@ -792,8 +794,7 @@ y en todos los que viviré mientras exista.</p>
       <p class="poem-piropo">🌅 "Eres el atardecer más hermoso que jamás he contemplado, Katy mía."</p>
     </article>
 
-    <!-- 03 -->
-    <article class="poem-card">
+    <article class="poem-card reveal">
       <span class="poem-num">03</span><span class="poem-icon">🌷</span>
       <h3>Tu Nombre</h3>
       <p class="poem-text">K-A-T-Y. Cuatro letras nada más,
@@ -804,1678 +805,1483 @@ la que llena todo el espacio cuando suena.
 
 K de kilómetros que recorrería a pie
 para estar cerca de ti aunque sea un momento,
-de kilómetros de amor que no se miden,
-que no se pesan ni se pueden calcular
-porque sobrepasan cualquier medida humana.
+A de aurora que representas en mi cielo,
+de alegría que me da solo saber que existes
+compartiendo el mismo aire que respiro.
 
-A de abrazo que quisiera darte siempre,
-de aurora que representas en mi cielo,
-de alegría que me da solo saber
-que estás en este mundo compartiendo
-el mismo aire que respiro yo a diario.
+T de ternura que me das sin proponértelo,
+de tiempo que quisiera detener contigo,
+Y de y siempre, y para siempre, y eternamente,
+que es lo que mi corazón siente cuando piensa
+en todo lo que eres, Katy, todo lo que das.
 
-T de ternura infinita, de tu tiempo,
-de todos los instantes que has regalado,
-de tu temple ante las cosas difíciles,
-de tu talento para hacer que todo brille
-con solo estar presente, solo existir.
-
-Y de "y siempre", "y para siempre", "y en todo",
-porque así es mi amor por ti, sin límites,
-sin condiciones, sin fechas de expiración,
-un amor que dice "y más" cuando termina,
-que dice "y aún" cuando cree que ya no puede.</p>
-      <p class="poem-piropo">💫 "Solo pronunciar tu nombre ya llena mi corazón de algo indescriptible, Katy."</p>
+Sin tus cuatro letras no existe el idioma,
+sin tu nombre el mundo es un lugar más gris,
+con tu nombre todo toma el color lila
+de los tulipanes más hermosos del jardín
+que existe en mi corazón solo para ti.</p>
+      <p class="poem-piropo">📝 "Tu nombre es el verso más hermoso que ha pronunciado mi boca, Katy."</p>
     </article>
 
-    <!-- 04 -->
-    <article class="poem-card">
+    <article class="poem-card reveal">
       <span class="poem-num">04</span><span class="poem-icon">🌷</span>
-      <h3>Manos de Seda</h3>
-      <p class="poem-text">He pensado en tus manos muchas veces,
-en cómo serán al tacto, cómo se sentirán
-entre las mías cuando las tome con cuidado,
-como si fueran lo más frágil y precioso
-que mis manos hayan tenido el honor de tocar.
+      <h3>Primer Tulipán</h3>
+      <p class="poem-text">En el jardín de mi vida llegaste tú,
+lila y luz, como el primer tulipán
+que florece hacia el sur cuando la primavera
+decide que ya es hora de que el mundo
+vuelva a ser hermoso después del frío.
 
-Imagino que son suaves como los pétalos
-de los tulipanes lilas que tanto me recuerdan a ti,
-cálidas como el sol de la tarde,
-pequeñas y perfectas como todo lo que eres,
-capaces de calmar cualquier tormenta.
+Tus ojos son la mañana que me despierta,
+tu voz, la brisa gentil que mueve las hojas,
+y en cada latido mío hay algo que dice
+que fuiste elegida entre mil jardines
+para ser la flor que mi alma esperaba.
 
-Esas manos que expresan lo que sientes,
-que hablan cuando las palabras no alcanzan,
-que crean y construyen y acarician,
-que sostienen a los que más quieres
-con una fuerza que no necesita músculos.
+El tulipán lila significa amor profundo,
+significa confianza que no tiene fin,
+significa que quien lo recibe es digna
+de todo lo bueno que el mundo puede dar,
+de todo el amor que un corazón contiene.
 
-Si algún día puedo tomar tus manos, Katy,
-te prometo no soltarlas con facilidad,
-porque sé que en ellas está el calor
-que me ha faltado en las noches frías
-y el refugio que siempre he buscado.</p>
-      <p class="poem-piropo">🌸 "Tus manos son lo más delicado y poderoso del mundo al mismo tiempo, Katy."</p>
+Y yo te doy este poema como tulipán,
+no marchita, no tiene fin ni estación,
+florece cada vez que lo lees de nuevo,
+florece con el mismo amor de siempre
+que tengo guardado para ti, Katy mía.</p>
+      <p class="poem-piropo">🌷 "Eres la flor más hermosa que ha brotado en el jardín de mi vida, Katy."</p>
     </article>
 
-    <!-- 05 -->
-    <article class="poem-card">
+    <article class="poem-card reveal">
       <span class="poem-num">05</span><span class="poem-icon">🌷</span>
-      <h3>Sonrisa de Oro</h3>
-      <p class="poem-text">Hay cosas en el mundo que no tienen precio,
-que no se compran ni se venden en ningún mercado,
-que no caben en ningún cofre por grande que sea,
-que no se pueden guardar ni catalogar
-porque son demasiado grandes, demasiado libres.
+      <h3>Tu Mirada</h3>
+      <p class="poem-text">Hay una magia especial en tu mirada,
+algo que no tiene nombre en ningún idioma,
+algo que solo existe cuando tú la posas
+sobre las cosas o sobre las personas
+y las convierte en algo distinto y más bonito.
 
-Tu sonrisa, Katy, es una de esas cosas.
+Cuando me miras siento que el tiempo para,
+que el mundo reduce su velocidad a cero,
+que todo lo que existe en este universo
+se organiza de repente para que yo pueda
+recibir ese regalo que es tu mirada.
 
-Cuando sonríes, el tiempo pierde el ritmo,
-las horas se doblan y se vuelven eternas,
-el aire parece más limpio, el mundo más bello,
-y yo quedo suspendido en ese instante
-incapaz de moverme, de pensar, de hablar.
+Tienen tus ojos la profundidad del mar,
+pero también la calidez del sol de agosto,
+tienen la honestidad de quien no necesita
+decir mentiras porque la verdad que guarda
+es tan hermosa que no necesita adornos.
 
-Es una sonrisa que no le pide nada a nadie,
-que no necesita ocasión especial para aparecer,
-que llega cuando menos la esperas
-y te cambia el día de una sola vez,
-de un solo movimiento de tus labios.
-
-Si pudiera darte algo a cambio, Katy,
-te daría todos mis días de alegría,
-todos mis momentos más felices juntos,
-porque nada de lo que tengo merecería
-la fortuna de recibir esa sonrisa tuya.</p>
-      <p class="poem-piropo">💛 "Tu sonrisa es el tesoro más grande que existe en todo el universo, Katy."</p>
+Katy, tus ojos son el lugar del mundo
+donde más me gustaría quedarme siempre,
+ese lugar sin nombre que no está en ningún mapa
+pero que yo conozco bien porque lo visito
+cada vez que pienso en ti, que es todo el tiempo.</p>
+      <p class="poem-piropo">👁️ "Tu mirada tiene el poder de detener el tiempo y llenarlo todo de amor, Katy bella."</p>
     </article>
 
-    <!-- 06 -->
-    <article class="poem-card">
+    <article class="poem-card reveal">
       <span class="poem-num">06</span><span class="poem-icon">🌷</span>
-      <h3>Campos de Tulipanes</h3>
-      <p class="poem-text">Cierra los ojos e imagina conmigo
-un campo inmenso de tulipanes lilas,
-tan grande que no se ve el horizonte,
-tan lleno de color que el cielo mismo
-se confunde con la tierra florecida.
+      <h3>Tu Sonrisa</h3>
+      <p class="poem-text">Si pudiera guardar una sola cosa
+de todo lo que existe en este mundo,
+guardaría tu sonrisa, Katy mía,
+esa que aparece despacio, casi tímida,
+y que termina iluminando todo lo que toca.
 
-Ahora imagínate a ti en el centro,
-con el viento moviendo tu cabello negro,
-con los pétalos rozando tus mejillas,
-con el perfume de las flores envolviéndote
-como un abrazo que nunca quiere terminar.
+No hay nada más hermoso que ese instante
+en que las comisuras de tu boca se mueven,
+en que los ojos se entrecerrán un poco
+y el mundo entero parece respirar
+aliviado de que tú estés sonriendo.
 
-Así te veo yo cuando te pienso, Katy,
-en el centro de todo lo que es hermoso,
-rodeada de la mejor versión del mundo,
-siendo tú misma la flor más especial
-de ese jardín que solo existe para ti.
+Tu sonrisa tiene la fuerza de la aurora,
+tiene el calor del primer sol de mayo,
+tiene la promesa de que todo va a estar bien,
+que no importa lo que venga después
+porque mientras tú sonrías habrá esperanza.
 
-Y en esa imagen que guardo con cuidado
-yo estoy detrás, mirándote en silencio,
-agradeciendo al universo entero
-por haberme dado ojos para ver
-algo tan perfecto como tú en este mundo.</p>
-      <p class="poem-piropo">🌷 "Eres la flor más hermosa de todos los jardines del mundo entero, Katy."</p>
+Por eso cuando te sientas sin fuerzas, Katy,
+cuando el mundo se ponga cuesta arriba,
+recuerda que tu sonrisa es la cosa más poderosa
+que existe aquí, y que con ella
+puedes con todo, absolutamente todo.</p>
+      <p class="poem-piropo">😊 "Tu sonrisa es la cosa más bonita que ha visto este mundo en mucho tiempo, Katy."</p>
     </article>
 
-    <!-- 07 -->
-    <article class="poem-card">
+    <article class="poem-card reveal">
       <span class="poem-num">07</span><span class="poem-icon">🌷</span>
-      <h3>Tus Ojos</h3>
-      <p class="poem-text">He visto muchas cosas hermosas en la vida,
-he visto montañas al amanecer,
-he visto el mar en calma bajo las estrellas,
-he visto lluvias de meteoros en el cielo
-y flores abrirse en el primer día de primavera.
+      <h3>Eres Mi Primavera</h3>
+      <p class="poem-text">Hay estaciones que llegan sin avisar,
+que transforman todo lo que tocan,
+que convierten el paisaje más invernal
+en algo lleno de colores y de vida
+que uno no recuerda cómo era antes.
 
-Pero nada de lo que han visto estos ojos
-se compara con la profundidad de los tuyos,
-Katy, esos ojos oscuros y misteriosos
-que guardan dentro todo un universo
-que me parece imposible terminar de descubrir.
+Tú eres mi primavera, Katy hermosa,
+la estación que todo lo renueva,
+que hace que los días más grises
+se tiñan de ese lila que tanto amo
+cuando pienso que existes en mi mundo.
 
-Son ojos que preguntan cuando callan,
-que dicen más en un parpadeo
-que lo que muchos dicen en horas de palabras,
-que tienen la capacidad de atravesarte
-y llegar hasta el lugar donde guardas tu verdad.
+Contigo florecen cosas que dormían,
+despiertan esperanzas que dormían,
+regresa el color a los días sin color,
+y el corazón que estaba ya tan cansado
+vuelve a latir con ganas y con ritmo.
 
-Cuando me miras, siento que me ves de verdad,
-no solo el exterior sino lo de adentro,
-y eso me da un miedo y una ternura
-que no sé cómo describir con palabras
-porque las palabras se quedan cortas siempre.
-
-Tus ojos, Katy, son mi lugar favorito
-en todo este mundo tan enorme y tan extraño.</p>
-      <p class="poem-piropo">🌙 "Tus ojos tienen el poder de detener el tiempo y encender el alma, Katy."</p>
+Eres la primavera de mi vida entera,
+la estación que no quiero que se vaya,
+la que espero cuando el invierno llega
+sabiendo que después de todo el frío
+volverás tú con todo tu calor.</p>
+      <p class="poem-piropo">🌸 "Contigo llegó la primavera a mi corazón para siempre, Katy mía."</p>
     </article>
 
-    <!-- 08 -->
-    <article class="poem-card">
+    <article class="poem-card reveal">
       <span class="poem-num">08</span><span class="poem-icon">🌷</span>
-      <h3>La Canción que Eres</h3>
-      <p class="poem-text">Tú eres la melodía que siempre busqué
-en cada canción que escuché sin encontrarla,
-la nota que faltaba en toda música
-para que sonara completa, para que llenara
-ese silencio que hay en el centro del pecho.
+      <h3>Lo Que Siento</h3>
+      <p class="poem-text">Si te dijera todo lo que siento
+cuando pienso en ti, necesitaría
+no palabras sino galaxias enteras,
+no versos sino océanos de tinta,
+no poemas sino universos completos.
 
-Cuando te pienso, se activa algo dentro
-que suena mejor que cualquier instrumento,
-un ritmo que no tiene nombre ni partitura
-pero que reconozco cada vez que aparece
-porque viene acompañado de tu recuerdo.
+Lo que siento cuando te recuerdo
+es algo que el lenguaje no alcanza,
+que desborda cualquier contenedor,
+que llena todos los espacios disponibles
+y aun así pide más lugar para existir.
 
-Hay canciones que duran tres minutos
-y te cambian para siempre cuando las oyes,
-te hacen sentir que alguien en algún lugar
-vivió exactamente lo que tú estás viviendo
-y lo puso en música para que no se perdiera.
+Es un calor que viene del centro mismo
+de este pecho donde el corazón late,
+es una certeza sin la menor duda,
+es saber con la claridad más absoluta
+que hay algo muy grande aquí dentro por ti.
 
-Tú eres eso para mí, Katy, una de esas canciones
-que se te meten en el alma sin pedir permiso
-y se instalan para siempre en algún rincón
-al que vuelves cada vez que necesitas
-recordar que la vida puede ser tan hermosa.</p>
-      <p class="poem-piropo">🎵 "Eres música para mis oídos, poesía para mi mente y paz para mi alma, Katy."</p>
+No tengo palabras exactas, Katy,
+solo tengo estos versos que lo intentan,
+que se esfuerzan y quedan siempre cortos,
+porque lo que siento por ti es tan grande
+que mil poemas no bastarían para contarlo.</p>
+      <p class="poem-piropo">💓 "Lo que siento por ti, Katy, es demasiado grande para que lo contenga cualquier palabra."</p>
     </article>
 
-    <!-- 09 -->
-    <article class="poem-card">
+    <article class="poem-card reveal">
       <span class="poem-num">09</span><span class="poem-icon">🌷</span>
-      <h3>El Perfume que Dejas</h3>
-      <p class="poem-text">Hay un perfume que imagino en ti, Katy,
-algo entre flores lilas y lluvia fresca,
-algo cálido que se mezcla con la brisa
-y que se queda flotando en el ambiente
-mucho después de que ya no estás presente.
+      <h3>Campo de Tulipanes</h3>
+      <p class="poem-text">Imagina un campo inmenso de tulipanes lilas,
+tan vasto que los ojos no alcanzan a ver el fin,
+tan lleno de color que el aire mismo
+parece haber tomado el tono violeta
+de cada flor que se mueve con el viento.
 
-Ese perfume imaginado se ha vuelto real
-porque el recuerdo tiene su propio aroma,
-y el tuyo huele a todo lo que es bueno,
-a momentos que quisiera repetir,
-a futuro que espero con el corazón abierto.
+Ahora imagina que en el centro de ese campo
+estás tú, Katy, exactamente tú,
+con ese cabello negro que el viento mueve,
+con esa sonrisa que hace que las flores
+quieran inclinarse a rendirte homenaje.
 
-Dicen que el olfato es el sentido
-que más conectado está a la memoria,
-que un aroma puede llevarte en segundos
-a un lugar, a una persona, a un instante
-que creías enterrado en el olvido.
+Eso es lo que imagino cuando pienso en ti,
+un campo de belleza y de amor profundo,
+donde cada tulipán tiene tu nombre,
+donde el aire huele a lo que tú eres,
+donde la luz existe solo para verte.
 
-Cada vez que el viento trae algo suave,
-cada vez que el aire huele a campo o flores,
-cierro los ojos y te imagino cerca,
-y ese segundo de ilusión me basta
-para sentir que todo tiene sentido.</p>
-      <p class="poem-piropo">🌸 "Tu presencia llena el ambiente de algo que no tiene precio ni nombre, Katy."</p>
+Y aunque ese campo esté solo en mi mente,
+es el lugar más real que conozco,
+porque está hecho de todo lo que siento,
+de todo lo que eres tú para mí,
+de amor que no cabe en ningún jardín real.</p>
+      <p class="poem-piropo">🌷 "Eres más hermosa que cualquier campo de tulipanes que pueda existir, Katy preciosa."</p>
     </article>
 
-    <!-- 10 -->
-    <article class="poem-card">
+    <article class="poem-card reveal">
       <span class="poem-num">10</span><span class="poem-icon">🌷</span>
-      <h3>El Latido que Llevas</h3>
-      <p class="poem-text">Pon tu mano en mi pecho y escucha bien,
-detrás de ese ritmo que marcan las costillas
-hay un latido especial que late diferente,
-más fuerte, más despacio, más consciente,
-ese es el latido que guardé para ti.
+      <h3>El Idioma del Amor</h3>
+      <p class="poem-text">El amor tiene su propio idioma, Katy,
+uno que no se aprende en ninguna escuela,
+que no tiene gramática ni diccionario,
+que solo hablan quienes lo sienten de verdad
+con la profundidad que solo da el corazón.
 
-No sé exactamente cuándo empezó,
-no hubo un momento claro ni una señal,
-fue algo gradual como el amanecer,
-como cuando la luz va ganando espacio
-sin que nadie le diga cuándo empezar.
+Yo aprendí ese idioma pensando en ti,
+con cada latido que latió por tu causa,
+con cada sonrisa que me trajo tu recuerdo,
+con cada verso que intentó decirte
+lo que las palabras normales no podían.
 
-Un día desperté y estabas ahí adentro,
-instalada en el ritmo de mi vida,
-parte de la música de fondo que me acompaña,
-presencia constante aunque no estuvieras cerca,
-voz familiar aunque rara vez la escuche.
+Y en ese idioma te digo que te quiero,
+que me alegra que existas en este mundo,
+que cada día que pasa con tu recuerdo
+es un día que vale más que cualquier otro,
+que tu presencia en mi vida es un regalo.
 
-Y ese latido que late por ti, Katy,
-no tiene previsto dejar de hacerlo,
-porque algunas personas se instalan tan profundo
-que el corazón las vuelve parte de sí mismo,
-las hace necesarias para seguir latiendo.</p>
-      <p class="poem-piropo">❤️ "Mi corazón tiene un ritmo especial que solo late así por ti, Katy."</p>
+En el idioma del amor, Katy hermosa,
+tú eres la palabra más importante,
+la que da sentido a todas las demás,
+la que hace que el idioma entero tenga
+una razón de ser y de existir.</p>
+      <p class="poem-piropo">💬 "En el idioma de mi corazón, tu nombre significa todo lo que existe de hermoso, Katy."</p>
     </article>
 
-    <!-- 11 -->
-    <article class="poem-card">
+    <article class="poem-card reveal">
       <span class="poem-num">11</span><span class="poem-icon">🌷</span>
-      <h3>Lluvia de Pétalos</h3>
-      <p class="poem-text">Si yo tuviera el poder de cambiar el clima,
-no haría llover agua en tu camino,
-haría llover pétalos de tulipán lila
-suaves como el terciopelo, leves como el aire,
-perfumados como el jardín en primavera.
+      <h3>Tus Ojos de Miel</h3>
+      <p class="poem-text">En tus ojos hay un mundo que desconozco
+pero al que quisiera pertenecer para siempre,
+un mundo con su propia geografía,
+sus propias leyes y sus propias mareas
+que suben y bajan con lo que tú sientes.
 
-Caerían uno a uno sobre tu cabello,
-sobre tus hombros, sobre tus manos abiertas,
-y cada pétalo sería un "te amo" diferente,
-uno por cada razón, uno por cada instante,
-uno por cada pensamiento que lleva tu nombre.
+Hay en ellos una honestidad que asusta,
+la de quien no necesita fingir nada,
+la de quien lleva todo lo que es a la vista,
+la de quien tiene tanto de bueno adentro
+que no cabe y se asoma por los ojos.
 
-Y tú caminarías entre esa lluvia de flores
-sin entender del todo de dónde viene,
-sin saber que soy yo mandándote mensajes
-de la única manera que sé hacerlo honestamente:
-llenándote de cosas tan bellas como tú.
+Hay también un misterio suave y cálido,
+el misterio de todo lo que no dices,
+de todo lo que guardas para ti misma,
+de ese universo interior tan rico
+que uno podría pasar la vida explorando.
 
-Porque mereces caminos cubiertos de flores, Katy,
-mereces que el mundo te diga constantemente
-que eres algo especial que no se encuentra fácil,
-que hay personas que desde lejos te admiran
-sin que tú lo sepas, sin que lo esperes.</p>
-      <p class="poem-piropo">🌷 "Mereces que llueva pétalos en tu camino todos y cada uno de tus días, Katy."</p>
+Katy, cuando me miras con esos ojos
+el mundo pierde sentido por un momento,
+y el único sentido que le queda
+es el de seguir mirando lo que tú miras
+para ver el mundo como tú lo ves.</p>
+      <p class="poem-piropo">✨ "Tus ojos son los más honestos y hermosos que han mirado en mi dirección, Katy bella."</p>
     </article>
 
-    <!-- 12 -->
-    <article class="poem-card">
+    <article class="poem-card reveal">
       <span class="poem-num">12</span><span class="poem-icon">🌷</span>
-      <h3>Tu Cabello Negro</h3>
-      <p class="poem-text">Tu cabello negro es la noche hecha poema,
-la oscuridad más bella que existe en el mundo,
-esa negrura suave que tiene profundidad,
-que guarda destellos cuando la luz lo toca
-como si guardara estrellas entre sus hebras.
+      <h3>Cuando Ríes</h3>
+      <p class="poem-text">Hay un momento específico que atesoro
+entre todos los que existen en mi memoria,
+y es ese instante justo antes de que rías,
+cuando algo divertido llega a tu mente
+y tu cara empieza a cambiar de expresión.
 
-Cuando lo llevas suelto, Katy, parece
-que el viento mismo lo elige para jugar,
-y en ese movimiento hay una elegancia
-que no se aprende ni se puede fingir
-porque es algo que viene de dentro, de lo tuyo.
+Primero es una chispa en los ojos,
+luego una curva suave en las comisuras,
+luego todo tu ser decide participar
+y la risa sale entera y completa
+como algo que no puede contenerse más.
 
-He pensado en ese cabello sin querer,
-en cómo cae sobre tus hombros despacio,
-en cómo enmarca tu cara de manera perfecta,
-en cómo completa cada expresión que tienes
-añadiendo siempre algo extra de hermosura.
+Tu risa tiene un sonido que no tiene copia,
+que no se parece a ningún otro del mundo,
+que cuando lo escucho me recuerda siempre
+que hay cosas en esta vida que valen tanto
+que uno daría todo por seguir escuchándolas.
 
-Eres oscuridad que da luz, eres noche que alumbra,
-eres la contradicción más hermosa que existe,
-y ese cabello negro es la prueba más visible
-de que puedes ser profunda y luminosa al mismo tiempo,
-sin que una cosa quite nada a la otra.</p>
-      <p class="poem-piropo">🖤 "Tu cabello negro es tan bello que la noche misma te lo envidiaría, Katy."</p>
+Ríe siempre, Katy, ríe mucho y fuerte,
+ríe de las cosas grandes y pequeñas,
+ríe porque esa risa es un regalo
+que le das al mundo cada vez que suena
+y el mundo es mejor con ella en él.</p>
+      <p class="poem-piropo">😂 "Tu risa es el sonido más hermoso que ha llegado a mis oídos en toda mi vida, Katy."</p>
     </article>
 
-    <!-- 13 -->
-    <article class="poem-card">
+    <article class="poem-card reveal">
       <span class="poem-num">13</span><span class="poem-icon">🌷</span>
-      <h3>Todo lo que Tocas</h3>
-      <p class="poem-text">Hay personas que pasan por el mundo
-sin dejar huella, sin cambiar nada,
-como agua sobre piedra que no cala,
-como viento sobre agua sin olas,
-presencias que no suman ni restan nada.
+      <h3>Tu Fuerza</h3>
+      <p class="poem-text">Eres de las que se levanta cuando cae,
+de las que sacude el polvo y sigue andando,
+de las que convierte los obstáculos
+en peldaños de una escalera que sube
+hacia lo mejor que la vida tiene guardado.
 
-Tú no eres una de esas personas, Katy.
+Hay una fortaleza en ti que me impresiona,
+no la de quien no siente ni no duele,
+sino la de quien siente todo intensamente
+y aun así encuentra la manera de seguir,
+de sanar, de crecer, de no rendirse.
 
-Todo lo que tocas se vuelve diferente,
-todo lo que miras gana un nuevo brillo,
-todo lo que escuchas se vuelve música,
-todo mejora cuando tú estás cerca.
+Eres valiente de la manera más real,
+no porque no tengas miedo sino porque
+el miedo no es razón suficiente para parar
+cuando el corazón sabe que hay algo al otro lado
+que vale más que todo el miedo del mundo.
 
-Es esa capacidad que tienen los seres extraordinarios
-de elevar todo lo que los rodea sin esfuerzo,
-de hacer que los demás se sientan mejor
-simplemente por compartir el mismo espacio,
-por respirar el mismo aire que tú respiras.
-
-No sé si lo sabes, Katy, pero eres de esas,
-eres de las que cambian el ambiente,
-de las que hacen que los cuartos sean más cálidos,
-de las que hacen que la vida valga la pena de vivir.
-
-Gracias por existir y por ser exactamente tú.</p>
-      <p class="poem-piropo">🎨 "Cada cosa que haces se convierte en arte, porque tú eres arte puro, Katy."</p>
+Admiro esa fuerza tuya, Katy hermosa,
+admiro la mujer que eres cada día,
+la que enfrenta lo que venga con la frente en alto,
+la que nunca deja que nada la apague,
+la que brilla más cuando más oscuro está.</p>
+      <p class="poem-piropo">⚡ "Eres la mujer más valiente y fuerte que he tenido el privilegio de conocer, Katy."</p>
     </article>
 
-    <!-- 14 -->
-    <article class="poem-card">
+    <article class="poem-card reveal">
       <span class="poem-num">14</span><span class="poem-icon">🌷</span>
-      <h3>Mariposa Libre</h3>
-      <p class="poem-text">Eres mariposa lila que no cabe en ningún frasco,
-libre como el viento de los campos abiertos,
-imposible de contener sin que pierda su magia,
-imposible de definir con pocas palabras
-porque eres demasiado grande para eso.
+      <h3>Eres Especial</h3>
+      <p class="poem-text">No hay en el mundo otra persona como tú,
+eso no es frase hecha ni exageración,
+es la verdad más concreta que conozco,
+la que puedo confirmar con solo pensar
+en todo lo que eres y en todo lo que das.
 
-He visto mariposas y he notado algo en ellas:
-no piden permiso para volar ni para elegir,
-no le explican a nadie sus rutas ni sus motivos,
-simplemente despliegan las alas y van
-a donde el instinto y el viento las llevan.
+Eres especial de la manera más real,
+no porque el mundo lo diga o lo confirme,
+sino porque dentro de ti hay algo
+que no se encuentra en ningún otro lugar
+por más que se busque con dedicación.
 
-Así eres tú, Katy, así te imagino,
-con esa libertad que te pertenece,
-con esa determinación tan tuya,
-con esa manera de estar en el mundo
-sin pedir disculpas por ser quien eres.
+Esa manera tuya de ser que es solo tuya,
+esa forma de reír, de mirar, de hablar,
+esa energía que cambias donde llegas,
+ese corazón que da sin que nadie lo pida,
+esa tú que no se puede copiar ni imitar.
 
-Y yo te admiro por eso, de verdad,
-porque en un mundo que pide que todos
-se doblen y se ajusten y se callen,
-tú sigues siendo tú con esa gracia,
-con esa mariposa adentro que no se rinde.
-
-No cambies nunca esas alas, Katy.
-Son lo que más me enamora de todo lo que eres.</p>
-      <p class="poem-piropo">🦋 "Eres libre, hermosa e imposible de atrapar, y eso te hace aún más especial, Katy."</p>
+El mundo es mejor porque tú estás en él, Katy,
+y yo soy mejor por haberte conocido,
+por haber tenido la suerte incomparable
+de cruzarme con alguien tan extraordinaria
+que cambia todo simplemente al existir.</p>
+      <p class="poem-piropo">⭐ "Eres la persona más especial que ha existido en este mundo, Katy hermosa mía."</p>
     </article>
 
-    <!-- 15 -->
-    <article class="poem-card">
+    <article class="poem-card reveal">
       <span class="poem-num">15</span><span class="poem-icon">🌷</span>
-      <h3>Medianoche</h3>
-      <p class="poem-text">A las doce de la noche cuando el mundo duerme,
-cuando todo se vuelve silencio y penumbra,
-cuando las horas pierden su nombre y se mezclan
-en esa franja oscura entre el ayer y el mañana,
-es cuando más te pienso, Katy.
-
-No sé por qué la medianoche te convoca,
-quizás porque en el silencio se oye mejor,
-quizás porque sin ruido que distraiga
-el pensamiento va directo a lo importante,
-y lo más importante para mí eres tú.
-
-Te imagino a ti también en algún lugar,
-tal vez durmiendo, tal vez mirando el techo,
-tal vez pensando en algo que te preocupa
-o en algo que te hace sonreír sin querer
-mientras el reloj marca las horas sin testigos.
-
-Y en esa medianoche que nos separa
-hay algo que nos conecta sin saberlo,
-como si los pensamientos tuvieran caminos
-que cruzan distancias mientras los cuerpos descansan,
-que llegan aunque nadie los vea llegar.</p>
-      <p class="poem-piropo">🌙 "Eres el mejor pensamiento de mis noches y el más bonito de mis días, Katy."</p>
-    </article>
-
-    <!-- 16 -->
-    <article class="poem-card">
-      <span class="poem-num">16</span><span class="poem-icon">🌷</span>
-      <h3>Jardín del Alma</h3>
-      <p class="poem-text">Dentro de mí hay un jardín que pocos conocen,
-un lugar donde guardo todo lo que importa,
-donde florecen los recuerdos que me alegran,
-donde descansan los sueños que no he contado,
-donde viven las personas que de verdad amo.
-
-Ese jardín tenía sus flores antes de conocerte,
-flores bonitas pero sin un centro claro,
-sin una flor principal que le diera sentido,
-sin algo que lo hiciera verdaderamente especial,
-un jardín completo pero al que le faltaba algo.
-
-Cuando llegaste tú, Katy, todo cambió.
-
-Plantaste un tulipán lila en el centro exacto
-y ese tulipán creció más que los demás,
-creció hasta darle sombra al resto del jardín,
-hasta convertirse en la razón por la que
-vale la pena cuidar todo lo demás.
-
-Ahora cuando entro a ese jardín interior
-lo primero que veo eres tú,
-tu tulipán lila en el centro de todo,
-recordándome que el amor más bonito
-es el que florece sin que nadie lo fuerce.</p>
-      <p class="poem-piropo">🌷 "Eres la flor principal de todo lo que soy y todo lo que tengo, Katy."</p>
-    </article>
-
-    <!-- 17 -->
-    <article class="poem-card">
-      <span class="poem-num">17</span><span class="poem-icon">🌷</span>
-      <h3>Mi Puerto Seguro</h3>
-      <p class="poem-text">El mundo a veces se vuelve tormenta,
-las olas crecen y el horizonte desaparece,
-el barco cruje y la brújula se pierde
-y uno no sabe hacia dónde remar
-ni si merece la pena seguir remando.
-
-En esos momentos hay personas que buscan
-un puerto donde anclar, un lugar seguro,
-un sitio donde la tormenta no llegue
-o donde al menos sea menos salvaje,
-menos brutal, menos difícil de aguantar.
-
-Para mí ese puerto seguro eres tú, Katy.
-
-No porque seas perfecta ni porque tengas
-respuesta para todo o solución para cada cosa,
-sino porque cuando pienso en ti me calmo,
-porque tu recuerdo tiene el efecto
-de acomodar lo que el caos desacomoda.
-
-Eres el lugar al que quiero llegar
-cuando el día ha sido largo y pesado,
-eres la conversación que querría tener,
-eres el abrazo imaginado que me sostiene,
-eres mi calma en medio de cualquier tormenta.</p>
-      <p class="poem-piropo">⚓ "Contigo el mundo es más llevadero y la vida más bonita, Katy preciosa."</p>
-    </article>
-
-    <!-- 18 -->
-    <article class="poem-card">
-      <span class="poem-num">18</span><span class="poem-icon">🌷</span>
-      <h3>Dulce como Tú</h3>
-      <p class="poem-text">No existe en el mundo nada tan dulce
-como el sonido de tu voz cuando hablas,
-como esa cadencia que tiene cada sílaba tuya,
-que llega a los oídos de una manera suave
-que lo suaviza todo a su alrededor.
-
-He probado cosas dulces en mi vida,
-frutas de temporada, miel de abeja,
-el primer café de la mañana con azúcar,
-los momentos felices que uno guarda,
-pero ninguna dulzura se compara, Katy.
-
-Hay personas que son naturalmente dulces
-no de manera empalagosa ni fingida
-sino de esa dulzura que da fuerza,
-que nutre sin abrumar, que da sin pedir,
-que endulza sin necesitar que se lo pidan.
-
-Tú eres esa dulzura, Katy, esa precisa,
-la que hace que estar cerca de ti
-sea lo más parecido a estar en casa
-que he encontrado en toda mi vida,
-ese calor que no se fabrica ni se finge.</p>
-      <p class="poem-piropo">🍯 "Tu manera de ser es la cosa más dulce y genuina que he conocido, Katy."</p>
-    </article>
-
-    <!-- 19 -->
-    <article class="poem-card">
-      <span class="poem-num">19</span><span class="poem-icon">🌷</span>
-      <h3>Promesas de Lila</h3>
-      <p class="poem-text">Hay promesas que se hacen de cara a la gente
-con palabras grandes y gestos solemnes,
-que suenan importantes y significativas
-pero que el tiempo termina por desgastar
-hasta que quedan solo en el recuerdo.
-
-Las promesas que te hago yo, Katy,
-no necesitan audiencia ni ceremonias,
-las hago en silencio desde donde estoy
-con la convicción de quien ha pensado bien.
-
-Te prometo honestidad ante todo lo demás,
-ser el espacio donde puedas ser tú misma
-sin temor a juicios ni a interpretaciones,
-con la seguridad de que lo que traigas vale.
-
-Te prometo estar cuando las cosas no estén bien,
-no solo en los momentos que son fáciles,
-sino en los días grises y los días rotos,
-en las noches largas y en los silencios duros,
-ahí estaré con todo lo que soy.
-
-Y te prometo seguir amándote con el tiempo,
-un amor que aprende de ti cada día
-y se hace más grande en el aprendizaje,
-más sabio, más profundo, más completo,
-porque estas son mis promesas, Katy, tuyas son.</p>
-      <p class="poem-piropo">💍 "Mis promesas para ti son de las que no se rompen, te lo juro con el alma, Katy."</p>
-    </article>
-
-    <!-- 20 -->
-    <article class="poem-card">
-      <span class="poem-num">20</span><span class="poem-icon">🌷</span>
-      <h3>Veinte Veces te Amo</h3>
-      <p class="poem-text">Te amo cuando ríes sin razón aparente,
-te amo cuando te enojas y tus ojos chispean,
-te amo cuando estás en silencio y piensas,
-te amo cuando explicas algo con pasión,
-te amo cuando dudas y cuando decides.
-
-Te amo en la mañana recién levantada,
-te amo en la tarde cuando ya estás cansada,
-te amo en la noche cuando el mundo descansa,
-te amo en los momentos de alegría plena
-y en los momentos donde todo se complica.
-
-Te amo por lo que dices y por lo que callas,
-por lo que muestras y lo que guardas dentro,
-por lo que ya eres y por lo que serás,
-por todo lo que fuiste antes de que yo llegara
-y por todo lo que vendrá después de hoy.
-
-Te amo de manera completa, sin reservas,
-sin la mitad que suele guardarse por miedo,
-con todo lo que tengo y lo que soy,
-sin condiciones, sin fechas, sin límites.
-
-Y si me preguntas cuántas veces te amo:
-más que ayer, menos que mañana,
-siempre en crecimiento, nunca estancado,
-siempre hacia ti, siempre por ti, siempre.</p>
-      <p class="poem-piropo">💜 "No me alcanzarían las páginas para decirte todo lo que te amo, Katy."</p>
-    </article>
-
-    <!-- 21 -->
-    <article class="poem-card">
-      <span class="poem-num">21</span><span class="poem-icon">🌷</span>
-      <h3>Luna y Tulipán</h3>
-      <p class="poem-text">La luna tiene un secreto que no cuenta:
-cada noche que se asoma al horizonte
-te busca a ti entre los millones de personas
-que levantan los ojos al cielo oscuro
-esperando encontrar algo que los consuele.
-
-Te busca porque sabe lo que yo ya sé:
-que hay ciertos seres que brillan diferente,
-que tienen una luz que no es prestada,
-que no depende del reflejo de otro astro
-sino que viene de adentro y se sostiene sola.
-
-Y los tulipanes lilas que crecen de noche
-se inclinan en dirección al viento suave
-como si rastrearan dónde estás parada,
-como si quisieran ser los primeros en llegar
-al lugar donde pones tus pasos esta noche.
-
-Todo lo bello hace fila para verte, Katy,
-todo lo que es digno de admiración
-reconoce en ti algo que no puede igualar
-por más que lo intente con toda su belleza.
-
-Yo soy el más afortunado de esa fila,
-el que puede llamarse tu admirador
-y que lo dice sin vergüenza ni reservas:
-eres la persona más hermosa que existe,
-por dentro y por fuera, Katy, sin dudas.</p>
-      <p class="poem-piropo">🌕 "La luna misma baja a verte, así de especial eres en este mundo, Katy."</p>
-    </article>
-
-    <!-- 22 -->
-    <article class="poem-card">
-      <span class="poem-num">22</span><span class="poem-icon">🌷</span>
-      <h3>Tú eres Primavera</h3>
-      <p class="poem-text">Antes de que llegaras a mi vida, Katy,
-el invierno era demasiado largo,
-los días grises se extendían sin final,
-los árboles se quedaban sin hojas
-y el frío se metía hasta los huesos.
-
-No era tristeza exactamente,
-era más bien una espera sin nombre,
-ese estado en que uno sabe que algo falta
-pero no sabe qué es ni dónde buscarlo,
-no sabe si existe ni si algún día llegará.
-
-Y entonces llegaste tú como la primavera,
-sin anunciarte, sin pedir permiso,
-con ese calor suave que no quema sino que abraza,
-con ese color que vuelve todo más vivo,
-con ese perfume a flores que lo llena todo.
-
-Los árboles que estaban sin hojas florecieron,
-el frío se fue retirando sin pelea,
-los días grises cedieron espacio al azul
-y yo desperté de ese letargo largo
-con ganas de salir, de mirar, de estar.
-
-Eso hiciste tú, Katy, sin proponértelo:
-me trajiste la primavera que me faltaba,
-la que no sabía que estaba esperando
-hasta que llegó contigo de la mano
-y ya no pude ni quise prescindir de ella.</p>
-      <p class="poem-piropo">🌸 "Contigo llegó la primavera a mi vida y nunca más quiero que se vaya, Katy."</p>
-    </article>
-
-    <!-- 23 -->
-    <article class="poem-card">
-      <span class="poem-num">23</span><span class="poem-icon">🌷</span>
-      <h3>Constelación Katy</h3>
-      <p class="poem-text">Si yo fuera astrónomo con poder suficiente
-para nombrar las constelaciones del cielo,
-dejaría en paz a Orión y a la Osa Mayor,
-dejaría que Casiopea siguiera siendo Casiopea
-y buscaría las estrellas más brillantes del firmamento.
-
-Con las más luminosas, las que no parpadean,
-las que tienen esa luz firme y segura
-que no se apaga aunque haya nubes de por medio,
-con esas pondría tu nombre en el cielo, Katy,
-y quedaría para siempre en el mapa estelar.
-
-La constelación de Katy brillaría en el sur,
-visible en las noches más despejadas,
-la primera que verían los navegantes
-cuando necesitaran orientarse en alta mar,
-el punto de referencia de todas las rutas.
-
-Y los enamorados la buscarían en el cielo
-para hacer sus deseos de amor bajo su luz,
-los poetas la usarían para sus metáforas,
-los niños aprenderían su nombre en la escuela
-como aprenden hoy los nombres de las grandes.
-
-Porque mereces estar en los mapas, Katy,
-mereces que el mundo sepa tu nombre,
-mereces que las generaciones que vengan
-aprendan que hubo alguien que brilló
-de una manera que no se ha visto otra vez.</p>
-      <p class="poem-piropo">⭐ "Brillas más que cualquier estrella de cualquier constelación, Katy mi amor."</p>
-    </article>
-
-    <!-- 24 -->
-    <article class="poem-card">
-      <span class="poem-num">24</span><span class="poem-icon">🌷</span>
-      <h3>El Beso Pendiente</h3>
-      <p class="poem-text">Hay un beso que te debo, Katy,
-que está guardado entre mis labios con cuidado,
-esperando el momento exacto sin precipitarse,
-madurando despacio como la fruta en el árbol
-que sabe que el momento preciso llegará.
-
-No es un beso cualquiera, eso te lo aseguro,
-es el tipo de beso que se prepara con tiempo,
-que se imagina con detalle y con cuidado,
-que lleva en sí mismo todo lo que las palabras
-no han podido decir aunque lo han intentado.
-
-Lleva adentro la primera vez que te vi,
-lleva el instante en que algo cambió dentro,
-lleva cada pensamiento que me dio tu recuerdo,
-lleva cada poema que escribí para ti
-y todos los que se quedaron en silencio.
-
-Lleva respeto y ternura a partes iguales,
-lleva la honestidad de quien no pretende,
-lleva la dulzura de quien quiere de verdad,
-lleva la promesa de que después de ese beso
-nada volvería a ser exactamente igual.
-
-Ese beso espera por ti, Katy preciosa,
-no con urgencia sino con paciencia serena,
-porque las cosas que de verdad valen
-llegan cuando tienen que llegar, perfectas.</p>
-      <p class="poem-piropo">💋 "Ese beso pendiente será el más sincero que hayan dado estos labios, Katy."</p>
-    </article>
-
-    <!-- 25 -->
-    <article class="poem-card">
-      <span class="poem-num">25</span><span class="poem-icon">🌷</span>
-      <h3>Completa y Perfecta</h3>
-      <p class="poem-text">El mundo siempre ha dicho que el amor
-es la unión de dos mitades incompletas,
-que cada quien anda por la vida a medias
-esperando encontrar la otra parte
-que le falta para poder ser entero.
-
-Yo no creo en eso cuando pienso en ti, Katy.
-
-Tú no eres media naranja ni media parte,
-tú eres una naranja entera con todo su jugo,
-una persona completa con sus aristas,
-con sus contradicciones y sus grandezas,
-con todo lo que te hace ser exactamente tú.
-
-No necesitas a nadie que te complete
-porque ya estás completa de por sí,
-no te falta ninguna pieza importante,
-todo lo que eres encaja perfectamente
-y forma algo que no necesita corrección.
-
-Lo que yo quiero no es completarte, Katy,
-es complementarte si me lo permites,
-caminar a tu lado como acompañante,
-sumar mis ganas a tus ganas ya enteras,
-añadir algo a algo que ya es suficiente.
-
-Eres perfecta tal y como eres ahora,
-siendo solo y completamente tú misma,
-que es la cosa más hermosa que puedes ser.</p>
-      <p class="poem-piropo">💞 "Eres entera, perfecta y más que suficiente tal y como eres, Katy."</p>
-    </article>
-
-    <!-- 26 -->
-    <article class="poem-card">
-      <span class="poem-num">26</span><span class="poem-icon">🌷</span>
-      <h3>Tu Risa, Mi Hogar</h3>
-      <p class="poem-text">He buscado en muchos lugares la definición de hogar,
-he leído libros y he escuchado canciones,
-he preguntado a personas mayores con experiencia
-qué es ese lugar donde uno quiere volver
-cuando el mundo se cansa de él afuera.
-
-Y la respuesta que más me convence, Katy,
-no es un lugar con paredes ni con techo,
-no es una ciudad ni una calle específica,
-es ese sonido que te hace sentir en casa
-sin importar dónde estés cuando lo escuchas.
-
-Tu risa es ese sonido para mí.
-
-Cuando te ríes, algo en mí respira,
-algo que estaba tenso se afloja despacio,
-algo que andaba extraviado encuentra el camino,
-y me siento en casa aunque estemos lejos,
-me siento seguro aunque todo sea incierto.
-
-Tu risa tiene ese poder misterioso
-de hacer que lo difícil parezca posible,
-de convertir lo oscuro en algo manejable,
-de recordarme que hay cosas por las que vale
-esforzarse cada día sin cansarse.
-
-No necesito más paredes que esa risa, Katy,
-donde ríes tú, ahí está mi hogar.</p>
-      <p class="poem-piropo">😊 "Tu risa es el sonido más hermoso y el hogar más cálido del universo, Katy."</p>
-    </article>
-
-    <!-- 27 -->
-    <article class="poem-card">
-      <span class="poem-num">27</span><span class="poem-icon">🌷</span>
-      <h3>El Tiempo a tu Lado</h3>
-      <p class="poem-text">Dicen los físicos que el tiempo es relativo,
-que depende del observador y del contexto,
-que no pasa igual para todos ni en todas partes,
-que hay condiciones en que se acelera
-y condiciones en que parece detenerse.
-
-Yo lo confirmo desde mi experiencia, Katy:
-el tiempo a tu lado no es el mismo tiempo
-que corre cuando estás lejos o ausente,
-a tu lado el tiempo se vuelve generoso,
-cada minuto se estira y se multiplica.
-
-Un minuto contigo vale más que un año solo,
-un segundo de tu mirada cambia el día,
-una hora compartiendo algo contigo
-deja más recuerdos que meses de vacío,
-así de presente te vuelves cuando estás.
-
-Por eso te digo, Katy, que si me das tiempo,
-yo haré que cada instante valga doble,
-que no desperdiciemos ningún momento
-en cosas que no sean lo que de verdad somos,
-dos personas que se quieren de verdad.</p>
-      <p class="poem-piropo">⏰ "Cada segundo a tu lado es el más valioso de toda mi existencia, Katy."</p>
-    </article>
-
-    <!-- 28 -->
-    <article class="poem-card">
-      <span class="poem-num">28</span><span class="poem-icon">🌷</span>
-      <h3>Guerrera y Bella</h3>
-      <p class="poem-text">Hay algo en ti que me enamora más
-que cualquier cosa externa o superficial,
-algo que no se ve en las fotos aunque está presente,
-que se nota en la manera en que miras al mundo,
-en cómo enfrentas las cosas que se complican.
-
-Eres guerrera, Katy, y no lo digo a la ligera.
-
-Lo digo porque detrás de esa dulzura tuya
-hay una fortaleza que no necesita demostrarse,
-una raíz que va profundo en la tierra,
-que aguanta los vientos de la vida
-sin que la planta que crece encima se quiebre.
-
-Esa combinación de fuerza y ternura,
-de carácter firme y corazón abierto,
-de voluntad de hierro y sonrisa de seda,
-es algo que pocas personas logran sostener
-sin que una cosa aplaste a la otra.
-
-Tú lo logras sin esfuerzo aparente,
-con esa gracia natural que tienes
-para ser fuerte sin perder la suavidad
-y suave sin perder la fortaleza.
-
-Me enamora tu fuerza tanto como tu ternura,
-me enamora todo lo que eres, Katy,
-porque es todo auténtico, todo genuino,
-todo tuyo de una manera que no puede falsearse.</p>
-      <p class="poem-piropo">⚔️ "Tu fortaleza me inspira tanto como tu belleza me enamora, Katy increíble."</p>
-    </article>
-
-    <!-- 29 -->
-    <article class="poem-card">
-      <span class="poem-num">29</span><span class="poem-icon">🌷</span>
-      <h3>Sueño Real</h3>
-      <p class="poem-text">A veces me pregunto si esto es real,
-si existe de verdad una persona como tú,
-si el universo fue tan generoso
-de crear a alguien con todas esas cualidades
-y además ponerla en mi camino.
-
-Parecería exagerado de no ser cierto,
-parecería el argumento de una novela,
-el tipo de persona que los escritores inventan
-porque saben que en la realidad no existe
-algo tan completo y tan extraordinario.
-
-Pero existes, Katy, eso está comprobado.
-Y eso me parece el milagro más grande
-de todos los que he presenciado en mi vida,
-más grande que los atardeceres más bellos,
-más grande que las noches más estrelladas.
-
-El milagro de que seas real, de que estés,
-de que haya un mundo donde tú existes
-y yo tengo la posibilidad de conocerte,
-de cruzar mis palabras con las tuyas,
-de que mi historia y la tuya se toquen.
-
-Cuando me dicen que los sueños son solo sueños,
-solo tengo que pensar en que existes
-para refutarlo con total convicción:
-la realidad puede ser tan hermosa
-como lo eres tú, Katy, así de simple.</p>
-      <p class="poem-piropo">💭 "Que existas es el milagro más grande que me ha dado la vida, Katy."</p>
-    </article>
-
-    <!-- 30 -->
-    <article class="poem-card">
-      <span class="poem-num">30</span><span class="poem-icon">🌷</span>
-      <h3>Treinta Tulipanes</h3>
-      <p class="poem-text">Si pudiera llevarte flores cada mañana,
-elegiría tulipanes lilas sin dudarlo,
-uno por cada razón que tengo para amarte,
-uno por cada cosa tuya que me roba el aliento,
-uno por cada momento que me has dado felicidad.
-
-Pero el problema, Katy, es que las razones
-no se cuentan en treinta ni en trescientas,
-son tantas que no caben en ningún ramo,
-tan numerosas que cualquier jardín del mundo
-se quedaría sin flores antes de agotarlas.
-
-Entonces llegaría con campos enteros,
-con praderas de tulipanes lilas sin fin,
-con camiones cargados de pétalos suaves,
-hasta que tu casa quedara enterrada
-en la más bonita nevada de flores.
-
-Y aun así, cuando la última flor llegara,
-me daría cuenta de que me quedé corto,
-que hay razones para amarte que no tienen flor,
-que son más perfumadas y más bellas que todo.
-
-Así que me conformo con este poema, Katy,
-con estas palabras que intentan ser flores,
-con estos versos que quieren ser tulipanes
-y que aunque no huelen ni se pueden tocar
-llevan adentro todo el amor que siento.</p>
-      <p class="poem-piropo">🌷 "Mereces campos infinitos de tulipanes, aunque aún serían pocos para ti, Katy."</p>
-    </article>
-
-    <!-- 31 -->
-    <article class="poem-card">
-      <span class="poem-num">31</span><span class="poem-icon">🌷</span>
-      <h3>Mi Mejor Poema</h3>
-      <p class="poem-text">He intentado escribir muchas cosas en la vida,
-palabras que describieran lo que siento,
-versos que capturaran un momento exacto,
-frases que se quedaran en la memoria
-como se quedan las que uno ha leído siempre.
-
-Pero cada vez que me siento a escribir, Katy,
-todo lo que sale lleva tu nombre dentro,
-como si la pluma tuviera su propio camino
-y ese camino siempre terminara en ti,
-en tu imagen, en tu esencia, en tu recuerdo.
-
-No es que lo intente, es que ocurre solo,
-es que el amor cuando es genuino no pide permiso,
-aparece en cada oración sin ser convocado,
-tiñe cada metáfora con sus colores,
-convierte cada verso en una forma de decirte algo.
-
-Tú eres la inspiración que no se busca,
-la musa que no necesita ser invocada,
-la que llega sola cuando uno se sienta
-frente a la página en blanco esperando
-que algo importante tenga el valor de nacer.
-
-Todos mis mejores poemas son sobre ti, Katy,
-aunque no siempre lleven tu nombre escrito,
-en el fondo siempre te describen a ti,
-siempre te buscan sin decirlo,
-siempre terminan llegando a donde estás.</p>
-      <p class="poem-piropo">📝 "Eres mi musa, mi inspiración y el poema más bello que puede existir, Katy."</p>
-    </article>
-
-    <!-- 32 -->
-    <article class="poem-card">
-      <span class="poem-num">32</span><span class="poem-icon">🌷</span>
-      <h3>Amor Sin Condiciones</h3>
-      <p class="poem-text">El amor que siento por ti, Katy, no tiene cláusulas,
-no tiene letras pequeñas al final del contrato,
-no dice "te amo si" ni "te quiero cuando",
-no tiene excepciones ni condiciones previas
-ni una lista de requisitos para activarse.
-
-Te amo cuando estás alegre y cuando estás triste,
-cuando las cosas van bien y cuando se complican,
-cuando estás segura de ti y cuando dudas,
-cuando el mundo te trata bien y cuando no,
-cuando quieres contarme todo y cuando prefieres callar.
-
-Te amo con tus momentos de debilidad,
-que no los llamo defectos sino humanidad,
-con tus días en que todo parece cuesta arriba
-y con tus días en que todo fluye perfecto.
-
-Porque amar a alguien solo en sus mejores versiones
-no es amar a esa persona de verdad,
-es amar la idea que te formaste de ella,
-la versión más cómoda y más agradable
-que en realidad no existe para nadie.
-
-El amor real se queda cuando la cosa se pone difícil,
-cuando ya no hay nada que impresionar,
-cuando los dos están sin máscaras del todo
-y se miran a los ojos y dicen: "aquí estoy,
-con todo lo que soy, sin reservas, para ti".</p>
-      <p class="poem-piropo">💝 "Te amo con todo lo que eres, sin cambiar ni un solo detalle, Katy perfecta."</p>
-    </article>
-
-    <!-- 33 -->
-    <article class="poem-card">
-      <span class="poem-num">33</span><span class="poem-icon">🌷</span>
-      <h3>Para Siempre</h3>
-      <p class="poem-text">La palabra siempre es enorme, lo sé,
-pesa mucho cuando se dice en serio
-y hay quienes la evitan por eso mismo,
-porque compromete más de lo que algunos
-están dispuestos a comprometer de verdad.
-
-Yo no tengo miedo a esa palabra, Katy,
-cuando se trata de ti no me da vértigo,
-porque no es una promesa que hago a la ligera
-sino la descripción más honesta que encuentro
-de lo que siento cuando pienso en ti.
-
-Siempre voy a recordar cómo llegaste,
-siempre voy a guardar lo que me diste,
-siempre voy a estar agradecido de que existas,
-siempre voy a tener en algún lugar del pecho
-un espacio que lleva tu nombre grabado.
-
-Y aunque el tiempo pase y las cosas cambien,
-aunque la vida nos lleve por caminos distintos,
-yo seguiré siendo alguien que te amó
-de la manera más sincera que supo.
-
-Ese amor no tiene fecha de expiración, Katy,
-está ahí, sólido como la raíz del árbol viejo,
-que aunque nadie lo vea sostiene todo
-y sobrevive a las tormentas por dentro.
-Para siempre, Katy. Para siempre.</p>
-      <p class="poem-piropo">♾️ "Mi amor por ti no tiene fin ni fecha, dura para siempre y más, Katy."</p>
-    </article>
-
-  </div><!-- /poems-grid amor -->
-</section>
-
-<!-- ═══════════════════════════════════════
-     SECCIÓN 4: TE EXTRAÑO (34–48)
-═══════════════════════════════════════ -->
-<section id="sec-extrano" class="page-section">
-  <div class="section-banner">
-    <h2>💔 Te Extraño Tanto, Katy 💔</h2>
-    <div class="divider">🌷💜🌷</div>
-    <p>Quince poemas que nacen del silencio que dejas cuando no estás,<br/>escritos con el corazón que te busca sin descanso</p>
-  </div>
-
-  <div class="poems-grid">
-
-    <!-- 34 -->
-    <article class="poem-card miss-card">
-      <span class="poem-num">34</span><span class="poem-icon">🌷</span>
-      <h3>Tu Silla Vacía</h3>
-      <p class="poem-text">Hay una silla en el mundo que guarda tu forma,
-el contorno exacto de ti que se quedó impreso
-en el aire, en la memoria, en el espacio
-que ocupabas cuando estabas presente
-y que nadie más puede ocupar de la misma manera.
-
-Cuando no estás, Katy, todo lo que te rodea
-se convierte en un recordatorio silencioso,
-la silla vacía, la taza sin usar,
-el rincón del sofá donde te acomodabas,
-el lugar en el cuarto donde tu risa resonaba.
-
-No hay manera de prepararse para eso,
-para la manera en que la ausencia de alguien
-ocupa exactamente el mismo espacio
-que ocupaba su presencia, de forma inversa,
-tan real como si estuviera pero en negativo.
-
-Te extraño de esa manera concreta, Katy,
-no de manera abstracta ni filosófica,
-sino de la manera en que se extraña algo
-que uno busca con la mano sin pensar
-y que no está donde siempre ha estado.</p>
-      <p class="poem-piropo">🪑 "Cada rincón donde estuviste guarda tu huella y yo las atesoro como oro, Katy."</p>
-    </article>
-
-    <!-- 35 -->
-    <article class="poem-card miss-card">
-      <span class="poem-num">35</span><span class="poem-icon">🌷</span>
-      <h3>El Color se Fue Contigo</h3>
-      <p class="poem-text">Desde que no estás aquí conmigo, Katy,
-los colores no son del todo los mismos,
-el lila perdió la mitad de su intensidad,
-el azul se quedó a medio camino del cielo,
-y hasta el dorado parece algo más opaco.
-
-No es que el mundo sea feo sin ti,
-es que contigo el mundo era más brillante,
-tenía una saturación que ahora falta,
-como cuando se quita un filtro de una foto
-y la imagen es correcta pero menos viva.
-
-Los tulipanes del jardín lo sienten también,
-se inclinan hacia el viento que no viene del norte
-como buscándote entre las corrientes de aire,
-como intentando rastrear en qué dirección
-están tus pasos en este momento.
-
-Y yo hago lo mismo que los tulipanes, Katy,
-me inclino hacia donde imagino que estás,
-sin poder irme pero sin poder quedarme,
-suspendido entre tu presencia que recuerdo
-y tu ausencia que me pesa en el pecho.
-
-Vuelve, Katy, que el mundo necesita
-esa saturación tuya para estar completo.</p>
-      <p class="poem-piropo">💜 "Sin ti hasta los colores más vivos pierden su brillo, Katy adorada."</p>
-    </article>
-
-    <!-- 36 -->
-    <article class="poem-card miss-card">
-      <span class="poem-num">36</span><span class="poem-icon">🌷</span>
-      <h3>El Teléfono en Silencio</h3>
-      <p class="poem-text">Miro el teléfono más veces de las que debería,
-lo desbloqueo sin razón y lo vuelvo a bloquear,
-reviso notificaciones que no han llegado,
-busco mensajes que no están esperándome,
-y cada vez siento lo mismo: tu ausencia.
-
-Es ese ciclo silencioso del que extraña a alguien,
-esa revisión compulsiva de una pantalla
-que no tiene lo único que uno quiere ver,
-esa esperanza pequeña que se activa igual
-aunque sepa que probablemente no habrá nada.
-
-Y sin embargo sigo esperando, Katy,
-sigo dejando el volumen al máximo
-para no perderme si algo llega de tu parte,
-sigo mirando el teléfono cada poco tiempo
-como si mirarlo más lo fuera a hacer sonar.
-
-No es impaciencia lo que siento, es añoranza,
-esa cosa que te ocupa el pecho entero
-cuando alguien que importa está lejos
-y el único puente disponible es tecnológico
-pero hasta ese puente parece insuficiente.
-
-Escríbeme, Katy, aunque sea un emoji,
-que yo lo leeré con una alegría tan grande
-que compensará todo el tiempo de espera.</p>
-      <p class="poem-piropo">📱 "Espero tu mensaje como el sol espera cada mañana para brillar, Katy mía."</p>
-    </article>
-
-    <!-- 37 -->
-    <article class="poem-card miss-card">
-      <span class="poem-num">37</span><span class="poem-icon">🌷</span>
-      <h3>Noche Larga Sin Ti</h3>
-      <p class="poem-text">Las noches sin ti son de otro tipo, Katy,
-no son las noches de siempre con su cielo estrellado,
-sus silencios cómodos y su oscuridad amable,
-son noches largas que no se acaban nunca,
-que se estiran más allá de lo razonable.
-
-La cama se siente enorme sin tu presencia,
-el silencio tiene un peso que no tenía antes,
-cada sonido de la noche suena más solo,
-más vacío, más hueco, más sin sentido,
-como música sin letra, como cuento sin final.
-
-Doy vueltas buscando una posición cómoda
-que no existe porque la incomodidad no es física,
-es esa que viene de adentro cuando alguien falta,
-cuando el corazón sabe que algo está mal
-y no deja descansar aunque el cuerpo lo pida.
-
-Y entonces pienso en ti, Katy, inevitablemente,
-me pregunto dónde estarás en este momento,
-si también estarás mirando el techo en la oscuridad,
-si también el silencio te pesará esta noche,
-si también pensarás en mí aunque sea un segundo.
-
-Ese pensamiento me acompaña hasta que amanece,
-hasta que el sol decide volver y salvarme.</p>
-      <p class="poem-piropo">🌙 "Las noches sin ti son las más largas y frías del universo, Katy mía."</p>
-    </article>
-
-    <!-- 38 -->
-    <article class="poem-card miss-card">
-      <span class="poem-num">38</span><span class="poem-icon">🌷</span>
-      <h3>Tu Aroma en el Aire</h3>
-      <p class="poem-text">A veces creo sentir tu perfume en el viento,
-esa fragancia que imagino que llevas,
-y me vuelvo de golpe sin pensar siquiera,
-buscándote entre la gente con los ojos
-que ya saben que no te van a encontrar.
-
-Es el truco cruel que hace la memoria,
-que guarda los aromas de las personas queridas
-y los reproduce en el momento menos esperado
-solo para recordarte que están en el alma,
-aunque no estén donde los ojos puedan verlos.
-
-Y entonces me detengo y respiro profundo,
-intentando retener ese aroma un poco más,
-ese instante de ilusión que dura tan poco
-pero que me da algo que necesito mucho:
-la sensación de que no estás tan lejos.
-
-Porque extrañar no es solo pensar en alguien, Katy,
-es sentirlo con todos los sentidos juntos,
-es la vista que busca tu cara entre la multitud,
-es el oído que aguza cuando oye tu nombre,
-es el olfato que te inventa en el viento.
-
-Todo en mí te busca cuando no estás,
-todo en mí te extraña, con la misma intensidad.</p>
-      <p class="poem-piropo">🌸 "Tu aroma imaginado llena los espacios vacíos que dejas, Katy adorada."</p>
-    </article>
-
-    <!-- 39 -->
-    <article class="poem-card miss-card">
-      <span class="poem-num">39</span><span class="poem-icon">🌷</span>
       <h3>La Distancia</h3>
-      <p class="poem-text">La distancia no se mide en kilómetros, Katy,
-al menos no la que hay entre tú y yo,
-se mide en conversaciones que no tuve contigo,
-en abrazos que existieron solo en la imaginación,
-en momentos compartidos que se quedaron pendientes.
+      <p class="poem-text">La distancia es solo un número, Katy,
+kilómetros que el amor convierte en nada,
+que el corazón recorre en un instante
+cada vez que piensa en ti y te encuentra
+en ese lugar donde siempre estás: dentro.
 
-Es una distancia sin mapa ni brújula,
-sin una línea recta que pueda seguirse,
-que se hace más grande o más pequeña
-dependiendo del día y de las circunstancias,
-de cuánto te pienso y cuánto me permito sentir.
+Dentro de este pecho donde late algo
+que aprendió a latir diferente por tu causa,
+dentro de este espacio que guarda tu recuerdo
+con el cuidado que se guarda lo más preciado,
+con el amor de quien sabe lo que vale.
 
-Hay días en que la distancia pesa menos,
-en que me conformo con saber que existes,
-con que el mundo donde vives es el mismo
-donde pongo mis pasos cada mañana,
-y eso me parece suficiente para seguir.
+La distancia es el precio que a veces paga
+quien quiere a alguien que no está al lado,
+pero también es la prueba más honesta
+de que lo que se siente es verdadero,
+de que no depende de la cercanía.
 
-Pero hay otros días, Katy, que no es suficiente,
-días en que la distancia se vuelve concreta,
-tan pesada que se siente en los hombros,
-días en que quisiera borrarla de un golpe
-y aparecer donde estás sin avisar.
-
-En esos días me agarro del recuerdo de ti,
-y me digo que toda distancia tiene final,
-que todo lo que está separado puede juntarse,
-que el tiempo no siempre juega en contra,
-que pronto, muy pronto, estarás aquí.</p>
-      <p class="poem-piropo">📍 "Cualquier distancia es demasiada cuando eres tú quien está lejos, Katy."</p>
+Y aunque estés lejos, Katy mía,
+nunca estás ausente de lo que soy,
+porque te llevo en cada pensamiento,
+en cada latido, en cada verso,
+en cada tulipán lila que imagino.</p>
+      <p class="poem-piropo">🛤️ "Ninguna distancia puede separarte de mi corazón donde siempre estarás, Katy."</p>
     </article>
 
-    <!-- 40 -->
-    <article class="poem-card miss-card">
-      <span class="poem-num">40</span><span class="poem-icon">🌷</span>
-      <h3>Extraño Tu Risa</h3>
-      <p class="poem-text">De todo lo que extraño de ti, Katy,
-hay una cosa que supera a todas las demás,
-una cosa que ocupa más espacio en el silencio
-y que cuando falta se nota más que ninguna
-porque llenaba mucho sin que me diera cuenta.
+    <article class="poem-card reveal">
+      <span class="poem-num">16</span><span class="poem-icon">🌷</span>
+      <h3>Gracias por Existir</h3>
+      <p class="poem-text">Gracias, Katy, simplemente gracias,
+por existir en este mundo que a veces cansa,
+por ser la razón por la que vale la pena
+abrir los ojos cada nueva mañana
+y decirle que sí a un día más de vida.
 
-Tu risa. La extraño de una manera física,
-como se extraña la música cuando hay silencio,
-como se extraña el color cuando todo es gris,
-como se extraña el calor cuando llega el frío
-de ese tipo que cala hasta los huesos.
+Gracias por esa risa que contagia,
+por esa mirada que lo dice todo,
+por esa manera tuya de ser que es única,
+por ese corazón que late con tanta fuerza
+por las cosas y las personas que te importan.
 
-Tu risa era el sonido de fondo del mundo,
-estaba ahí y yo no sabía lo necesaria que era
-hasta que el silencio que dejó al marcharse
-me mostró todo el espacio que ocupaba,
-todo el aire que movía cuando existía.
+Gracias por los momentos que has dado,
+por las palabras que han llegado a tiempo,
+por la energía que cambias donde pones los pies,
+por la luz que llevas dentro aunque no lo sabes
+y que ilumina todo a tu alrededor.
 
-Los cuartos donde antes resonaba tu risa
-ahora tienen una acústica diferente,
-como catedrales vacías donde el eco
-repite un silencio que no quiere callarse,
-que insiste en recordarme lo que falta.
-
-Ríe, Katy, aunque yo no pueda escucharte,
-que de alguna manera el eco de tu risa
-atraviesa las distancias y llega aquí.</p>
-      <p class="poem-piropo">😄 "Tu risa es lo que más extraño, el sonido que más necesita el mundo, Katy."</p>
+Gracias por ser exactamente quien eres,
+sin disculpas, sin filtros, sin reservas,
+gracias por esa versión tuya tan completa,
+tan imperfecta y tan perfecta al mismo tiempo,
+tan tuya que no podría ser de ninguna otra manera.</p>
+      <p class="poem-piropo">🙏 "Gracias al universo por ponerte en este mundo, Katy, fue su mejor decisión."</p>
     </article>
 
-    <!-- 41 -->
-    <article class="poem-card miss-card">
-      <span class="poem-num">41</span><span class="poem-icon">🌷</span>
-      <h3>Los Tulipanes te Buscan</h3>
-      <p class="poem-text">Los tulipanes lilas del jardín lo saben,
-nadie les dijo pero lo percibieron solos,
-esa sensibilidad que tienen las flores
-para detectar los cambios en el ambiente
-y responder inclinándose en silencio.
+    <article class="poem-card reveal">
+      <span class="poem-num">17</span><span class="poem-icon">🌷</span>
+      <h3>El Color de Tu Amor</h3>
+      <p class="poem-text">Si el amor tuviera un color, el tuyo sería lila,
+ese violeta suave que lo mezcla todo,
+que tiene la profundidad del azul profundo
+y la calidez del rojo que no quema
+sino que abraza con ternura y con calma.
 
-Se inclinan hacia donde sopla el viento del este,
-como si rastrearan en qué dirección estás,
-como si sus raíces supieran sin palabras
-que la persona que les da sentido y nombre
-está en algún lugar al que ellos no pueden ir.
+El lila de tu amor es el del tulipán,
+el de la flor que elige con cuidado
+a quién le da su fragancia y su belleza,
+a quién le abre sus pétalos con confianza,
+a quién decide darse completamente.
 
-Y yo me identifico con los tulipanes, Katy,
-me identifico con esa inclinación sin destino,
-con ese buscar algo sin saber exactamente qué,
-con esa manera de orientarse hacia el calor
-aunque el calor esté lejos y sea solo imaginado.
+Es el color del atardecer que más amo,
+el de ese cielo que parece promesa,
+el de los momentos que se graban solos
+porque tienen algo que los hace únicos,
+porque tienen algo que se llama Katy.
 
-Extrañarte es eso: ser tulipán que busca,
-flor que se inclina sin perder las raíces,
-que busca la luz aunque la luz no llegue hoy,
-que sabe que la primavera siempre vuelve
-aunque el invierno se haya puesto cómodo.
-
-Los tulipanes y yo te esperamos, Katy,
-con la paciencia de quien sabe que volverás.</p>
-      <p class="poem-piropo">🌷 "Hasta los tulipanes sienten tu ausencia y te buscan en el viento, Katy."</p>
+Tu amor es lila, Katy, y ese color
+es el más hermoso que he visto nunca,
+el que da sentido a todos los demás,
+el que hace que el mundo sea un lugar
+donde vale la pena quedarse y amar.</p>
+      <p class="poem-piropo">💜 "Tu amor es del color más hermoso del universo: lila, profundo y eterno, Katy."</p>
     </article>
 
-    <!-- 42 -->
-    <article class="poem-card miss-card">
-      <span class="poem-num">42</span><span class="poem-icon">🌷</span>
-      <h3>Cada Canción Habla de Ti</h3>
-      <p class="poem-text">Desde que te extraño, Katy, la música duele,
-no de manera insoportable sino dulcemente,
-con esa clase de dolor que también es placer,
-que te remueve algo bueno desde adentro
-aunque tenga forma de melancolía.
+    <article class="poem-card reveal">
+      <span class="poem-num">18</span><span class="poem-icon">🌷</span>
+      <h3>Eres mi Verso Favorito</h3>
+      <p class="poem-text">De todos los poemas que existen en el mundo,
+de todos los versos que se han escrito,
+de todas las palabras que han nacido
+para intentar decir lo que el corazón siente,
+tú eres el verso que más me gusta, Katy.
 
-Cada canción que suena me recuerda algo tuyo,
-a veces una letra que podría haberte escrito yo,
-a veces una melodía que tiene tu cadencia,
-a veces simplemente el tono de algo cálido
-que me hace pensar: "esto suena a ella".
+No porque seas el más perfecto en forma,
+sino porque eres el más honesto de todos,
+el que viene del lugar más profundo,
+el que no necesita rima ni métrica
+porque su belleza no depende de eso.
 
-Y entonces me quedo quieto y escucho,
-dejando que la canción me lleve a donde estás
-aunque sea solo en la imaginación,
-aunque sea un viaje de dos minutos y medio
-que termina cuando el silencio del final llega.
+Eres el verso que repito cuando estoy solo,
+el que me da fuerzas cuando las necesito,
+el que me recuerda que hay razones enormes
+para seguir escribiendo y seguir viviendo
+y seguir buscando lo mejor de cada día.
 
-Hay una canción que se repite más que las otras,
-tiene en común que habla de alguien que falta,
-que habla de espera y de distancia y de amor
-que no se apaga aunque el tiempo lo intente.
-
-Esa canción tiene tu nombre en el fondo, Katy,
-aunque nunca lo mencione en ningún verso,
-en el fondo siempre está hablando de ti,
-de cómo te extraño de una manera
-que no cabe en mí sin desbordarse.</p>
-      <p class="poem-piropo">🎶 "Todas las canciones ahora hablan de ti y de cuánto te necesito, Katy."</p>
+Tú eres mi verso favorito, Katy hermosa,
+y esta página tiene el privilegio
+de contenerte aunque sea un momento,
+de darte el espacio que mereces
+en el poema más sincero que he escrito.</p>
+      <p class="poem-piropo">📖 "Eres el verso más hermoso y el poema más completo que he conocido, Katy mía."</p>
     </article>
 
-    <!-- 43 -->
-    <article class="poem-card miss-card">
-      <span class="poem-num">43</span><span class="poem-icon">🌷</span>
-      <h3>El Abrazo que Falta</h3>
-      <p class="poem-text">Mis brazos tienen memoria, Katy, lo sé,
-porque a veces los muevo sin pensar
-hacia el espacio donde debería estar tu figura
-y llegan a un vacío que los sorprende,
-un vacío que tiene la forma exacta de ti.
+    <article class="poem-card reveal">
+      <span class="poem-num">19</span><span class="poem-icon">🌷</span>
+      <h3>Cuando Pienso en Ti</h3>
+      <p class="poem-text">Cuando pienso en ti, Katy, algo cambia,
+el aire que respiro parece diferente,
+más liviano, más cálido, más lleno
+de algo que no tiene nombre exacto
+pero que se parece mucho a la alegría.
 
-Es extraño cómo el cuerpo guarda cosas
-que la mente no ha registrado conscientemente,
-cómo aprende la geometría de las personas
-que importan, su peso, su temperatura,
-la manera exacta en que caben en los brazos.
+El corazón acelera un poco el ritmo,
+como si supiera que estás en mi mente,
+como si quisiera avisar que está atento,
+que no pierde ni un segundo el hilo
+de todo lo que eres y lo que me das.
 
-He imaginado ese abrazo muchas veces, Katy,
-cómo sería tenerte cerca por fin,
-el calor que vendría de tu presencia real,
-no del recuerdo sino de ti de verdad,
-de tu cuerpo que tiene temperatura y peso.
+Y la mente se llena de imágenes tuyas,
+de esa sonrisa que conoce de memoria,
+de esa mirada que guarda sin esfuerzo,
+de cada detalle pequeño y grande
+que hace que seas exactamente tú.
 
-Sería un abrazo largo, de esos que duran,
-de los que no tienen prisa por terminar,
-de los que dicen todo sin necesitar palabras,
-que comunican más que cualquier conversación
-y que dejan en quien los da y recibe una paz honda.
-
-Mis brazos esperan ese abrazo, Katy,
-con una paciencia que no sabía que tenían,
-con una calma que me sorprende a mí mismo.</p>
-      <p class="poem-piropo">🤗 "Mis brazos guardan el espacio exacto para ti y solo para ti, Katy mía."</p>
+Pensar en ti es el mejor pasatiempo,
+el que no cansa ni aburre nunca,
+el que siempre tiene algo nuevo que ofrecer
+porque tú siempre eres más de lo que cabe
+en cualquier pensamiento por grande que sea.</p>
+      <p class="poem-piropo">🤔 "Pensar en ti, Katy, es lo mejor que hace mi mente en todo el día, siempre."</p>
     </article>
 
-    <!-- 44 -->
-    <article class="poem-card miss-card">
-      <span class="poem-num">44</span><span class="poem-icon">🌷</span>
-      <h3>El Mismo Cielo</h3>
-      <p class="poem-text">Me consuela una cosa pequeña pero real, Katy:
-el cielo que veo yo es el mismo que ves tú,
-aunque estemos en lugares diferentes del mundo,
-aunque entre nosotros haya kilómetros de distancia,
-el cielo es uno y nos cubre a los dos por igual.
+    <article class="poem-card reveal">
+      <span class="poem-num">20</span><span class="poem-icon">🌷</span>
+      <h3>La Persona que Eres</h3>
+      <p class="poem-text">Nadie se convierte en quien eres por casualidad,
+hay un camino detrás de cada sonrisa,
+hay historia detrás de cada fortaleza,
+hay momentos que formaron esa mirada
+que hoy mira el mundo de la manera que lo haces.
 
-Cuando miro hacia arriba en la noche, Katy,
-y veo las mismas estrellas de siempre,
-me gusta pensar que tú también las estás viendo,
-que en algún momento de esta misma noche
-levantaste los ojos al mismo firmamento.
+Y quien eres, Katy, es alguien extraordinaria,
+alguien que da sin calcular lo que da,
+que quiere sin poner límites al querer,
+que enfrenta lo que viene con dignidad,
+que existe en el mundo de manera única.
 
-Y en ese instante, aunque no lo supiéramos,
-estábamos mirando lo mismo desde lugares distintos,
-conectados por ese cielo que no tiene fronteras
-y que pertenece a todos y a ninguno a la vez.
+La persona que eres merece todo lo bueno,
+merece el amor más completo y verdadero,
+merece los días más hermosos del año,
+merece que alguien le diga cada mañana
+que el mundo es mejor porque ella está en él.
 
-Es una conexión pequeña, lo sé,
-no sustituye la presencia ni el abrazo,
-no llena el espacio que dejas cuando faltas,
-pero me ayuda a sentirte menos lejos
-en los momentos en que más te extraño.
-
-Mira el cielo esta noche, Katy, por favor,
-míralo un momento antes de dormir,
-y sabe que a la misma hora, en otro lugar,
-alguien también lo está mirando pensando en ti
-con todo el amor que cabe en este pecho.</p>
-      <p class="poem-piropo">☁️ "El mismo cielo nos cubre y eso me hace sentirte cerca siempre, Katy."</p>
+Esa persona eres tú, Katy hermosa,
+y este poema es solo un intento pequeño
+de decirte lo que debes saber siempre:
+que eres valiosa, que eres única, que eres amada,
+que nadie en el mundo puede ocupar tu lugar.</p>
+      <p class="poem-piropo">🌟 "La persona que eres, Katy, es la más hermosa que ha existido en mi vida."</p>
     </article>
 
-    <!-- 45 -->
-    <article class="poem-card miss-card">
-      <span class="poem-num">45</span><span class="poem-icon">🌷</span>
-      <h3>El Tiempo sin Ti</h3>
-      <p class="poem-text">El tiempo sin ti no fluye como debería, Katy,
-se arrastra con la pesadez de algo muy denso,
-cada hora tiene el doble de minutos,
-cada día parece que tiene el doble de horas,
-y el reloj avanza más despacio que siempre.
+    <article class="poem-card reveal">
+      <span class="poem-num">21</span><span class="poem-icon">🌷</span>
+      <h3>Amor Sin Condiciones</h3>
+      <p class="poem-text">El amor que tengo para ti no tiene
+cláusulas ni excepciones ni condiciones,
+no depende de que seas perfecta siempre,
+de que nunca te equivoques ni te canses,
+de que estés siempre en tu mejor versión.
 
-He mirado el reloj más veces que nunca
-desde que no estás aquí de la manera en que estabas,
-no porque tenga prisa por nada en concreto,
-sino porque el tiempo cuando pesa
-necesita que lo midas para creer que avanza.
+Te quiero tal como eres en este momento,
+con todo lo que cargas y lo que sueltas,
+con todo lo que te alegra y lo que duele,
+con todo lo que muestras y lo que guardas,
+con todo lo que eres en cada instante.
 
-Y mientras el tiempo avanza su paso de tortuga,
-yo me ocupo en recordarte de maneras distintas,
-en repasar los detalles que guardo contigo,
-en imaginar conversaciones que quisiera tener,
-en construir en la mente lo que falta en la realidad.
+Ese amor sin condiciones es el único
+que vale la pena dar y recibir,
+el que no exige cambios ni transformaciones,
+el que dice "te quiero como eres" y lo dice
+sin reservas ni asteriscos al final.
 
-No es una tristeza sin fondo, Katy, no te preocupes,
-es más bien una espera activa y consciente,
-la de alguien que sabe que lo que espera vale,
-que el tiempo sin ti es tiempo prestado
-al tiempo con ti que vendrá después de este.
-
-Y cuando llegue ese tiempo, Katy, lo juro,
-no lo voy a desperdiciar en nada trivial,
-voy a estar presente de una manera total
-y a ser digno del tiempo que me regales.</p>
-      <p class="poem-piropo">⌛ "El tiempo sin ti es el más pesado e interminable que existe, Katy."</p>
+Tú mereces exactamente ese amor, Katy,
+el que no pide que cambies nada,
+el que celebra lo que eres en todo momento,
+el que está ahí en las tormentas y en la calma,
+el que no se va aunque todo cambie.</p>
+      <p class="poem-piropo">💝 "Te quiero tal y como eres, sin cambiar nada, perfecta e imperfecta, Katy mía."</p>
     </article>
 
-    <!-- 46 -->
-    <article class="poem-card miss-card">
-      <span class="poem-num">46</span><span class="poem-icon">🌷</span>
-      <h3>Te Extraño en Todo</h3>
-      <p class="poem-text">Te extraño en el desayuno cuando el café está listo
-y no hay nadie con quien compartir ese momento tranquilo,
-ese primer sorbo del día que es siempre mejor
-cuando hay alguien al otro lado de la mesa
-con quien intercambiar un silencio cómodo.
+    <article class="poem-card reveal">
+      <span class="poem-num">22</span><span class="poem-icon">🌷</span>
+      <h3>El Latido</h3>
+      <p class="poem-text">Hay un latido que mi corazón guarda
+especialmente para cuando te recuerda,
+un latido diferente a los demás,
+más fuerte, más consciente, más profundo,
+como si el corazón supiera que eres especial.
 
-Te extraño en la tarde cuando el sol baja
-y la luz se vuelve dorada y melancólica,
-esa hora que siempre ha tenido algo especial,
-algo que invita a la conversación sincera,
-a decir las cosas que durante el día no salen.
+Es el latido que se activa de noche
+cuando el mundo está en silencio y tú llegas,
+el que suena cuando algo me recuerda
+un detalle tuyo que tengo guardado
+sin haberlo elegido guardar, simplemente estaba.
 
-Te extraño en lo pequeño: una noticia graciosa
-que quisiera compartir contigo sin más,
-una canción que escuché y que pensé en ti,
-una cosa que vi y que te habría encantado,
-todos esos pequeños regalos del día sin receptor.
+Es el latido que hace que el pecho duela
+con ese dolor que no es un dolor sino amor,
+con esa presión que viene de lo lleno
+que está este corazón de cosas tuyas
+que no cabrían en ningún otro lugar.
 
-Te extraño en lo grande: en los momentos importantes,
-en los que uno quisiera que alguien especial estuviera,
-en los que el logro o la dificultad pide testigo,
-alguien que entienda sin que uno tenga que explicar mucho,
-alguien cuya presencia haga que todo sea más real.
-
-Te extraño en todo, Katy, en absolutamente todo,
-en cada minuto, en cada hora, en cada día.</p>
-      <p class="poem-piropo">🌅 "Te extraño en cada segundo del día, sin excepción ni pausa, Katy preciosa."</p>
+Katy, ese latido es tuyo, te pertenece,
+es la parte más honesta de mí mismo,
+la que no sabe mentir ni exagerar,
+la que dice la verdad sin disfraces:
+que te quiero con todo lo que soy.</p>
+      <p class="poem-piropo">💓 "Cada latido de mi corazón lleva tu nombre grabado, Katy hermosa."</p>
     </article>
 
-    <!-- 47 -->
-    <article class="poem-card miss-card">
-      <span class="poem-num">47</span><span class="poem-icon">🌷</span>
-      <h3>Carta que No Envío</h3>
-      <p class="poem-text">Te escribo cartas que nunca envío, Katy,
-que empiezan con "querida" y se llenan de cosas
-que de día no me atrevo a decirte directamente
-porque la distancia entre el sentimiento y la palabra
-a veces es mayor de lo que parece a primera vista.
+    <article class="poem-card reveal">
+      <span class="poem-num">23</span><span class="poem-icon">🌷</span>
+      <h3>Universo Paralelo</h3>
+      <p class="poem-text">Dicen que existen universos paralelos,
+mundos donde cada decisión se multiplica,
+donde hay versiones de nosotros que eligieron
+caminos diferentes a los que elegimos aquí,
+que viven vidas que no conoceremos nunca.
 
-Las guardo en un lugar del que solo sé yo,
-ese lugar donde van las cosas importantes
-que todavía no han encontrado el momento justo,
-que esperan su oportunidad de llegar a destino,
-que siguen siendo verdaderas aunque estén en pausa.
+En todos esos universos, Katy,
+estoy pensando en ti, estoy escribiendo,
+estoy buscando las palabras que no alcanzan,
+estoy sintiendo este mismo amor profundo
+que se niega a caber en cualquier idioma.
 
-En esas cartas te cuento cómo estoy de verdad,
-no la versión social ni la versión presentable,
-sino la versión completa con todo lo que siento,
-lo que me preocupa, lo que me alegra,
-lo que me falta y lo que tengo de sobra.
+En todos los universos posibles
+hay un yo que te conoce y que te admira,
+que se asombra de lo que eres cada día,
+que guarda tu sonrisa como lo más valioso
+que ha encontrado en cualquier realidad.
 
-En esas cartas te pregunto cosas que no sé,
-cosas sobre ti que quisiera entender,
-lo que te da miedo, lo que te da alegría,
-lo que quisieras que el mundo supiera de ti,
-lo que guardas para quien merezca escucharlo.
-
-Y al final de cada carta no pongo fecha, Katy,
-pero sé que todas llevan la misma firma:
-alguien que te quiere de verdad,
-sin pretensiones, sin condiciones,
-alguien que espera que un día puedas leerlas.</p>
-      <p class="poem-piropo">💌 "Cada palabra que escribo va dirigida a ti, siempre a ti, Katy."</p>
+En este universo, el que compartimos,
+tengo la suerte de existir al mismo tiempo,
+de respirar el mismo aire que tú respiras,
+de ser parte del mundo que te tiene,
+y eso es suficiente para ser el universo favorito.</p>
+      <p class="poem-piropo">🌌 "En todos los universos que existen, siempre te elegiría a ti, Katy."</p>
     </article>
 
-    <!-- 48 -->
-    <article class="poem-card miss-card">
-      <span class="poem-num">48</span><span class="poem-icon">🌷</span>
-      <h3>El Último y El Primero</h3>
-      <p class="poem-text">Este es el último poema, el número cuarenta y ocho,
-pero de alguna manera se siente como el primero,
-porque el amor que lo escribe no ha disminuido
-desde el primer verso hasta este último,
-sino que ha ido creciendo con cada palabra.
+    <article class="poem-card reveal">
+      <span class="poem-num">24</span><span class="poem-icon">🌷</span>
+      <h3>Tu Maquillaje de Arte</h3>
+      <p class="poem-text">Cuando te miro con ese maquillaje artístico,
+con esos colores que pintan tu cara,
+con esa transformación que haces de ti misma
+en algo que ya era hermoso de por sí
+y que se convierte en algo sin comparación.
 
-He intentado decirte en estos poemas, Katy,
-todo lo que cabe en el pecho de alguien
-que ha decidido amarte sin pedir permiso,
-que ha elegido hacerlo de manera completa,
-sin guardarse nada por miedo o por cálculo.
+Pienso que el arte necesitaba un lienzo,
+el más hermoso que pudiera existir,
+y te eligió a ti porque sabía
+que lo que pintara sobre tu piel
+tendría la belleza de las dos partes.
 
-Te he dicho que eres primavera y constelación,
-que eres la canción que faltaba y el puerto seguro,
-que eres la mariposa libre y el jardín del alma,
-que eres la razón de los tulipanes lilas
-y el color más bonito del cielo al atardecer.
+Eres artista y obra al mismo tiempo,
+eres la pintora y el cuadro completo,
+eres la que da vida y la que la tiene,
+la que convierte la piel en galería
+y la galería en algo que no tiene precio.
 
-Y te he dicho que te extraño de una manera
-que no saben expresar del todo las palabras,
-que el vacío que dejas cuando no estás
-tiene exactamente el tamaño y la forma de ti,
-que no hay nada que lo llene de la misma manera.
-
-Pero si tuviera que quedarme con una sola cosa,
-con un solo verso de todos los que escribí,
-sería este: te amo, Katy, con todo lo que soy,
-hoy y mañana y en todos los días que vengan,
-te amo de la única manera que sé: de verdad.
-
-Vuelve, que los tulipanes lilas y yo te esperamos,
-con el corazón tan abierto como el primer día.</p>
-      <p class="poem-piropo">💜 "Eres el primero y el último pensamiento de mi vida entera, para siempre, Katy."</p>
+Katy, ese maquillaje que llevas puesto
+dice mucho de quien eres en el fondo:
+alguien que no le teme a la transformación,
+que abraza el arte y lo convierte en parte
+de esa belleza que ya viene de adentro.</p>
+      <p class="poem-piropo">🎨 "Eres el arte más bello y más vivo que ha existido en cualquier galería, Katy."</p>
     </article>
 
-  </div><!-- /miss poems-grid -->
+    <article class="poem-card reveal">
+      <span class="poem-num">25</span><span class="poem-icon">🌷</span>
+      <h3>Las Estrellas</h3>
+      <p class="poem-text">Las estrellas salen cada noche a brillar,
+millones de ellas en el cielo oscuro,
+cada una con su historia y su destino,
+cada una con su distancia y su silencio,
+cada una brillando a su manera propia.
+
+Pero ninguna de ellas, Katy hermosa,
+tiene el brillo que tienes tú de cerca,
+el brillo que no viene del cielo sino del alma,
+el que no necesita oscuridad para verse
+porque existe igual en cualquier momento.
+
+Eres más estrella que cualquier estrella,
+porque las estrellas brillan solas y lejanas,
+y tú iluminas todo lo que tocas,
+todo lo que te rodea, todos los que te conocen,
+de una manera que ningún astro puede igualar.
+
+Esta noche cuando mires el cielo, Katy,
+sabe que cada estrella que ves brillar
+está intentando parecerse un poco a ti,
+intentando tener esa luz que sale de adentro,
+ese brillo que es solo tuyo y de nadie más.</p>
+      <p class="poem-piropo">⭐ "Brillas más que todas las estrellas del cielo juntas, Katy mía hermosa."</p>
+    </article>
+
+    <article class="poem-card reveal">
+      <span class="poem-num">26</span><span class="poem-icon">🌷</span>
+      <h3>Lo Que el Viento Lleva</h3>
+      <p class="poem-text">El viento lleva muchas cosas sin saberlo,
+semillas de flores que crecerán en otro lugar,
+palabras que alguien dijo y que viajan,
+aromas de cosas que ya no están
+pero que el viento guarda en su memoria.
+
+Quisiera ser viento, Katy mía,
+para poder llegar hasta donde estás
+y llevarte todo lo que el corazón guarda,
+todo lo que no caben en mensajes ni en llamadas,
+todo lo que solo cabe en sentirlo de cerca.
+
+Te llevaría los tulipanes más hermosos,
+el olor de las flores de primavera,
+la música que escucho y que me recuerda,
+la calidez de este amor que no para,
+todo lo que no sé cómo decirte en palabras.
+
+Pero como no soy viento sino solo versos,
+te lo digo así, con estas letras torpes,
+que se esfuerzan y no alcanzan pero intentan
+decirte que te pienso, que te extraño,
+que el viento que sopla también lleva tu nombre.</p>
+      <p class="poem-piropo">🌬️ "El viento susurra tu nombre porque quiere que sepas que eres pensada y amada, Katy."</p>
+    </article>
+
+    <article class="poem-card reveal">
+      <span class="poem-num">27</span><span class="poem-icon">🌷</span>
+      <h3>Tus Palabras</h3>
+      <p class="poem-text">Hay palabras que se dicen y se olvidan,
+que pasan por el aire sin dejar huella,
+que suenan un momento y se disuelven
+como el humo que sube y desaparece
+sin que nadie sepa que existió un momento.
+
+Tus palabras no son así, Katy hermosa,
+las tuyas tienen peso y tienen forma,
+tienen la capacidad de quedarse
+mucho después de que el momento pase,
+de resonar cuando nadie las espera.
+
+Tus palabras construyen cuando llegan,
+aportan algo siempre que aparecen,
+dejan algo que vale en el que las recibe,
+un pensamiento nuevo, una perspectiva,
+un pedazo de eso que tú eres.
+
+Habla mucho, Katy, habla siempre,
+que el mundo necesita escuchar tus palabras,
+que esas palabras tuyas tienen el don
+de hacer que las cosas sean más claras
+y de hacer que la vida tenga más sentido.</p>
+      <p class="poem-piropo">💬 "Tus palabras son el mejor regalo que pueden recibir los oídos, Katy hermosa."</p>
+    </article>
+
+    <article class="poem-card reveal">
+      <span class="poem-num">28</span><span class="poem-icon">🌷</span>
+      <h3>El Tiempo Contigo</h3>
+      <p class="poem-text">El tiempo es el único recurso que no se recupera,
+el que pasa sin pedir permiso ni dar aviso,
+el que convierte los momentos en recuerdos
+y los recuerdos en cosas que uno atesora
+o que lamenta no haber vivido mejor.
+
+El tiempo contigo, Katy, es diferente,
+transcurre de una manera distinta al usual,
+a veces parece que se detiene un poco
+como si él también quisiera quedarse
+y no perderse nada de lo que tú eres.
+
+Y cuando termina, siempre termina pronto,
+mucho antes de lo que el corazón quisiera,
+dejando esa sensación de que se fue rápido,
+de que la vida debería tener más momentos
+del tipo que tú haces existir.
+
+Por eso cada instante que pasa contigo
+lo guardo como si fuera el último,
+lo vivo con la intensidad de quien sabe
+que hay cosas que no regresan exactamente igual,
+que hay momentos que son únicos e irrepetibles.</p>
+      <p class="poem-piropo">⏱️ "El tiempo contigo vale más que cualquier otra cosa que pueda existir, Katy."</p>
+    </article>
+
+    <article class="poem-card reveal">
+      <span class="poem-num">29</span><span class="poem-icon">🌷</span>
+      <h3>Eres el Hogar</h3>
+      <p class="poem-text">El hogar no siempre es un lugar físico, Katy,
+a veces el hogar es una persona,
+es ese espacio donde uno puede ser
+exactamente lo que es sin disfraces,
+sin necesidad de actuar ni fingir nada.
+
+Tú eres eso para mí, eres el hogar,
+el lugar donde todo tiene sentido,
+donde el corazón descansa de verdad,
+donde el mundo parece un poco menos complicado
+y un poco más hermoso de lo normal.
+
+Contigo la comodidad no se esfuerza,
+aparece sola como aparece el sol,
+como aparece la brisa en verano,
+sin que nadie la llame ni la invente,
+simplemente porque eres tú y eso basta.
+
+Eres el hogar que uno no sabía que buscaba,
+el que aparece cuando ya dejó de buscar,
+el que prueba que las mejores cosas en la vida
+no se planean ni se construyen a propósito,
+simplemente llegan con tu nombre y tu cara.</p>
+      <p class="poem-piropo">🏠 "Contigo cualquier lugar se convierte en el hogar más cálido del mundo, Katy."</p>
+    </article>
+
+    <article class="poem-card reveal">
+      <span class="poem-num">30</span><span class="poem-icon">🌷</span>
+      <h3>La Música y Tú</h3>
+      <p class="poem-text">Hay canciones que escucho y que me llevan
+directamente a ti sin que yo lo planee,
+canciones que sin haberlo decidido
+se convirtieron en el fondo sonoro
+de todos los momentos que te pienso.
+
+La música tiene esa magia extraña
+de asociarse a las personas que amamos,
+de guardar memorias en cada nota,
+de ser el mapa que nos lleva de regreso
+a los momentos que no queremos olvidar.
+
+Y cuando escucho esas canciones, Katy,
+no puedo evitar sonreír un poco,
+no puedo evitar que el corazón acelere,
+no puedo evitar que el pensamiento vaya
+directamente a donde siempre va: a ti.
+
+Así que cada canción que escuches, Katy,
+imagina que la compuse para ti,
+que cada nota tiene tu nombre,
+que cada melodía es una manera más
+de decirte todo lo que no caben las palabras.</p>
+      <p class="poem-piropo">🎵 "Cada canción que escucho me recuerda a ti, Katy, porque eres música pura."</p>
+    </article>
+
+    <article class="poem-card reveal">
+      <span class="poem-num">31</span><span class="poem-icon">🌷</span>
+      <h3>El Regalo de Conocerte</h3>
+      <p class="poem-text">Hay regalos que vienen envueltos y con moño,
+que se ven desde lejos y se anticipan,
+que generan expectativa y emoción
+antes de que alguien los abra siquiera,
+que prometen desde afuera lo que tienen adentro.
+
+Y hay regalos que llegan sin anuncio,
+que aparecen cuando menos se esperan,
+que uno no sabe que recibió algo enorme
+hasta que pasa un tiempo y mira atrás
+y entiende lo que cambió por haberlos tenido.
+
+Conocerte fue ese tipo de regalo, Katy,
+el que llegó sin envolver ni anticipar,
+el que no sabía que necesitaba tanto
+hasta que lo tuvo y comprendió que no hay manera
+de imaginar la vida sin haberlo recibido.
+
+El regalo de conocerte es el más valioso
+de todos los que he tenido en esta vida,
+el que cambió más cosas sin pedir permiso,
+el que me hizo ver lo que antes no veía,
+el que nunca podré devolver ni querré devolver.</p>
+      <p class="poem-piropo">🎁 "Conocerte ha sido el regalo más grande que me ha dado la vida, Katy hermosa."</p>
+    </article>
+
+    <article class="poem-card reveal">
+      <span class="poem-num">32</span><span class="poem-icon">🌷</span>
+      <h3>Siempre Tú</h3>
+      <p class="poem-text">Si me preguntas a quién pienso cuando despierto,
+la respuesta es la misma de siempre: a ti.
+Si me preguntas a quién pienso antes de dormir,
+sigo pensando en ti, siempre en ti,
+como si el día no pudiera terminar sin hacerlo.
+
+Si me preguntan a quién le daría lo mejor,
+de lo mejor que tengo y lo que puedo dar,
+sin dudar un segundo respondería
+que a ti, Katy, siempre y solo a ti,
+porque nadie merece más lo que puedo ofrecer.
+
+Si me preguntan qué es lo que más valoro,
+entre todo lo que guarda este corazón,
+diría que eso que se llama saber que existes,
+que hay una persona en el mundo que es tú,
+que respira y sonríe y existe ahí afuera.
+
+Siempre tú, Katy, en cada respuesta,
+en cada pensamiento que no se controla,
+en cada latido que tiene su razón,
+en cada verso que escribe esta mano,
+siempre tú, ahora y para siempre, siempre.</p>
+      <p class="poem-piropo">💜 "Siempre eres tú, Katy, en cada pensamiento, en cada latido, en cada cosa."</p>
+    </article>
+
+    <article class="poem-card reveal">
+      <span class="poem-num">33</span><span class="poem-icon">🌷</span>
+      <h3>El Último Verso</h3>
+      <p class="poem-text">Este es el último verso de amor, Katy,
+el treinta y tres, el que cierra el cuaderno,
+pero no el que cierra lo que siento,
+porque eso no tiene fin ni cierre posible,
+ni página final ni punto de llegada.
+
+Si escribiera versos por el resto de la vida,
+cada uno tendría tu nombre en algún lugar,
+escondido entre las líneas o a la vista,
+porque no sé escribir de amor sin que aparezcas,
+porque todo amor que siento tiene tu cara.
+
+Este último verso es también el primero,
+el que promete que habrá más y siempre,
+que mientras haya en este pecho algo que late
+y en esta mente algo que piensa y recuerda,
+habrá versos que busquen decirte lo que eres.
+
+Gracias, Katy, por ser quien eres,
+por existir en el mundo de esta manera,
+por dejarme escribirte estos treinta y tres,
+por ser la musa del poema más largo
+que nunca termina porque el amor no termina.</p>
+      <p class="poem-piropo">📚 "Eres la musa eterna de todos los versos que he escrito y escribiré, Katy mía."</p>
+    </article>
+
+  </div>
 </section>
 
-<!-- ═══════════════════════════════════════
-     SECCIÓN 5: 1000 RAZONES
-═══════════════════════════════════════ -->
-<section id="sec-mil" class="page-section" style="padding-bottom:80px;">
-  <div class="section-banner">
-    <h2 style="font-family:'Dancing Script',cursive;font-size:clamp(2.5rem,6vw,4.5rem);background:linear-gradient(135deg,#f3e8ff,#f0c040,#c39bd3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">💜 1000 Razones Por Las Que Te Quiero 💜</h2>
+<!-- ══════════════════════════════════════
+     TE EXTRAÑO
+══════════════════════════════════════ -->
+<section class="section extrano-section" id="extrano">
+  <div class="sec-head reveal">
+    <h2 style="background:linear-gradient(135deg,var(--pale),var(--rose),#ff6b9d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">💔 Te Extraño Tanto, Katy 💔</h2>
+    <div class="divider">💔🌷💔</div>
+    <p>Quince poemas que nacen de tu ausencia y del amor que no cesa</p>
+  </div>
+  <div class="extrano-grid">
+
+    <article class="extrano-card reveal">
+      <span class="poem-num">01</span><span class="poem-icon">💔</span>
+      <h3>El Vacío</h3>
+      <p class="poem-text">Hay un vacío que no llena nada, Katy,
+uno que tiene exactamente tu forma,
+que ocupa el espacio que dejaste
+cuando la distancia se interpuso entre
+lo que somos y lo que quisiera que fuera.
+
+No es tristeza exactamente lo que siento,
+es algo más cercano al eco,
+cuando algo resuena en un lugar vacío
+y el sonido vuelve solo, sin respuesta,
+buscando lo que estaba y ya no está.
+
+Te extraño de esa manera que pesa,
+que no es dolor sino peso de amor,
+el peso de todo lo que guardo para ti
+y que no puede entregarse por ahora
+porque la distancia lo retiene todo.
+
+Pero este vacío tiene una certeza:
+que solo tú puedes llenarlo de nuevo,
+que tiene exactamente tu forma
+porque para ti fue hecho desde el principio,
+y para ti seguirá esperando siempre.</p>
+      <p class="poem-piropo">💔 "Tu ausencia pesa tanto porque tu presencia vale todo para mí, Katy hermosa."</p>
+    </article>
+
+    <article class="extrano-card reveal">
+      <span class="poem-num">02</span><span class="poem-icon">💔</span>
+      <h3>Tus Recuerdos</h3>
+      <p class="poem-text">Los recuerdos de ti son los más vívidos que tengo,
+los que aparecen solos cuando no los busco,
+los que vienen con color y con sonido,
+con el detalle exacto de cada momento,
+como si el cerebro se negara a difuminarlos.
+
+Te recuerdo de mil maneras distintas,
+cada recuerdo con su propia textura,
+cada uno guardado en su propio lugar
+como si el corazón tuviera una galería
+dedicada solo a las cosas que son tuyas.
+
+Te recuerdo cuando hay silencio y cuando hay ruido,
+te recuerdo de día y también de noche,
+te recuerdo en momentos que nada tienen que ver
+y en momentos que tienen todo que ver
+contigo, con lo que eres, con lo que me das.
+
+Y aunque los recuerdos no son suficientes, Katy,
+aunque la distancia sea demasiada,
+los guardo como el tesoro que son,
+como la prueba de que todo fue real,
+de que exististe y existirás en mí siempre.</p>
+      <p class="poem-piropo">🎞️ "Tus recuerdos son el tesoro más preciado que guarda mi corazón, Katy."</p>
+    </article>
+
+    <article class="extrano-card reveal">
+      <span class="poem-num">03</span><span class="poem-icon">💔</span>
+      <h3>La Ausencia</h3>
+      <p class="poem-text">La ausencia tiene un peso que sorprende,
+uno que no se espera hasta que llega,
+que de repente está en todas partes
+donde antes había algo que ahora no está,
+donde antes estabas tú y ahora no estás.
+
+La ausencia de ti, Katy, es específica,
+no es la ausencia vaga de quien se fue sin cara,
+es la tuya con todos sus detalles,
+con el espacio exacto que ocupabas,
+con el silencio exacto que dejaste.
+
+Y en ese silencio escucho el eco,
+el eco de todo lo que no dije a tiempo,
+de todo lo que guardé pensando que habría más momentos,
+de todo lo que el corazón quería decir
+y que ahora busca un canal y no lo encuentra.
+
+Pero la ausencia también es la prueba, Katy,
+de que lo que hubo fue completamente real,
+de que dejaste una huella que no se borra,
+de que el corazón sabe bien lo que perdió
+y lo sabe porque lo valora infinitamente.</p>
+      <p class="poem-piropo">🕊️ "Tu ausencia me enseña lo mucho que vales para mi vida, Katy hermosa."</p>
+    </article>
+
+    <article class="extrano-card reveal">
+      <span class="poem-num">04</span><span class="poem-icon">💔</span>
+      <h3>Extrañar tu Risa</h3>
+      <p class="poem-text">Entre todas las cosas que extraño de ti,
+tu risa ocupa un lugar especial,
+ese sonido que el tiempo no ha borrado
+y que aparece en los momentos más inesperados
+como un regalo que no esperaba recibir.
+
+La extraño en los momentos silenciosos,
+cuando el mundo está tranquilo y quiet,
+cuando habría sido el momento perfecto
+para escucharla sin que nada la opacara,
+clara y entera como siempre fue la tuya.
+
+La extraño también en los momentos alegres,
+cuando algo gracioso pasa y pienso
+que quisiera que estuvieras ahí para reírnos juntos,
+para que tu risa se mezclara con el momento
+y lo convirtiera en algo que vale recordar.
+
+Tu risa, Katy, es de las cosas que extraño
+con una intensidad que no tiene palabras,
+que solo quien la conoce puede entender,
+que solo quien la ha escuchado puede saber
+lo que representa no poder escucharla.</p>
+      <p class="poem-piropo">😂 "Tu risa es lo que más extraña mi corazón cuando no estás, Katy bella."</p>
+    </article>
+
+    <article class="extrano-card reveal">
+      <span class="poem-num">05</span><span class="poem-icon">💔</span>
+      <h3>La Noche Sin Ti</h3>
+      <p class="poem-text">Las noches son el momento en que más te extraño,
+cuando el mundo se calla y el pensamiento va
+directamente a donde siempre va cuando se libera,
+directamente a ti, a tu recuerdo, a todo
+lo que eres y lo que representas.
+
+La noche tiene esa magia oscura de ampliar
+lo que uno siente durante el día,
+de hacer que lo que ya era grande
+sea aún más grande en el silencio,
+más presente, más real, más intenso.
+
+Y en ese silencio nocturno te extraño, Katy,
+con la intensidad de quien sabe lo que vale,
+de quien no da por sentado nada,
+de quien entiende que las personas buenas
+no abundan y cuando llegan hay que saberlas valorar.
+
+Te extraño con la misma certeza con que el cielo
+sabe que mañana habrá un amanecer,
+con la constancia que no necesita esfuerzo,
+con ese tipo de extrañar que no da lástima
+sino que da fe de lo que uno tiene.</p>
+      <p class="poem-piropo">🌙 "En cada noche que pasa, eres el pensamiento que más me acompaña, Katy."</p>
+    </article>
+
+    <article class="extrano-card reveal">
+      <span class="poem-num">06</span><span class="poem-icon">💔</span>
+      <h3>Sin Tu Presencia</h3>
+      <p class="poem-text">Sin tu presencia el mundo funciona igual,
+los días siguen siendo de veinticuatro horas,
+el sol sale y se pone como siempre,
+la gente va y viene con sus cosas,
+todo funciona pero algo no está.
+
+Ese algo eres tú, Katy, tu presencia,
+esa que transforma sin proponérselo,
+que hace que los lugares sean diferentes,
+que hace que las conversaciones tengan otro nivel,
+que hace que todo sea un poco mejor.
+
+Sin tu presencia los momentos son más grises,
+no porque el mundo haya cambiado de color,
+sino porque hay un elemento que falta,
+el más importante, el que daba el brillo,
+el que hacía que el cuadro estuviera completo.
+
+Por eso te extraño con esa mezcla rara
+de tristeza suave y amor que no se va,
+de nostalgia que duele pero que se agradece,
+porque extrañar a alguien así es la prueba
+de que uno tuvo algo que valía la pena tener.</p>
+      <p class="poem-piropo">✨ "Sin ti el mundo existe pero le falta su parte más hermosa: tú, Katy."</p>
+    </article>
+
+    <article class="extrano-card reveal">
+      <span class="poem-num">07</span><span class="poem-icon">💔</span>
+      <h3>El Tiempo Que Falta</h3>
+      <p class="poem-text">No sé cuánto tiempo falta, Katy,
+para que la distancia deje de ser distancia,
+para que los momentos que imaginamos
+sean momentos reales que podamos vivir
+sin que ningún kilómetro se interponga.
+
+Pero sé que ese tiempo, sea el que sea,
+lo atravesaré con tu recuerdo al lado,
+con la certeza de que hay algo esperando,
+de que hay razones enormes para llegar
+hasta donde el corazón quiere llegar.
+
+El tiempo que falta es solo tiempo, Katy,
+números en un calendario que avanza,
+días que pasan uno después del otro
+hasta que llegue el que cambie la distancia
+por la cercanía que tanto añoro.
+
+Y mientras ese tiempo pasa, escribo,
+acumulo versos que guardan lo que siento,
+que documentan este amor que no mengua,
+que prueban que la distancia no apaga nada
+de lo que este corazón siente por ti.</p>
+      <p class="poem-piropo">⏳ "El tiempo que falta vale si al final de él estás tú, Katy, siempre tú."</p>
+    </article>
+
+    <article class="extrano-card reveal">
+      <span class="poem-num">08</span><span class="poem-icon">💔</span>
+      <h3>Carta al Viento</h3>
+      <p class="poem-text">Escribo esta carta al viento, Katy,
+para que la lleve hasta donde estás,
+para que la deposite suavemente
+en algún rincón que tú puedas encontrar
+cuando menos lo esperes y más la necesites.
+
+Le pido al viento que te diga que te pienso,
+que no pasa un día sin que tu recuerdo
+aparezca de alguna manera en mi vida,
+que cada cosa que veo que es hermosa
+me recuerda de alguna forma a ti.
+
+Le pido que te lleve toda mi energía buena,
+todo lo que quisiera poder enviarte,
+todo lo que el amor guarda y no puede entregar
+porque la distancia tiene esas crueldades
+de poner kilómetros entre lo que se siente.
+
+Y si el viento llega, Katy, si lo sientes,
+es que la carta llegó con todo lo que lleva,
+con el amor que no cabe en ningún sobre,
+con el extrañar que no para de crecer,
+con el abrazo que el viento te da de mi parte.</p>
+      <p class="poem-piropo">💌 "Si el viento te acaricia, es mi amor que llega hasta donde estás, Katy bella."</p>
+    </article>
+
+    <article class="extrano-card reveal">
+      <span class="poem-num">09</span><span class="poem-icon">💔</span>
+      <h3>Lo Que Guardo</h3>
+      <p class="poem-text">Guardo cosas tuyas que no son físicas, Katy,
+cosas que no se pueden tocar ni ver,
+pero que están más presentes que cualquier objeto,
+que ocupan más espacio que cualquier foto,
+que pesan más que cualquier carta guardada.
+
+Guardo la manera en que te ríes,
+el sonido que tiene cuando es de verdad,
+guardo la mirada que tienes a veces,
+esa que dice todo sin necesitar palabras,
+que comunica más que mil conversaciones.
+
+Guardo los momentos que tuvimos juntos,
+cada uno en su lugar correspondiente,
+cada uno con el detalle que lo hace único,
+con la luz que tenía ese instante específico,
+con todo lo que lo convierte en irremplazable.
+
+Guardo todo eso, Katy, y lo cuido,
+como se cuida lo más valioso que existe,
+sin que el tiempo lo cambie ni lo borre,
+porque lo que se guarda con tanto amor
+no tiene manera de desaparecer.</p>
+      <p class="poem-piropo">💾 "Lo que guardo de ti es el tesoro más grande e irremplazable que tengo, Katy."</p>
+    </article>
+
+    <article class="extrano-card reveal">
+      <span class="poem-num">10</span><span class="poem-icon">💔</span>
+      <h3>El Amor Que No Cesa</h3>
+      <p class="poem-text">Hay amores que se apagan con la distancia,
+que se enfrían cuando el tiempo pasa,
+que necesitan de la cercanía física
+para seguir siendo lo que fueron
+cuando todo era más fácil y más cerca.
+
+El mío por ti no es de esos amores, Katy,
+no tiene interruptor ni se apaga,
+no disminuye porque no te vea,
+no se reduce porque la distancia exista,
+no tiene fecha de vencimiento ni condición.
+
+El mío por ti crece con el tiempo,
+se asienta como el vino que madura,
+se hace más profundo y más seguro,
+más certero en lo que es y lo que siente,
+más claro en lo que quiere y lo que vale.
+
+Este amor que te tengo no cesa, Katy,
+no conoce el verbo parar ni el de menguar,
+solo conoce el de seguir y el de crecer,
+el de quedarse aunque todo cambie afuera,
+el de amarte más cada día que pasa.</p>
+      <p class="poem-piropo">♾️ "Mi amor por ti no tiene fin ni tiene límites, solo tiene tu nombre, Katy."</p>
+    </article>
+
+    <article class="extrano-card reveal">
+      <span class="poem-num">11</span><span class="poem-icon">💔</span>
+      <h3>Extrañar Es Amar</h3>
+      <p class="poem-text">Extrañar es una forma de amar, Katy,
+la forma que toma el amor cuando está lejos,
+cuando no puede expresarse de otra manera
+y entonces se transforma en nostalgia suave,
+en ese peso cálido del amor que espera.
+
+Extrañarte es confirmar cada día
+que lo que siento es completamente real,
+que no depende de la cercanía para existir,
+que sobrevive y crece en la distancia
+porque tiene raíces más profundas que el espacio.
+
+Y aunque preferiera no extrañarte, Katy,
+aunque prefiriera tenerte siempre cerca,
+agradezco este extrañar que me recuerda
+lo que vales, lo que eres, lo que significa
+tenerte aunque sea en el pensamiento.
+
+Extrañarte es quererte de otra manera,
+es la prueba de que el amor no se olvida,
+de que hay personas que dejan marca real,
+de que el corazón tiene buena memoria
+para guardar lo que de verdad importa.</p>
+      <p class="poem-piropo">💜 "Extrañarte tanto solo confirma lo mucho que te quiero, Katy hermosa."</p>
+    </article>
+
+    <article class="extrano-card reveal">
+      <span class="poem-num">12</span><span class="poem-icon">💔</span>
+      <h3>El Regreso</h3>
+      <p class="poem-text">Sueño con el día en que la distancia
+sea solo un recuerdo y no una realidad,
+cuando lo que separa sea tan pequeño
+que el amor pueda saltarlo con facilidad
+y llegue sin obstáculos hasta ti.
+
+Imagino ese regreso, Katy hermosa,
+o ese encuentro que todavía espera,
+ese momento en que el espacio físico
+por fin esté de acuerdo con lo que siente
+este corazón que no para de extrañarte.
+
+Imagino que todo lo que guardé en palabras
+podré decirlo de otra manera entonces,
+no con versos sino con presencia,
+no con poemas sino con la certeza
+de estar exactamente donde quiero estar.
+
+Hasta que ese día llegue, escribo y espero,
+acumulo razones y acumulo amor,
+construyo los cimientos de algo que valga,
+algo que cuando llegue ese momento
+sea tan sólido que nada lo mueva.</p>
+      <p class="poem-piropo">🌅 "El día que volvamos a estar cerca será el mejor día de mi vida, Katy."</p>
+    </article>
+
+    <article class="extrano-card reveal">
+      <span class="poem-num">13</span><span class="poem-icon">💔</span>
+      <h3>Tu Voz</h3>
+      <p class="poem-text">Extraño tu voz, Katy, esa voz tuya
+que tiene un tono que no se parece a ninguno,
+que tiene la cadencia exacta de lo que eres,
+suave donde hace falta, firme cuando corresponde,
+siempre honesta, siempre completamente tuya.
+
+Tu voz me recuerda cuando escucho otras voces
+y ninguna tiene lo que la tuya tiene,
+esa cosa que no sé nombrar exactamente
+pero que reconocería entre miles,
+que distinguiría aunque no te viera.
+
+Extraño escucharla en conversaciones largas,
+en esas que van de un tema al otro sin plan,
+que terminan en lugares inesperados,
+que dejan la sensación de que el tiempo pasó rápido
+y de que había más cosas que decir.
+
+Extraño esa voz que me cuenta cómo estás, Katy,
+que me dice lo que piensas y lo que sientes,
+que me acerca a ti aunque haya distancia,
+que hace que el mundo sea más pequeño
+y que el amor no sienta el peso del espacio.</p>
+      <p class="poem-piropo">🎙️ "Tu voz es la música más hermosa que puede escuchar este corazón, Katy."</p>
+    </article>
+
+    <article class="extrano-card reveal">
+      <span class="poem-num">14</span><span class="poem-icon">💔</span>
+      <h3>Cada Amanecer</h3>
+      <p class="poem-text">Cada amanecer que llega me recuerda, Katy,
+que estamos en el mismo mundo aunque lejos,
+que el mismo sol que sale por mi ventana
+también saldrá por la tuya un poco después,
+que compartimos el mismo cielo aunque no el mismo suelo.
+
+Y en ese amanecer compartido sin saberlo,
+me digo que es un día más cerca,
+un día más de los que van pasando
+hasta que la distancia sea solo un número
+y no una barrera entre lo que somos.
+
+Cada amanecer lleva un pensamiento tuyo,
+uno que lo inaugura con tu nombre,
+que le pone color de tulipán lila
+a un día que de otra manera empezaría
+sin la calidez que tu recuerdo le da.
+
+Así que cuando veas el amanecer, Katy,
+sabe que al mismo tiempo yo también lo veo,
+que en ese momento compartimos algo,
+que el mismo cielo que te toca a ti
+también me habla a mí de ti, siempre de ti.</p>
+      <p class="poem-piropo">🌄 "Cada amanecer te pienso porque eres lo primero que llega a mi mente, Katy."</p>
+    </article>
+
+    <article class="extrano-card reveal">
+      <span class="poem-num">15</span><span class="poem-icon">💔</span>
+      <h3>Te Extraño Siempre</h3>
+      <p class="poem-text">Te extraño siempre, Katy, siempre y en todo lugar,
+con una constancia que no necesita recordatorio,
+que no necesita una razón específica para aparecer,
+que simplemente está como está el latido,
+sin que nadie lo pida, sin que nadie lo programe.
+
+Te extraño en los momentos buenos que quisiera compartir,
+en los momentos difíciles que necesitarían tu voz,
+en los momentos ordinarios que serían extraordinarios contigo,
+en los momentos sin nombre que solo existen
+para recordarme que no estás y lo que eso pesa.
+
+Pero este extrañar, Katy, no es solo tristeza,
+es también la prueba más concreta del amor,
+la confirmación de que lo que existe aquí adentro
+es real, es sólido, es de los que duran,
+es de los que no se apagan aunque todo cambie.
+
+Te extraño siempre y ese siempre es hermoso,
+es la manera más honesta de decirte
+que ocupas un lugar que ninguna distancia puede vaciar,
+que eres parte de lo que soy de una manera
+que no tiene marcha atrás ni la quiere tener.</p>
+      <p class="poem-piropo">💔 "Te extraño tanto, Katy, porque te quiero más de lo que cualquier verso puede decir."</p>
+    </article>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     1000 RAZONES
+══════════════════════════════════════ -->
+<section class="section mil-section" id="mil">
+  <div class="sec-head reveal">
+    <h2>💜 1000 Razones Por Las Que Te Quiero 💜</h2>
     <div class="divider">🌷💜🌷</div>
-    <p style="font-family:'Playfair Display',serif;font-style:italic;color:#c39bd3;max-width:680px;margin:0 auto 30px;line-height:1.9;font-size:1.05rem;">Porque una sola razón nunca fue suficiente,<br/>porque mi corazón tiene mil formas de decirte lo que sientes en él,<br/>porque tú mereces saber cada una.</p>
+    <p>Porque una sola razón nunca fue suficiente,<br/>porque mi corazón tiene mil formas de decirte lo que siente</p>
   </div>
 
-  <!-- Contador animado -->
-  <div style="text-align:center;margin:0 auto 40px;">
-    <div style="display:inline-flex;gap:16px;flex-wrap:wrap;justify-content:center;">
-      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(195,155,211,0.25);border-radius:20px;padding:20px 30px;backdrop-filter:blur(10px);">
-        <div id="counterNum" style="font-family:'Dancing Script',cursive;font-size:4rem;background:linear-gradient(135deg,#f0c040,#c39bd3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;">0</div>
-        <div style="font-family:'Playfair Display',serif;font-style:italic;color:#c39bd3;font-size:0.9rem;margin-top:4px;">razones contadas</div>
-      </div>
-      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(195,155,211,0.25);border-radius:20px;padding:20px 30px;backdrop-filter:blur(10px);display:flex;align-items:center;">
-        <div style="font-family:'Dancing Script',cursive;font-size:1.8rem;color:#f0c040;line-height:1.3;">Todas son reales.<br/>Todas son para ti, Katy. 🌷</div>
-      </div>
+  <div class="counter-box">
+    <div class="counter-card">
+      <div id="counterNum">0</div>
+      <div class="counter-label">razones contadas</div>
+    </div>
+    <div class="counter-card">
+      <div class="counter-msg">Todas son reales.<br/>Todas son para ti, Katy. 🌷</div>
     </div>
   </div>
 
-  <!-- Pestañas de categorías -->
-  <div id="catTabs" style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:36px;max-width:1100px;margin-left:auto;margin-right:auto;"></div>
-
-  <!-- Grid de razones -->
-  <div id="reasonsGrid" style="max-width:1180px;margin:0 auto;columns:3 280px;gap:14px;column-fill:balance;"></div>
-
+  <div id="catTabs"></div>
+  <div id="reasonsGrid"></div>
 </section>
 
-<!-- ═══════════════════════════════════════
+<!-- ══════════════════════════════════════
      FOOTER
-═══════════════════════════════════════ -->
+══════════════════════════════════════ -->
 <footer>
-  <span class="heart-anim">💜</span>
-  <p>
-    Cuarenta y ocho poemas escritos desde lo más profundo,<br/>
-    cuarenta y ocho maneras de decirte la misma cosa:<br/>
-    eres la persona más importante de mi vida, Katy.
+  <span class="footer-heart">🌷</span>
+  <div class="footer-title">Con Todo Mi Amor, Para Katy</div>
+  <p class="footer-quote">
+    "Cada tulipán lila que existe en el mundo<br/>
+    es una razón que el universo inventó<br/>
+    para decirte que eres única, hermosa, y amada.<br/>
+    Y yo tengo mil más."
   </p>
-  <div class="divider" style="margin:25px auto;max-width:450px;">🌷💜🌷</div>
-  <p class="firma">Con todo mi amor, para Katy 🌷</p>
-  <p style="margin-top:20px;color:rgba(195,155,211,0.4);font-size:0.85rem;font-family:'Lato',sans-serif;">
-    Hecho con ❤️ y tulipanes lilas • 2026
-  </p>
+  <div style="margin-top:24px;font-size:1.5rem;opacity:.4;">💜 🌷 💜</div>
 </footer>
 
-<button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Volver arriba">🌷</button>
-
-<!-- ═══════════════════════════════════════
-     JAVASCRIPT
-═══════════════════════════════════════ -->
 <script>
-/* ── Partículas del portal ── */
-const portalParticles = document.getElementById('portalParticles');
-const colors = ['#9b59b6','#c39bd3','#6a0572','#f0c040','#d7a3e0'];
-for(let i=0;i<40;i++){
-  const p=document.createElement('div');
-  p.classList.add('portal-particle');
-  const size=(2+Math.random()*5)+'px';
-  p.style.cssText=`
-    width:${size};height:${size};
-    left:${Math.random()*100}vw;
-    bottom:0;
-    background:${colors[Math.floor(Math.random()*colors.length)]};
-    animation:spark ${3+Math.random()*6}s linear ${Math.random()*4}s infinite;
-    box-shadow:0 0 6px currentColor;
-  `;
-  portalParticles.appendChild(p);
-}
+/* ══════════════════════════════════════
+   PETALS
+══════════════════════════════════════ */
+(function(){
+  const petals=document.getElementById('petals');
+  const e=['🌷','🌸','💜','✨','💫'];
+  for(let i=0;i<22;i++){
+    const d=document.createElement('div');
+    d.className='petal';
+    d.textContent=e[i%e.length];
+    const dur=12+Math.random()*18;
+    d.style.cssText=`left:${Math.random()*100}%;animation-duration:${dur}s;animation-delay:${Math.random()*dur}s;font-size:${.8+Math.random()*1.2}rem;`;
+    petals.appendChild(d);
+  }
+})();
 
-/* ── Entrar al portal ── */
-document.getElementById('enterBtn').addEventListener('click',()=>{
-  const portal=document.getElementById('portal');
-  portal.classList.add('exit');
-  setTimeout(()=>{
-    portal.style.display='none';
-    document.getElementById('siteNav').style.display='flex';
-    // lanzar partículas globales
-    launchGlobalParticles();
-    // activar observer
-    activateObserver();
-  },1300);
+/* ══════════════════════════════════════
+   PORTAL
+══════════════════════════════════════ */
+let ytPlayer=null;let playing=false;
+
+document.getElementById('enterBtn').addEventListener('click',function(){
+  document.getElementById('portal').classList.add('exit');
+  setTimeout(function(){
+    document.getElementById('portal').style.display='none';
+    document.getElementById('nav').classList.add('visible');
+    document.getElementById('player').classList.add('visible');
+    document.getElementById('player').style.display='flex';
+    // start music
+    startMusic();
+  },900);
 });
 
-/* ── Partículas globales ── */
-function launchGlobalParticles(){
-  const bg=document.getElementById('globalBg');
-  const em=['🌷','🌸','💜','✨','💫','🦋'];
-  for(let i=0;i<30;i++){
-    const el=document.createElement('div');
-    el.classList.add('gp');
-    el.textContent=em[Math.floor(Math.random()*em.length)];
-    el.style.cssText=`
-      left:${Math.random()*100}vw;
-      font-size:${1+Math.random()*1.8}rem;
-      animation-duration:${12+Math.random()*20}s;
-      animation-delay:${Math.random()*10}s;
-    `;
-    bg.appendChild(el);
+/* ══════════════════════════════════════
+   YOUTUBE MUSIC
+══════════════════════════════════════ */
+function startMusic(){
+  const wrap=document.getElementById('ytWrap');
+  const iframe=document.createElement('iframe');
+  iframe.id='yt';
+  iframe.src='https://www.youtube.com/embed/nbX_nKPXzCk?autoplay=1&loop=1&playlist=nbX_nKPXzCk&enablejsapi=1&controls=0&mute=0&origin='+encodeURIComponent(location.href);
+  iframe.allow='autoplay';
+  iframe.style.cssText='width:1px;height:1px;position:absolute;top:-999px;';
+  wrap.appendChild(iframe);
+  playing=true;
+  document.getElementById('playBtn').textContent='⏸';
+}
+
+function togglePlay(){
+  const iframe=document.getElementById('yt');
+  if(!iframe)return;
+  if(playing){
+    iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}','*');
+    playing=false;
+    document.getElementById('playBtn').textContent='▶';
+    document.getElementById('waves').classList.add('paused');
+  } else {
+    iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}','*');
+    playing=true;
+    document.getElementById('playBtn').textContent='⏸';
+    document.getElementById('waves').classList.remove('paused');
   }
 }
 
-/* ── Animación al scroll ── */
-function activateObserver(){
-  const obs=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        e.target.style.opacity='1';
-        e.target.style.transform='translateY(0)';
-        obs.unobserve(e.target);
-      }
-    });
-  },{threshold:0.07});
+/* ══════════════════════════════════════
+   NAV – burger
+══════════════════════════════════════ */
+function toggleMenu(){document.getElementById('navMobile').classList.toggle('open');}
+function closeMenu(){document.getElementById('navMobile').classList.remove('open');}
 
-  document.querySelectorAll('.poem-card,.photo-card,.hero-card').forEach((c,i)=>{
-    c.style.opacity='0';
-    c.style.transform='translateY(35px)';
-    c.style.transition=`opacity 0.65s ease ${(i%5)*0.1}s, transform 0.65s ease ${(i%5)*0.1}s, box-shadow 0.4s, border-color 0.4s`;
-    obs.observe(c);
+/* active nav link */
+window.addEventListener('scroll',function(){
+  const sections=['hero','fotos','amor','extrano','mil'];
+  const scrollY=window.scrollY;
+  sections.forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el)return;
+    const top=el.offsetTop-80,bot=top+el.offsetHeight;
+    const link=document.querySelector(`#nav a[href="#${id}"]`);
+    if(link){link.classList.toggle('act',scrollY>=top&&scrollY<bot);}
   });
-}
+  const st=document.getElementById('scrollTop');
+  st.classList.toggle('vis',scrollY>400);
+});
 
-/* ══════════════════════════════════
-   DATOS: 1000 RAZONES
-══════════════════════════════════ */
-const razones = [
-  // ── CATEGORÍA 1: Tu Forma de Ser (1–100) ──
+/* ══════════════════════════════════════
+   REVEAL ON SCROLL
+══════════════════════════════════════ */
+const revObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');revObs.unobserve(e.target);}});
+},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+/* ══════════════════════════════════════
+   1000 RAZONES DATA
+══════════════════════════════════════ */
+const razones=[
   {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres auténtica sin esfuerzo, nunca finges ser alguien que no eres."},
   {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque cuando hablas, todas tus palabras tienen un peso honesto que pocos tienen."},
   {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tu carácter firme coexiste perfectamente con tu corazón suave."},
@@ -2558,7 +2364,6 @@ const razones = [
   {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres extraordinaria de una manera que ni tú misma sabes todavía."},
   {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque ser tú misma es el regalo más grande que le has dado al mundo."},
   {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque cada vez que pienso en quién eres, encuentro una razón nueva para admirarte."},
-  {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres de las que cuida sus palabras porque sabe que las palabras construyen o destruyen."},
   {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tienes alma de artista aunque no siempre lo uses con un pincel."},
   {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres de las que convierte las dificultades en historias de superación."},
   {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tu manera de ver la belleza en cosas pequeñas me enseña a mirar mejor."},
@@ -2568,7 +2373,6 @@ const razones = [
   {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque tienes un corazón tan grande que cabe todo el amor del mundo en él."},
   {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque eres la persona que el mundo necesita más: genuina, buena, y valiente."},
   {cat:"Tu Forma de Ser",icon:"🌸",text:"Porque simplemente siendo tú, cambias todo a tu alrededor para bien."},
-  // ── CATEGORÍA 2: Lo que Me Haces Sentir (101–200) ──
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque cuando pienso en ti, el pecho se me llena de algo que no sé nombrar pero que se siente perfecto."},
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que el amor de verdad existe y que vale la pena creer en él."},
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque cada vez que te recuerdo, algo dentro de mí sonríe sin que yo se lo pida."},
@@ -2610,10 +2414,8 @@ const razones = [
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que cada pequeño gesto tuyo es un regalo sin envoltura."},
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo los miedos se achican y los sueños se agrandan."},
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que hay alguien que merece todo lo mejor que puedo dar."},
-  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque tu amor, aunque a veces sea imaginado, se siente más real que muchas cosas tangibles."},
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que la vida tiene textura cuando pienso en ti."},
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo siento que cada momento tiene el peso exacto que merece."},
-  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que el amor más profundo no necesita gritar para que se note."},
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque siento que eres la respuesta a preguntas que ni sabía que tenía."},
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que hay una diferencia entre existir y vivir de verdad."},
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo la esperanza tiene nombre y apellido, se llama Katy."},
@@ -2624,7 +2426,6 @@ const razones = [
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que hay un tipo de felicidad que no pasa."},
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque tu recuerdo es lo primero y lo último que habita mi mente cada día."},
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que vale la pena creer en lo imposible."},
-  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo descubrí que el corazón sabe cosas antes que cualquier otra parte del cuerpo."},
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que soy la persona más afortunada de este mundo."},
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque gracias a ti el amor dejó de ser una teoría y se convirtió en algo muy concreto."},
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que cada latido tiene un destinatario: tú."},
@@ -2637,12 +2438,6 @@ const razones = [
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque gracias a ti sé exactamente cómo suena el corazón cuando late por alguien."},
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que el amor es la única certeza que necesito."},
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo la vida tiene ese sabor que no se encuentra en ningún otro lugar."},
-  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que hay una razón específica para todo lo que me ha pasado."},
-  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque tu amor, aunque sea a distancia, llega y se instala para siempre."},
-  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que el corazón tiene su propio idioma y el tuyo lo habla perfectamente."},
-  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo la esperanza no es una ilusión sino una certeza cálida."},
-  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que lo mejor de este mundo tiene tu nombre."},
-  {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque gracias a ti sé que el amor verdadero te hace querer ser mejor persona."},
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que eres el milagro más hermoso que me ha dado la vida."},
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo todo lo que parecía complicado se vuelve sencillo y claro."},
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que el amor no envejece aunque el tiempo pase."},
@@ -2654,7 +2449,6 @@ const razones = [
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que el amor bien puesto no pesa, da alas."},
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque contigo la vida no es perfecta pero sí perfectamente suficiente."},
   {cat:"Lo que Me Haces Sentir",icon:"❤️",text:"Porque me haces sentir que el mayor tesoro que puede tener alguien eres tú, Katy."},
-  // ── CATEGORÍA 3: Tus Detalles (201–300) ──
   {cat:"Tus Detalles",icon:"✨",text:"Porque esa manera tuya de inclinar la cabeza cuando escuchas me parece lo más tierno del mundo."},
   {cat:"Tus Detalles",icon:"✨",text:"Porque tu cabello negro tiene una vida propia cuando el viento lo mueve."},
   {cat:"Tus Detalles",icon:"✨",text:"Porque tus ojos dicen en un segundo lo que muchos tardan horas en explicar."},
@@ -2691,12 +2485,11 @@ const razones = [
   {cat:"Tus Detalles",icon:"✨",text:"Porque tienes esa manera de celebrar los logros ajenos con genuina alegría."},
   {cat:"Tus Detalles",icon:"✨",text:"Porque tu paciencia con las personas que quieres no tiene fin aparente."},
   {cat:"Tus Detalles",icon:"✨",text:"Porque tienes ese don de convertir una conversación ordinaria en algo memorable."},
-  {cat:"Tus Detalles",icon:"✨",text:"Porque tu sentido del tiempo para los chistes es simplemente perfecto."},
   {cat:"Tus Detalles",icon:"✨",text:"Porque incluso tu manera de estar callada tiene algo que decir."},
   {cat:"Tus Detalles",icon:"✨",text:"Porque tienes esa capacidad de llenarte de emoción por las cosas que te mueven."},
   {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de elegir lo que te pones refleja quién eres sin decir nada."},
   {cat:"Tus Detalles",icon:"✨",text:"Porque tienes ese detalle de preguntar antes de asumir, y eso es muy sabio."},
-  {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de recibir un cumplido sin desmertar ni exagerar es perfecta."},
+  {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de recibir un cumplido sin desmeritar ni exagerar es perfecta."},
   {cat:"Tus Detalles",icon:"✨",text:"Porque incluso en los momentos más simples tienes una presencia que se siente."},
   {cat:"Tus Detalles",icon:"✨",text:"Porque tienes esa manera de defender a los que quieres que da ganas de que te defiendas."},
   {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de pedir perdón es honesta y sin vueltas."},
@@ -2717,7 +2510,6 @@ const razones = [
   {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de amar en los detalles pequeños supera cualquier gran gesto."},
   {cat:"Tus Detalles",icon:"✨",text:"Porque incluso cuando la vida es difícil, en ti hay una luz que no se apaga."},
   {cat:"Tus Detalles",icon:"✨",text:"Porque tienes ese detalle de nunca hacer sentir a nadie menos."},
-  {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de estar presente de verdad en los momentos que importan es de las pocas personas que lo hace."},
   {cat:"Tus Detalles",icon:"✨",text:"Porque tienes esa forma de agradecer que hace que el que da sienta que recibió el doble."},
   {cat:"Tus Detalles",icon:"✨",text:"Porque tu forma de interesarte por lo que le importa a alguien es auténtica y profunda."},
   {cat:"Tus Detalles",icon:"✨",text:"Porque incluso en la distancia tu presencia se siente tan cercana que duele."},
@@ -2727,13 +2519,11 @@ const razones = [
   {cat:"Tus Detalles",icon:"✨",text:"Porque tienes esa forma de encontrar algo positivo en casi cualquier situación."},
   {cat:"Tus Detalles",icon:"✨",text:"Porque tu instinto para saber qué necesita la gente que quieres es un don rarísimo."},
   {cat:"Tus Detalles",icon:"✨",text:"Porque tienes esa capacidad de hacer que los recuerdos contigo sean siempre los mejores."},
-  {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de elegir a quiénes dejas entrar a tu vida dice mucho de lo que vales."},
   {cat:"Tus Detalles",icon:"✨",text:"Porque incluso tu silencio habla, y lo que dice es siempre algo profundo."},
   {cat:"Tus Detalles",icon:"✨",text:"Porque tienes ese brillo especial que no viene de afuera sino de lo más adentro."},
   {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de ver el mundo convierte lo ordinario en algo que vale la pena vivir."},
   {cat:"Tus Detalles",icon:"✨",text:"Porque tienes ese detalle de recordar lo que importa y olvidar lo que solo lastima."},
   {cat:"Tus Detalles",icon:"✨",text:"Porque tu manera de existir en este mundo es uno de sus mejores argumentos."},
-  // ── CATEGORÍA 4: Mi Corazón Habla (301–400) ──
   {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón late diferente cuando pienso en tu nombre."},
   {cat:"Mi Corazón Habla",icon:"💓",text:"Porque hay un espacio en mi pecho que solo lleva tu nombre grabado."},
   {cat:"Mi Corazón Habla",icon:"💓",text:"Porque cuando el corazón elige, no pregunta ni da explicaciones, simplemente sabe."},
@@ -2805,7 +2595,6 @@ const razones = [
   {cat:"Mi Corazón Habla",icon:"💓",text:"Porque lo que late por ti es tan grande que a veces el pecho parece demasiado pequeño."},
   {cat:"Mi Corazón Habla",icon:"💓",text:"Porque mi corazón te eligió para siempre y esa elección es la más honesta que ha hecho."},
   {cat:"Mi Corazón Habla",icon:"💓",text:"Porque hay un amor en mi corazón que es completamente tuyo, Katy, solo y para siempre tuyo."},
-  // ── CATEGORÍA 5: Tu Belleza (401–500) ──
   {cat:"Tu Belleza",icon:"🌷",text:"Porque tu belleza no necesita esfuerzo para estar, simplemente es."},
   {cat:"Tu Belleza",icon:"🌷",text:"Porque tienes una belleza que crece cada vez que alguien te conoce mejor."},
   {cat:"Tu Belleza",icon:"🌷",text:"Porque eres hermosa con maquillaje artístico y sin una sola gota de maquillaje."},
@@ -2856,7 +2645,6 @@ const razones = [
   {cat:"Tu Belleza",icon:"🌷",text:"Porque tienes una belleza que es un privilegio haberla encontrado en este mundo."},
   {cat:"Tu Belleza",icon:"🌷",text:"Porque eres tan hermosa que da miedo a veces, miedo de que algo tan perfecto sea real."},
   {cat:"Tu Belleza",icon:"🌷",text:"Porque tu belleza, Katy, es la más genuina, la más profunda, y la más difícil de olvidar."},
-  // ── CATEGORÍA 6: Tu Fuerza (501–600) ──
   {cat:"Tu Fuerza",icon:"⚡",text:"Porque eres de las que se levanta aunque el golpe haya sido fuerte."},
   {cat:"Tu Fuerza",icon:"⚡",text:"Porque tienes una resistencia interior que ni tú misma sabes que tienes."},
   {cat:"Tu Fuerza",icon:"⚡",text:"Porque enfrentas lo difícil con una entereza que merece el mayor de los respetos."},
@@ -2907,7 +2695,6 @@ const razones = [
   {cat:"Tu Fuerza",icon:"⚡",text:"Porque eres de las que saca fuerzas de donde no hay y eso es casi sobrenatural."},
   {cat:"Tu Fuerza",icon:"⚡",text:"Porque tu fortaleza es la de alguien que ya ha decidido que el mundo no la va a vencer."},
   {cat:"Tu Fuerza",icon:"⚡",text:"Porque eres fuerte, Katy, de una manera tan hermosa que da ganas de ser testigo de ello siempre."},
-  // ── CATEGORÍA 7: Lo que Despiertas en Mí (601–700) ──
   {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí las ganas de escribir aunque no sepa hacerlo bien."},
   {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas un tipo de ternura que no sabía que existía dentro de mí."},
   {cat:"Lo que Despiertas",icon:"💫",text:"Porque con solo pensarte me despiertas una alegría que no sé de dónde sale pero agradezco."},
@@ -2958,7 +2745,6 @@ const razones = [
   {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas las ganas de estar a la altura de alguien tan extraordinario."},
   {cat:"Lo que Despiertas",icon:"💫",text:"Porque despiertas en mí algo que ya no sé cómo volver a dormir, ni quiero hacerlo."},
   {cat:"Lo que Despiertas",icon:"💫",text:"Porque me despiertas, Katy, de la manera más bonita que alguien puede despertar a otro."},
-  // ── CATEGORÍA 8: Nuestros Momentos (701–800) ──
   {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada conversación contigo es de esas que uno guarda para siempre."},
   {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los momentos en que has estado presente son los que más peso tienen en mi memoria."},
   {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada vez que has sonreído cerca mío ha sido un momento que atesoro."},
@@ -3009,7 +2795,6 @@ const razones = [
   {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque los momentos que hemos tenido son de los que ningún futuro me podrá quitar."},
   {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada vez que has estado cerca la vida ha tenido su mejor versión."},
   {cat:"Nuestros Momentos",icon:"🕯️",text:"Porque cada instante contigo, Katy, ha sido perfectamente suficiente y perfectamente hermoso."},
-  // ── CATEGORÍA 9: Mi Amor por Ti (801–900) ──
   {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te amo con una certeza que no necesita pruebas ni validaciones."},
   {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti no tiene condiciones ni letras pequeñas."},
   {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te quiero de una manera que me hace querer ser mejor persona."},
@@ -3060,7 +2845,6 @@ const razones = [
   {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti es tan claro que no deja sombra de duda."},
   {cat:"Mi Amor por Ti",icon:"💜",text:"Porque te amo con el amor más genuino, más completo, más verdadero que puedo ofrecer."},
   {cat:"Mi Amor por Ti",icon:"💜",text:"Porque mi amor por ti, Katy, es la cosa más honesta que ha salido jamás de este corazón."},
-  // ── CATEGORÍA 10: Y Mil Veces Más (901–1000) ──
   {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque cuando creo que ya he dicho todo, el corazón me da una razón más."},
   {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones para quererte no se agotan con el número, siguen creciendo."},
   {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque mil razones es solo el principio de una lista que no tiene final."},
@@ -3071,7 +2855,7 @@ const razones = [
   {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque el amor que siento por ti genera razones por sí solo, sin que yo tenga que buscarlas."},
   {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque si viviera mil años encontraría una razón nueva en cada día de cada año."},
   {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones no se terminan porque tú no terminas de sorprenderme."},
-  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque podría llenar mil páginas y aún así sentiría que me faltó decir algo."},
+  {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque podría llenar mil páginas y aun así sentiría que me faltó decir algo."},
   {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones para quererte son tantas como los tulipanes lilas de todos los campos."},
   {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque cada sonrisa tuya me da una razón nueva que no tenía antes."},
   {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque las razones se multiplican porque tú eres múltiple, compleja, y siempre más."},
@@ -3114,129 +2898,77 @@ const razones = [
   {cat:"Y Mil Veces Más",icon:"♾️",text:"Porque después de las 1000 razones hay algo que no cabe en ninguna lista: lo que siento por ti."},
 ];
 
-/* ── Construir UI de 1000 razones ── */
-function buildReasonsSection(){
-  // Categorías únicas
+/* ══════════════════════════════════════
+   BUILD REASONS UI
+══════════════════════════════════════ */
+(function buildReasons(){
   const cats=[...new Set(razones.map(r=>r.cat))];
   const tabsEl=document.getElementById('catTabs');
   const gridEl=document.getElementById('reasonsGrid');
-  let activeCat='all';
+  let active='all';
 
-  // Tab "Todas"
-  const makeTab=(label,value,icon)=>{
-    const btn=document.createElement('button');
-    btn.textContent=(icon?icon+' ':'')+label;
-    btn.style.cssText=`font-family:'Dancing Script',cursive;font-size:1.05rem;padding:10px 22px;
-      border-radius:50px;border:1px solid rgba(195,155,211,0.3);cursor:pointer;
-      background:rgba(255,255,255,0.05);color:#c39bd3;
-      transition:all 0.3s ease;white-space:nowrap;`;
-    btn.addEventListener('mouseenter',()=>{ if(btn.dataset.active!=='1'){btn.style.borderColor='rgba(195,155,211,0.5)';btn.style.background='rgba(155,89,182,0.15)';} });
-    btn.addEventListener('mouseleave',()=>{ if(btn.dataset.active!=='1'){btn.style.borderColor='rgba(195,155,211,0.3)';btn.style.background='rgba(255,255,255,0.05)';} });
-    btn.addEventListener('click',()=>{
-      activeCat=value;
-      document.querySelectorAll('#catTabs button').forEach(b=>{
-        b.dataset.active='0';
-        b.style.background='rgba(255,255,255,0.05)';
-        b.style.color='#c39bd3';
-        b.style.borderColor='rgba(195,155,211,0.3)';
-      });
-      btn.dataset.active='1';
-      btn.style.background='linear-gradient(135deg,rgba(106,5,114,0.6),rgba(155,89,182,0.4))';
-      btn.style.color='#f0c040';
-      btn.style.borderColor='rgba(195,155,211,0.5)';
-      renderReasons(value);
+  function btn(label,val,icon){
+    const b=document.createElement('button');
+    b.textContent=(icon?icon+' ':'')+label;
+    b.dataset.val=val;
+    b.addEventListener('click',()=>{
+      active=val;
+      tabsEl.querySelectorAll('button').forEach(x=>x.classList.remove('on'));
+      b.classList.add('on');
+      render(val);
     });
-    return btn;
+    return b;
+  }
+
+  const icons={
+    'Tu Forma de Ser':'🌸','Lo que Me Haces Sentir':'❤️','Tus Detalles':'✨',
+    'Mi Corazón Habla':'💓','Tu Belleza':'🌷','Tu Fuerza':'⚡',
+    'Lo que Despiertas':'💫','Nuestros Momentos':'🕯️','Mi Amor por Ti':'💜','Y Mil Veces Más':'♾️'
   };
 
-  const allBtn=makeTab('Todas','all','💜');
-  allBtn.click();
+  const allBtn=btn('Todas','all','💜');
+  allBtn.classList.add('on');
   tabsEl.appendChild(allBtn);
+  cats.forEach(c=>tabsEl.appendChild(btn(c,c,icons[c]||'🌷')));
 
-  const icons={'Tu Forma de Ser':'🌸','Lo que Me Haces Sentir':'❤️','Tus Detalles':'✨','Mi Corazón Habla':'💓','Tu Belleza':'🌷','Tu Fuerza':'⚡','Lo que Despiertas':'💫','Nuestros Momentos':'🕯️','Mi Amor por Ti':'💜','Y Mil Veces Más':'♾️'};
-  cats.forEach(c=>{ tabsEl.appendChild(makeTab(c,c,icons[c]||'🌷')); });
-
-  function renderReasons(cat){
+  function render(cat){
     const list=cat==='all'?razones:razones.filter(r=>r.cat===cat);
     gridEl.innerHTML='';
     list.forEach((r,i)=>{
-      const globalIdx=razones.indexOf(r);
+      const idx=razones.indexOf(r);
       const card=document.createElement('div');
-      card.style.cssText=`break-inside:avoid;margin-bottom:14px;
-        background:linear-gradient(145deg,rgba(255,255,255,0.055),rgba(155,89,182,0.09));
-        border:1px solid rgba(195,155,211,0.16);border-radius:16px;
-        padding:14px 16px;backdrop-filter:blur(10px);
-        transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;
-        cursor:default;animation:fadeIn 0.4s ease ${(i%10)*0.04}s both;`;
-      card.innerHTML=`
-        <div style="display:flex;align-items:flex-start;gap:10px;">
-          <span style="font-size:1.1rem;margin-top:1px;flex-shrink:0;">${r.icon}</span>
-          <div style="flex:1;">
-            <span style="font-family:'Dancing Script',cursive;font-size:0.78rem;color:rgba(195,155,211,0.5);">#${globalIdx+1}</span>
-            <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:0.9rem;color:#ecdff5;line-height:1.7;margin-top:2px;">${r.text}</p>
-          </div>
-        </div>`;
-      card.addEventListener('mouseenter',()=>{
-        card.style.transform='translateY(-3px)';
-        card.style.boxShadow='0 8px 25px rgba(106,5,114,0.45)';
-        card.style.borderColor='rgba(195,155,211,0.35)';
-      });
-      card.addEventListener('mouseleave',()=>{
-        card.style.transform='';
-        card.style.boxShadow='';
-        card.style.borderColor='rgba(195,155,211,0.16)';
-      });
+      card.className='r-card';
+      card.style.animationDelay=(i%12)*0.03+'s';
+      card.innerHTML=`<div class="r-card-inner">
+        <span class="r-icon">${r.icon}</span>
+        <div>
+          <span class="r-num">#${idx+1}</span>
+          <p class="r-text">${r.text}</p>
+        </div>
+      </div>`;
       gridEl.appendChild(card);
     });
   }
 
-  // Animación del contador
-  function animateCounter(target,duration=2000){
-    const el=document.getElementById('counterNum');
-    const start=performance.now();
-    const ease=t=>t<0.5?2*t*t:(4-(2*t))*t-1;
-    function step(now){
-      const p=Math.min((now-start)/duration,1);
-      el.textContent=Math.round(ease(p)*target).toLocaleString();
-      if(p<1) requestAnimationFrame(step);
-      else el.textContent=target.toLocaleString();
+  render('all');
+
+  // Counter animation
+  const obs=new IntersectionObserver(e=>{
+    if(e[0].isIntersecting){
+      const el=document.getElementById('counterNum');
+      let n=0;const target=1000;const dur=2000;const start=performance.now();
+      (function step(now){
+        const p=Math.min((now-start)/dur,1);
+        const ease=p<.5?2*p*p:(4-2*p)*p-1;
+        el.textContent=Math.round(ease*target).toLocaleString();
+        if(p<1)requestAnimationFrame(step);
+        else el.textContent='1,000';
+      })(start);
+      obs.disconnect();
     }
-    requestAnimationFrame(step);
-  }
-
-  // Observer para activar el contador al hacer scroll
-  const counterObs=new IntersectionObserver(entries=>{
-    if(entries[0].isIntersecting){
-      animateCounter(1000);
-      counterObs.disconnect();
-    }
-  },{threshold:0.3});
-  counterObs.observe(document.getElementById('counterNum'));
-
-  // Estilos de animación
-  if(!document.getElementById('fadeInStyle')){
-    const s=document.createElement('style');
-    s.id='fadeInStyle';
-    s.textContent='@keyframes fadeIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}';
-    document.head.appendChild(s);
-  }
-}
-
-buildReasonsSection();
-
-/* ── Navegación activa ── */
-const sections=document.querySelectorAll('.page-section');
-const navLinks=document.querySelectorAll('.site-nav a');
-window.addEventListener('scroll',()=>{
-  let cur='';
-  sections.forEach(s=>{
-    if(window.scrollY>=s.offsetTop-80) cur=s.id;
-  });
-  navLinks.forEach(a=>{
-    a.classList.toggle('active', a.getAttribute('href')==='#'+cur);
-  });
-},{ passive:true });
+  },{threshold:.3});
+  obs.observe(document.getElementById('counterNum'));
+})();
 </script>
-
 </body>
 </html>
