@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8"/>
@@ -12,6 +12,13 @@
 </head>
 <body>
 
+<!-- ══ CURSOR ══ -->
+<div id="cursor">🌷</div>
+<div id="cursor-trail"></div>
+
+<!-- ══ CONFETTI ══ -->
+<div id="confetti"></div>
+
 <!-- ══ BACKGROUND ══ -->
 <div class="bg-canvas"></div>
 <div class="petals" id="petals"></div>
@@ -23,12 +30,15 @@
 <div id="portal">
   <div class="portal-scene">
     <div class="p-ring"></div>
+    <div class="p-ring2"></div>
+    <div class="p-ring3"></div>
     <!-- orbiting tulips -->
     <div class="p-tulip" style="--s:0deg;animation-duration:7s;">🌷</div>
     <div class="p-tulip" style="--s:72deg;animation-duration:7s;font-size:1.4rem;">🌸</div>
     <div class="p-tulip" style="--s:144deg;animation-duration:7s;">💜</div>
     <div class="p-tulip" style="--s:216deg;animation-duration:7s;font-size:1.2rem;">✨</div>
     <div class="p-tulip" style="--s:288deg;animation-duration:7s;">🌷</div>
+    <div class="p-tulip" style="--s:36deg;animation-duration:11s;font-size:1rem;">💫</div>
     <div class="p-disc">
       <span class="p-disc-emoji">💜</span>
       <span class="p-disc-label">Para ti</span>
@@ -1634,20 +1644,85 @@ que no tiene marcha atrás ni la quiere tener.</p>
 
 <script>
 /* ══════════════════════════════════════
+   CUSTOM CURSOR
+══════════════════════════════════════ */
+(function(){
+  const cur = document.getElementById('cursor');
+  const trail = document.getElementById('cursor-trail');
+  let mx=0,my=0,tx=0,ty=0;
+  document.addEventListener('mousemove',function(e){
+    mx=e.clientX; my=e.clientY;
+    cur.style.left = mx+'px';
+    cur.style.top  = my+'px';
+    // trail lags slightly
+    setTimeout(()=>{
+      trail.style.left = mx+'px';
+      trail.style.top  = my+'px';
+    },80);
+  });
+  // Click sparkle burst
+  document.addEventListener('click',function(e){
+    const spark=document.createElement('div');
+    spark.style.cssText=`position:fixed;left:${e.clientX}px;top:${e.clientY}px;pointer-events:none;z-index:99997;font-size:1.2rem;transform:translate(-50%,-50%);animation:clickSpark .5s ease forwards;`;
+    spark.textContent='✨';
+    document.body.appendChild(spark);
+    setTimeout(()=>spark.remove(),500);
+  });
+})();
+
+/* Spark keyframe injected dynamically */
+(function(){
+  const s=document.createElement('style');
+  s.textContent='@keyframes clickSpark{0%{opacity:1;transform:translate(-50%,-50%) scale(1);}100%{opacity:0;transform:translate(-50%,-120%) scale(2);}}';
+  document.head.appendChild(s);
+})();
+
+/* ══════════════════════════════════════
    PETALS
 ══════════════════════════════════════ */
 (function(){
   const petals=document.getElementById('petals');
-  const e=['🌷','🌸','💜','✨','💫'];
-  for(let i=0;i<22;i++){
+  const e=['🌷','🌸','💜','✨','💫','🌺'];
+  for(let i=0;i<28;i++){
     const d=document.createElement('div');
     d.className='petal';
     d.textContent=e[i%e.length];
     const dur=12+Math.random()*18;
-    d.style.cssText=`left:${Math.random()*100}%;animation-duration:${dur}s;animation-delay:${Math.random()*dur}s;font-size:${.8+Math.random()*1.2}rem;`;
+    d.style.cssText=`left:${Math.random()*100}%;animation-duration:${dur}s;animation-delay:${Math.random()*dur}s;font-size:${.7+Math.random()*1.3}rem;`;
     petals.appendChild(d);
   }
 })();
+
+/* ══════════════════════════════════════
+   CONFETTI BURST
+══════════════════════════════════════ */
+function launchConfetti(){
+  const container=document.getElementById('confetti');
+  const colors=['#9d3fff','#c46bff','#ff57d8','#ffd700','#ffaa00','#d4a8ff','#ff9de2','#ffffff'];
+  for(let i=0;i<120;i++){
+    const piece=document.createElement('div');
+    piece.className='confetti-piece';
+    const size=5+Math.random()*8;
+    const color=colors[Math.floor(Math.random()*colors.length)];
+    const left=Math.random()*100;
+    const dur=2+Math.random()*2;
+    const delay=Math.random()*1.2;
+    const isCircle=Math.random()>.5;
+    piece.style.cssText=`
+      left:${left}vw;
+      width:${size}px; height:${size}px;
+      background:${color};
+      border-radius:${isCircle?'50%':'2px'};
+      animation-duration:${dur}s;
+      animation-delay:${delay}s;
+      transform:rotate(${Math.random()*360}deg);
+      box-shadow:0 0 ${size}px ${color};
+    `;
+    container.appendChild(piece);
+  }
+  // Clean up confetti after 5 seconds
+  setTimeout(()=>{ container.innerHTML=''; },5000);
+}
 
 /* ══════════════════════════════════════
    PORTAL
@@ -1655,6 +1730,12 @@ que no tiene marcha atrás ni la quiere tener.</p>
 let ytPlayer=null;let playing=false;
 
 document.getElementById('enterBtn').addEventListener('click',function(){
+  // Confetti burst!
+  launchConfetti();
+  // Button click effect
+  this.style.transform='scale(0.95)';
+  setTimeout(()=>{ this.style.transform=''; },150);
+  // Fade out portal
   document.getElementById('portal').classList.add('exit');
   setTimeout(function(){
     document.getElementById('portal').style.display='none';
